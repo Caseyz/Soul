@@ -1,7 +1,13 @@
-export import reducer from './reducer'
-export import AccountContainer from './views/AccountContainer'
+import reducer from './reducer'
+import AccountContainer from './views/AccountContainer'
+import {
+  setLoginState,
+  setPhone
+} from './actionCreator'
 
 export {
   reducer,
-  AccountContainer
+  AccountContainer,
+  setLoginState,
+  setPhone
 }
