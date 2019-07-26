@@ -46,7 +46,7 @@ class AccountContainer extends Component {
   // 检查 phone 注册状态
   checkPhone = ()=>{
     console.log(this.state.phone)
-    this.props.setPhone(this.state.phone)
+    // this.props.setPhone(this.state.phone)
   }
   // 检查 输入是否满足下一步条件
   rulePhone = ()=>{
@@ -59,8 +59,9 @@ class AccountContainer extends Component {
   render() {
     return (
       <>
+        {/* 重定向到 用户名输入界面 */}
         <Redirect from="/account" to='/account/inputphone' exact></Redirect>
-        
+        {/* 进入 phone 输入页面 */}
         <Route 
           path="/account/inputphone" 
           children={()=>(
@@ -68,26 +69,29 @@ class AccountContainer extends Component {
               type='inputphone'
               {...this.props}
               setPhone={this.setPhone}
+              rulePhone={this.rulePhone}
               phone={this.state.phone}
               isPhoneCode={this.state.isPhoneCode}
             />
         )}></Route>
-
+        {/* 进入密码输入界面 */}
         <Route 
           path="/account/login" 
           children={()=>(
             <AccountContainerUI 
               type='login' 
-              {...this.props} 
+              {...this.props}
+              phone={this.state.phone}
             />
         )}></Route>
-
+        {/* 进入用户输入验证码界面 */}
         <Route 
           path='/account/code' 
           children={()=>(
             <AccountContainerUI
               type='code'
-              {...this.props} 
+              {...this.props}
+              phone={this.state.phone}
             />
         )}></Route>
       </>
