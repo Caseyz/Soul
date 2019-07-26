@@ -12,18 +12,19 @@ import store from '@/store/'
 // 组件引入
 import IsRedirectAccount from 'components/account/IsRedirectAccount'
 import { AccountContainer } from 'pages/account/'
+import  Dynamic  from 'pages/dynamic/'
 
 // 测试
-import Test from './test/Test'
+// import Test from './test/Test'
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <IsRedirectAccount comp={AccountContainer}>
+        <IsRedirectAccount comp={ Dynamic }>
           <Redirect from="/" to="/start" exact></Redirect>
           <Route path='/start' render={()=>(<div>start</div>)}></Route>
-          <Route path='/dynamic' render={()=>(<div>dynamic</div>)}></Route>
+          <Route path='/dynamic' component={ Dynamic }></Route>
           <Route path='/publish' render={()=>(<div>publish</div>)}></Route>
           <Route path='/chat' render={()=>(<div>chat</div>)}></Route>
           <Route path='/mine' render={()=>(<div>mine</div>)}></Route>
