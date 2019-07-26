@@ -1,6 +1,6 @@
 const path = require('path')
 
-const { override, addWebpackAlias } = require('customize-cra')
+const { override, addWebpackAlias, fixBabelImports } = require('customize-cra')
 
 module.exports = override(
   addWebpackAlias({
@@ -9,5 +9,10 @@ module.exports = override(
     utils: path.resolve(__dirname, './src/utils'),
     store: path.resolve(__dirname, './src/store'),
     pages: path.resolve(__dirname, './src/pages')
-  })
+  }),
+  fixBabelImports('import',
+    {
+      libraryName: 'antd-mobile',
+      style: 'css',
+    })
 )
