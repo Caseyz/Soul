@@ -12,9 +12,13 @@ import store from '@/store/'
 // 组件引入
 import IsRedirectAccount from 'components/account/IsRedirectAccount'
 import { AccountContainer } from 'pages/account/'
+import  Publish  from 'pages/publish/'
 
 import Concern from './pages/chat/ChatList/Concern'
 import ChatNav from './pages/chat/ChatList/chatNav/ChatNav'
+  //广场组件
+import Square from 'pages/square/index.jsx'
+
 // 测试
 // import Test from './test/Test'
 
@@ -23,11 +27,13 @@ class App extends Component {
     return (
       <Provider store={store}>
         <IsRedirectAccount comp={AccountContainer}>
-          <Redirect from="/" to="/start" exact></Redirect>
+          <Redirect from="/" to="/square" exact></Redirect>
           <Route path='/start' render={()=>(<div>start</div>)}></Route>
           <Route path='/dynamic' render={()=>(<div>dynamic</div>)}></Route>
           <Route path='/publish' render={()=>(<div>publish</div>)}></Route>
           <Route path='/chat' render={()=>(<Concern>chat</Concern>)}></Route>
+          <Route path='/dynamic' component={Square}></Route>
+          <Route path='/publish'  component={ Publish }></Route>
           <Route path='/mine' render={()=>(<div>mine</div>)}></Route>
           <Route path='/account' component={ AccountContainer }></Route>
         </IsRedirectAccount>
