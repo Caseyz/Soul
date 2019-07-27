@@ -27,7 +27,7 @@ class App extends Component {
           <Route path='/start' render={()=>(<div>start</div>)}></Route>
           <Route path='/dynamic' render={()=>(<div>dynamic</div>)}></Route>
           <Route path='/publish' render={()=>(<div>publish</div>)}></Route>
-          <Route path='/chat' render={()=>(<div>chat</div>)}></Route>
+          <Route path='/chat' render={()=>(<Concern>chat</Concern>)}></Route>
           <Route path='/mine' render={()=>(<div>mine</div>)}></Route>
           <Route path='/account' component={ AccountContainer }></Route>
         </IsRedirectAccount>

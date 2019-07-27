@@ -30,7 +30,7 @@ class Concern extends Component {
   }
   async componentDidMount(){
     try {
-      const response = await axios.get('/user?ID=12345');
+      const response = await axios.get('/mobileWeb/catalogroot');
       console.log(response);
     } catch (error) {
       console.error(error);
