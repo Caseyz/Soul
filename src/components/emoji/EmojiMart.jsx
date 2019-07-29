@@ -8,7 +8,6 @@ import { Emoji } from './styleEmoji'
 
 import HOCemoji from './HOCemoji'
 
-// import OneEmoji from 'components/emoji/OneEmoji'
 
 class EmojiMart extends Component {
     constructor(props){
