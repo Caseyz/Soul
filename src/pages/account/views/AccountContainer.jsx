@@ -6,9 +6,12 @@ import { Route, Redirect } from 'react-router-dom'
 import { setLoginState, setPhone } from '../actionCreator'
 // 工具
 import http from 'utils/http'
+import axios from 'axios'
+import qs from 'qs'
 
 // 组件
 import AccountContainerUI from './AccountContainerUI'
+
 
 const mapState = state => ({
   isLogin: state.getIn(['account', 'isLogin']),
@@ -28,32 +31,71 @@ class AccountContainer extends Component {
     this.state = {
       registered: false,
       phone: this.props.phone,
-      isPhoneCode: false,
+      rulePhone: false,
+      password: '',
+      rulePassword: false
     }
   }
   static getDerivedStateFromProps(props, state){
     return null
   }
   // 获取 phone 并设置
-  setPhone = (phone)=>{
-    let reg = /\d{0,11}/i
+  setPhone = (e)=>{
+    let reg= /^[0-9]{0,11}$/
+    let phone = e.target.value
     if( reg.test(phone) ) {
       this.setState({
-        phone
+        phone,
+        rulePhone: phone.length===11
       })
     }
   }
   // 检查 phone 注册状态
-  checkPhone = ()=>{
-    console.log(this.state.phone)
-    // this.props.setPhone(this.state.phone)
-  }
-  // 检查 输入是否满足下一步条件
-  rulePhone = ()=>{
-    let reg = new RegExp("^1(3|4|5|7|8)\d{9}$");
-    this.setState({
-      isPhoneCode: reg.test(this.state.phone)
+  checkPhone = async ()=>{
+    let res = await http.get('/checkuser', {
+      phone: this.state.phone
     })
+    if( res.code==="1" ) {
+      console.log("未注册")
+    }else if( res.code==="0" ) {
+      console.log("已经注册")
+    }
+    this.props.setPhone(this.state.phone)
+  }
+  // 密码检测
+  setPassword = (e)=> {
+    let password = e.target.value
+    if( password.length>5 && password.length<21 ){
+      this.setState({
+        password,
+        rulePassword: true,
+      })
+    }else if( password.length<=5 ){
+      this.setState({
+        password,
+        rulePassword: false
+      })
+    }
+  }
+  // 登录 请求
+  toLogin = async () => {
+    let {phone, password:pwd} = this.state
+    let res = await http.post('/logicbypwd', { 
+      phone,
+      pwd
+    })
+    // let res = await axios({
+    //   method: 'POST',
+    //   url: '/logicbypwd',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   data: {
+    //     "phone":phone,
+    //     "pwd":pwd
+    //   }
+    // });
+    console.log(res)
   }
 
   render() {
@@ -69,9 +111,9 @@ class AccountContainer extends Component {
               type='inputphone'
               {...this.props}
               setPhone={this.setPhone}
-              rulePhone={this.rulePhone}
+              checkPhone={this.checkPhone}
               phone={this.state.phone}
-              isPhoneCode={this.state.isPhoneCode}
+              rulePhone={this.state.rulePhone}
             />
         )}></Route>
         {/* 进入密码输入界面 */}
@@ -80,8 +122,10 @@ class AccountContainer extends Component {
           children={()=>(
             <AccountContainerUI 
               type='login' 
-              {...this.props}
-              phone={this.state.phone}
+              toLogin={this.toLogin}
+              setPassword={this.setPassword}
+              password={this.state.password}
+              rulePassword={this.state.rulePassword}
             />
         )}></Route>
         {/* 进入用户输入验证码界面 */}

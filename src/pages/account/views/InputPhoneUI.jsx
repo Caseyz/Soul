@@ -1,10 +1,17 @@
 import React from 'react'
  
-const InputPhoneUI = () => {
+const InputPhoneUI = (props) => {
    return (
-    <div>
-    InputPhoneUI
-  </div>
+    <>
+      <input type="number"
+        onChange={props.setPhone}
+        value={props.phone}
+      />
+      <button 
+        onClick={props.checkPhone}
+        disabled={props.rulePhone ? false : true}
+      >测试</button>
+    </>
    )
 }
 

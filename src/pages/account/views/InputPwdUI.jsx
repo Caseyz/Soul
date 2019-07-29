@@ -1,10 +1,18 @@
 import React from 'react'
  
-const InputPwdUI = () => {
+const InputPwdUI = (props) => {
    return (
-    <div>
-    InputPwdUI
-  </div>
+    <>
+      <input 
+        type="password"
+        value={props.password}
+        onChange={props.setPassword}
+      />
+      <button 
+        onClick={props.toLogin}
+        disabled={props.rulePassword ? false : true}
+      >密码</button>
+    </>
    )
 }
 
