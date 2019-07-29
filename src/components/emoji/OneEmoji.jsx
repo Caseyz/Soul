@@ -5,7 +5,8 @@ class OneEmoji extends Component {
         return (
             <Emoji
                 set={'apple'}
-                emoji={'grinning'}
+                //请在父组件数据中定义emoji字段
+                emoji={this.props.emoji}
                 size={26}
                 fallback={(emoji, props) => {
                     return emoji ? `:${emoji.short_names[0]}:` : props.emoji
@@ -17,3 +18,4 @@ class OneEmoji extends Component {
 
 
 export default OneEmoji;
+

@@ -6,11 +6,16 @@ import { Picker } from 'emoji-mart'
 
 import { Emoji } from './styleEmoji'
 
+import HOCemoji from './HOCemoji'
+
+// import OneEmoji from 'components/emoji/OneEmoji'
+
 class EmojiMart extends Component {
     constructor(props){
         super(props)
         this.state = {
-            emoji : ""
+            emoji : "",
+            html:"",
         }
     }
     render() {
@@ -28,14 +33,20 @@ class EmojiMart extends Component {
             </Emoji>
         );
     }
+
     //点击标签存储当前表情对应信息
-    handleClick =(emoji,props)=>{
-        console.log(emoji)
-        this.setState({
+    handleClick =async (emoji,props)=>{
+
+        await this.setState({
             emoji : emoji,
+            html : HOCemoji(Emoji,emoji)
         })
-        console.log(this.props)
+
         this.props.handle(emoji)
+        console.log(Emoji)
+        console.log(this.state.html)
+
+
     }
 }
 
