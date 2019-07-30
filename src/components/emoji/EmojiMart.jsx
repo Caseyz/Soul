@@ -35,17 +35,12 @@ class EmojiMart extends Component {
 
     //点击标签存储当前表情对应信息
     handleClick =async (emoji,props)=>{
-
         await this.setState({
             emoji : emoji,
             html : HOCemoji(Emoji,emoji)
         })
 
-        this.props.handle(emoji)
-        console.log(Emoji)
-        console.log(this.state.html)
-
-
+        this.props.handle(emoji, this.state.html)
     }
 }
 
