@@ -10,6 +10,7 @@ import http from 'utils/http'
 // 组件
 import AccountContainerUI from './AccountContainerUI'
 
+
 const mapState = state => ({
   isLogin: state.getIn(['account', 'isLogin']),
   phone: state.getIn(['account', 'phone'])
@@ -28,34 +29,91 @@ class AccountContainer extends Component {
     this.state = {
       registered: false,
       phone: this.props.phone,
-      isPhoneCode: false,
+      rulePhone: false,
+      password: '',
+      rulePassword: false,
+      code:''
     }
   }
   static getDerivedStateFromProps(props, state){
     return null
   }
   // 获取 phone 并设置
-  setPhone = (phone)=>{
-    let reg = /\d{0,11}/i
+  setPhone = (e)=>{
+    let reg= /^[0-9]{0,11}$/
+    let phone = e.target.value
     if( reg.test(phone) ) {
       this.setState({
-        phone
+        phone,
+        rulePhone: phone.length===11
       })
     }
   }
   // 检查 phone 注册状态
-  checkPhone = ()=>{
-    console.log(this.state.phone)
-    // this.props.setPhone(this.state.phone)
+  checkPhone = async ()=>{
+    let res = await http.get('/checkuser', {
+      phone: this.state.phone
+    })
+    console.log(this.props)
+    if( res.code===1 ) {
+      console.log("未注册")
+      // 未注册状态逻辑
+      this.props.history.push('/account/code',"register")
+    }else if( res.code===0 ) {
+      console.log("已经注册")
+      // 已注册状态逻辑
+      this.props.history.push('/account/login')
+    }
+    console.log(res)
+    this.props.setPhone(this.state.phone)
   }
-  // 检查 输入是否满足下一步条件
-  rulePhone = ()=>{
-    let reg = new RegExp("^1(3|4|5|7|8)\d{9}$");
-    this.setState({
-      isPhoneCode: reg.test(this.state.phone)
+  // 密码检测
+  setPassword = (e)=> {
+    let password = e.target.value
+    if( password.length>5 && password.length<21 ){
+      this.setState({
+        password,
+        rulePassword: true,
+      })
+    }else if( password.length<=5 ){
+      this.setState({
+        password,
+        rulePassword: false
+      })
+    }
+  }
+  // 登录 请求
+  toLogin = async () => {
+    let {phone, password:pwd} = this.state
+    let res = await http.post('/logicbypwd', { 
+      phone,
+      pwd
+    })
+    console.log(res)
+    if(res.code===0) {
+      this.props.history.replace('/dynamic')
+      console.log(res)
+    }
+  }
+  // 获取验证码
+  getCode = async ()=> {
+    await http.get('/code', {
+      phone: this.state.phone
     })
   }
-
+  // 验证码 登录、注册  请求
+  toCode = async (e)=> {
+    console.log(this.props)
+    // let code = e.target.value
+    
+  }
+  componentDidMount() {
+    if ( this.state.phone.lenght === 11 ) {
+      this.setState({
+        rulePhone: true
+      })
+    }
+  }
   render() {
     return (
       <>
@@ -69,9 +127,9 @@ class AccountContainer extends Component {
               type='inputphone'
               {...this.props}
               setPhone={this.setPhone}
-              rulePhone={this.rulePhone}
+              checkPhone={this.checkPhone}
               phone={this.state.phone}
-              isPhoneCode={this.state.isPhoneCode}
+              rulePhone={this.state.rulePhone}
             />
         )}></Route>
         {/* 进入密码输入界面 */}
@@ -81,7 +139,10 @@ class AccountContainer extends Component {
             <AccountContainerUI 
               type='login' 
               {...this.props}
-              phone={this.state.phone}
+              toLogin={this.toLogin}
+              setPassword={this.setPassword}
+              password={this.state.password}
+              rulePassword={this.state.rulePassword}
             />
         )}></Route>
         {/* 进入用户输入验证码界面 */}
@@ -91,7 +152,8 @@ class AccountContainer extends Component {
             <AccountContainerUI
               type='code'
               {...this.props}
-              phone={this.state.phone}
+              toCode={this.toCode}
+              getCode={this.getCode}
             />
         )}></Route>
       </>

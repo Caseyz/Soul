@@ -5,9 +5,11 @@ import 'assets/styles/animate.css'
 import { CSSTransition } from 'react-transition-group'
 
 const Animate = (Comp) => (props) => {
+  console.log(props)
   let { type, location } = props
   let isShow = location.pathname.split('/').some((item)=>item===type)
   let state = props.location.state
+  console.log(state)
   let dir =  state && state.dir || 'left'
   return (
     <CSSTransition
