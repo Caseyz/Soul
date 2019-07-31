@@ -6,8 +6,6 @@ import { Route, Redirect } from 'react-router-dom'
 import { setLoginState, setPhone } from '../actionCreator'
 // 工具
 import http from 'utils/http'
-import axios from 'axios'
-import qs from 'qs'
 
 // 组件
 import AccountContainerUI from './AccountContainerUI'
@@ -33,7 +31,8 @@ class AccountContainer extends Component {
       phone: this.props.phone,
       rulePhone: false,
       password: '',
-      rulePassword: false
+      rulePassword: false,
+      code:''
     }
   }
   static getDerivedStateFromProps(props, state){
@@ -55,11 +54,17 @@ class AccountContainer extends Component {
     let res = await http.get('/checkuser', {
       phone: this.state.phone
     })
-    if( res.code==="1" ) {
+    console.log(this.props)
+    if( res.code===1 ) {
       console.log("未注册")
-    }else if( res.code==="0" ) {
+      // 未注册状态逻辑
+      this.props.history.push('/account/code',"register")
+    }else if( res.code===0 ) {
       console.log("已经注册")
+      // 已注册状态逻辑
+      this.props.history.push('/account/login')
     }
+    console.log(res)
     this.props.setPhone(this.state.phone)
   }
   // 密码检测
@@ -84,20 +89,31 @@ class AccountContainer extends Component {
       phone,
       pwd
     })
-    // let res = await axios({
-    //   method: 'POST',
-    //   url: '/logicbypwd',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   data: {
-    //     "phone":phone,
-    //     "pwd":pwd
-    //   }
-    // });
     console.log(res)
+    if(res.code===0) {
+      this.props.history.replace('/dynamic')
+      console.log(res)
+    }
   }
-
+  // 获取验证码
+  getCode = async ()=> {
+    await http.get('/code', {
+      phone: this.state.phone
+    })
+  }
+  // 验证码 登录、注册  请求
+  toCode = async (e)=> {
+    console.log(this.props)
+    // let code = e.target.value
+    
+  }
+  componentDidMount() {
+    if ( this.state.phone.lenght === 11 ) {
+      this.setState({
+        rulePhone: true
+      })
+    }
+  }
   render() {
     return (
       <>
@@ -122,6 +138,7 @@ class AccountContainer extends Component {
           children={()=>(
             <AccountContainerUI 
               type='login' 
+              {...this.props}
               toLogin={this.toLogin}
               setPassword={this.setPassword}
               password={this.state.password}
@@ -135,7 +152,8 @@ class AccountContainer extends Component {
             <AccountContainerUI
               type='code'
               {...this.props}
-              phone={this.state.phone}
+              toCode={this.toCode}
+              getCode={this.getCode}
             />
         )}></Route>
       </>

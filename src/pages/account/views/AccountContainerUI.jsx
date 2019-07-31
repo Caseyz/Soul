@@ -1,9 +1,9 @@
 import React from 'react'
 // 组件
 import Animate from 'components/high-order/Animate'
-import InputCodeUI from './InputCodeUI'
-import InputPhoneUI from './InputPhoneUI'
-import InputPwdUI from './InputPwdUI'
+import InputCodeUI from './inputCode/InputCodeUI'
+import InputPhoneUI from './inputPhone/InputPhoneUI'
+import InputPwdUI from './inputPwd/InputPwdUI'
  
 const AccountContainerUI = (props) => {
    let Comp
@@ -21,5 +21,5 @@ const AccountContainerUI = (props) => {
    )
 }
 
-export default AccountContainerUI
-// export default Animate(AccountContainerUI)
+// export default AccountContainerUI
+export default Animate(AccountContainerUI)

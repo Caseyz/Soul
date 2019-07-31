@@ -27,7 +27,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <IsRedirectAccount comp={AccountContainer}>
-          <Redirect from="/" to="/square" exact></Redirect>
+          <Redirect from="/" to="/dynamic" exact></Redirect>
           <Route path='/start' render={()=>(<div>start</div>)}></Route>
           <Route path='/dynamic' component={Square}></Route>
           <Route path='/publish'  component={ Publish }></Route>
