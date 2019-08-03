@@ -1,17 +1,22 @@
 import styled from 'styled-components'
-const logo = require('assets/images/account/logo.png')
-const line = require('assets/images/account/line.png')
+import logo from 'assets/images/account/logo.png'
+import line from 'assets/images/account/line.png'
 
-const Container = styled.div`
+
+const LogoWrap = styled.div`
+  padding-top: 0.44rem;
+  padding-bottom: 0.22rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 `
+
 const Logo = styled.div`
   width: 0.8rem;
   height: 0.8rem;
   background-size: 100% 100%;
   background-image: url(${logo});
+  margin-bottom: 0.18rem;
 `
 const LogoInfo = styled.div`
   display: flex;
@@ -28,6 +33,7 @@ const LogoInfo = styled.div`
   .content{
     font-size: 0.15rem;
     color: #333;
+    margin: 0 0.07rem;
   }
   &:after{
     content: "";
@@ -41,7 +47,7 @@ const LogoInfo = styled.div`
   }
 `
 export {
-  Container,
+  LogoWrap,
   Logo,
   LogoInfo
 }

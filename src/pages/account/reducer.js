@@ -3,7 +3,7 @@ import { Map }  from 'immutable'
 import { ISLOGIN, SETPHONE } from './actionTypes'
 
 const defaultState = Map({
-  isLogin: store.get(ISLOGIN)|| true,
+  isLogin: store.get(ISLOGIN)|| false,
   phone: store.get(SETPHONE) || ''
 })
 

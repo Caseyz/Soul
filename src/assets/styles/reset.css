@@ -14,17 +14,18 @@ body {
   display: none; }
 
 html {
-  background-color: #eee;
-  color: #212121;
+  background-color: #fff;
+  color: #333;
   font-size: 26.66666667vw;
   -webkit-user-select: none;
   user-select: none; }
 
 body {
   margin: 0;
+  background-color: #fff;
   font-size: 0.14em;
   line-height: 1.5;
-  font-family: PingFangSC-Regular, Hiragino Sans GB, Helvetica Neue, Helvetica, STHeiTi, sans-serif; 
+  font-family: PingFangSC-Medium, PingFangSC-Regular, Hiragino Sans GB, Helvetica Neue, Helvetica, STHeiTi, sans-serif; 
   -webkit-font-smoothing: antialiased;
 }
 
