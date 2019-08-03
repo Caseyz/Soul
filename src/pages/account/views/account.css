@@ -1,0 +1,29 @@
+.margint {
+  margin-top: 0.41rem;
+}
+.forget-wrap, 
+.code-wrap {
+  margin: 0.15rem 0.35rem 0;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.forget-wrap .text {
+  font-size: .12rem;
+  color: #57E1E2;
+  text-decoration: underline;
+}
+.code-wrap .text {
+  height: 0.23rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #57E1E2;
+  color: white;
+  font-size: 0.12rem;
+  border-radius: 0.11rem;
+  padding: 0 0.11rem;
+}
+.code-wrap .text.disabled{
+  background-color: #999
+}
