@@ -14,9 +14,15 @@ const FlexMidCen = styled(Flex)`
   justify-content: center;
   align-items: center;
 `
+const Container = styled.div`
+  height: 100vh;
+  overflow: scroll;
+  margin: 0 0.35rem;
+`
 export {
   Flex,
   FlexMiddle,
   FlexCenter,
-  FlexMidCen
+  FlexMidCen,
+  Container
 }

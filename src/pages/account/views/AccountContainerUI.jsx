@@ -4,9 +4,12 @@ import { LogoWrap, LogoInfo, Logo } from './components/logo/styleInputPhone'
 import InputContainer from './InputContainer'
 
 import Button from './components/button/Button'
-import {FlexMidCen} from './components/layout/StyledFlex'
+import {FlexMidCen, Container} from './components/layout/StyledFlex'
 
 import './account.css'
+
+// 测试组件
+import AddInfoContainer from './addInfo/AddInfoContainer'
 
 
 export default (props)=>{
@@ -91,7 +94,7 @@ export default (props)=>{
   }
 
   return (
-    <>
+    <Container>
       <LogoWrap>
         <Logo></Logo>
         <LogoInfo>
@@ -111,6 +114,9 @@ export default (props)=>{
           handleClick={btnState===2 ? handleClick : ""}
         >{btnText}</Button>
       </FlexMidCen>
-    </>
+    </Container>
   )
+  // return (
+  //   <AddInfoContainer></AddInfoContainer>
+  // )
 }

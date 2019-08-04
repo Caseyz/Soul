@@ -7,6 +7,7 @@ import radioDisBox from 'assets/images/account/radio-disable-box.jpg'
 class Button extends Component {
   constructor(props) {
     super(props)
+    console.log('button')
     this.state = {
       type: 'normal'
     }
