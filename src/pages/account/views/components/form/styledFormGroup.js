@@ -44,6 +44,7 @@ const PwdLabel = iconLabel('pwd')
 const Input = styled.div`
   padding: 0.15rem 0 0.16rem;
   display: flex;
+  align-items: center;
   & > input {
     border: none;
     font-size: 0.14rem;
@@ -52,6 +53,10 @@ const Input = styled.div`
     color: #999;
     margin: 0;
     padding: 0;
+  }
+  & > .text {
+    font-size: 0.12rem;
+    color: #333;
   }
   & > .arrow {
     margin-right: 0.1rem;
@@ -81,7 +86,6 @@ const LineInput = border({
 
 // 输入框外层contaienr
 const FormContainer = styled.div`
-  margin: 0 0.35rem;
   padding-top: 0.27rem;
 `
 
