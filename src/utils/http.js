@@ -4,8 +4,11 @@ const baseURL = 'https://wx.zhaoyx0907.com/api/'
 export default {
   post(url, data) {
     return axios.post(url, data,{
+      defaults:{
+        withCredentials:true
+      },
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
       },
       baseURL,
     }).then(res=>res.data)
