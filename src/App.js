@@ -17,7 +17,13 @@ import  Publish  from 'pages/publish/'
 import Concern from './pages/chat/ChatList/Concern'
 import ChatNav from './pages/chat/ChatList/chatNav/ChatNav'
   //广场组件
+<<<<<<< HEAD
 import Square from 'pages/square/Test.jsx'
+=======
+import Square from 'pages/square/index.jsx'
+//自己组件
+import { Mine } from 'pages/mine/'
+>>>>>>> mime-20190730-gongpengji
 
 // 测试
 // import Test from './test/Test'
@@ -31,8 +37,12 @@ class App extends Component {
           <Route path='/start' render={()=>(<div>start</div>)}></Route>
           <Route path='/dynamic' component={Square}></Route>
           <Route path='/publish'  component={ Publish }></Route>
+<<<<<<< HEAD
           <Route path='/chat' render={()=>(<Concern>chat</Concern>)}></Route>
           <Route path='/mine' render={()=>(<div>mine</div>)}></Route>
+=======
+          <Route path='/mine' render={ Mine }></Route>
+>>>>>>> mime-20190730-gongpengji
           <Route path='/account' component={ AccountContainer }></Route>
         </IsRedirectAccount>
       </Provider>
