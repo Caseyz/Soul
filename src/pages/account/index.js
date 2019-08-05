@@ -1,5 +1,6 @@
 import reducer from './reducer'
-import AccountContainer from './views/AccountContainer'
+// import AccountContainer from './views/AccountContainer'
+import AccountContainer from './views/AccountRoot'
 import {
   setLoginState,
   setPhone

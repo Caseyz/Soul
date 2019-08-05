@@ -3,8 +3,7 @@ import React, { Component } from 'react'
 import {
   HashRouter as Router,
   Route,
-  Redirect,
-  Switch
+  Redirect
 } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -20,21 +19,17 @@ const mapState = state => ({
  */
 class IsRedirectAccount extends Component {
   render() {
+    console.log(this.props.isLogin)
     return (
       <Router>
-        <Switch>
-          {console.log(this.props)}
-          {
-            this.props.isLogin
-            ? this.props.children
-            : (
-                <>
-                  <Redirect from='/' to="/account" exact></Redirect>
-                  <Route path="/account" component={this.props.comp}></Route>
-                </>
-              )
-          }
-        </Switch>
+        {
+          this.props.isLogin 
+          ? this.props.children
+          : (<>
+              <Redirect from="/" to="/account"></Redirect>
+              <Route path="/account" component={this.props.comp}></Route>
+            </>)
+        }
       </Router>
     )
   }

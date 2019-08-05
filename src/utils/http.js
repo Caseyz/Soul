@@ -1,4 +1,5 @@
 const baseURL = 'https://wx.zhaoyx0907.com/api'
+// const baseURL = 'http://139.199.34.125:7006'
 const urlReg = /^http[s]?:\/\/.+$/
 
 
