@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import border from 'components/style/border'
-
+import img from 'assets/images/publish/返回@3x.png'
 var Head1 = styled.div`
     width:100% ;
     height:.44rem;
@@ -16,7 +16,9 @@ var Head1 = styled.div`
             width:.15rem;
             height:.15rem;
             margin-left:.11rem;
-            background: #000;
+            background: url(${img}) no-repeat;
+            background-size:.15rem .15rem;
+
         }
 
         .issue {
