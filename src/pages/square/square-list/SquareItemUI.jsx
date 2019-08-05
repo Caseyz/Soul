@@ -20,7 +20,13 @@ export default (props)=>{
                     <img src={publishPic1} style={{width:'.99rem',height:'1.20rem',paddingRight:'.06rem'}} alt=""/>
                     <img src={publishPic2} style={{width:'.99rem',height:'1.20rem'}} alt=""/>
                 </div>
-                <h6>春天的味道是蒲公英的味道,是绿色的味道，我妈平时说我笨我家狗就在旁边听着，以至于它真的觉得我笨出花了</h6>
+                <h6>春天的味道是蒲公英的味道,是绿色的味道，我妈平时说我笨我家狗就在旁边听着，以至于它真<br />
+                    的觉得我笨出花了<br />
+                    哈哈哈哈<br />
+                    哈哈哈哈<br />
+                    哈哈哈哈<br />
+                </h6>
+                <p><img src="assets/images/square/箭头@3x.png" alt=""/></p>
                 <div className="publish-position">
                     <i className="position-pic"></i><span>北京市</span>
                 </div>

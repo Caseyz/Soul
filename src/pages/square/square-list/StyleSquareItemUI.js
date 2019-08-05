@@ -42,6 +42,13 @@ padding-top: .2rem;
     .publish-pic{
         margin-bottom: .15rem;
     }
+    h6{
+        width: 2.85rem;
+        max-height: 1.38rem;
+        line-height: .23rem;
+        overflow: hidden;
+    }
+
     .publish-position{
         margin-top: .15rem;
         line-height: .19rem;
