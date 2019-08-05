@@ -41,7 +41,7 @@ class TabExample extends Component{
             mel[index].style.fontSize = ".18rem"
             index !==1 ? this.ttt.classList.add('addone') : this.ttt.classList.remove('addone')
         } }
-        onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
+        // onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
       >
         <div style={{flex:1, backgroundColor: '#fff' }}>
           <SquareItemContainer></SquareItemContainer> 

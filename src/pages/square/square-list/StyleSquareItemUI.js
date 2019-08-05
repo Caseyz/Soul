@@ -42,6 +42,31 @@ padding-top: .2rem;
     .publish-pic{
         margin-bottom: .15rem;
     }
+    h6{
+        width: 2.85rem;
+        line-height: .23rem;
+    }
+    .text-container{
+        width: 2.85rem;
+        max-height: 1.38rem;
+        line-height: .23rem;
+        overflow: hidden;
+    }
+    .text-container-measure{
+        position: absolute;
+        visibility: hidden;
+    }
+    p{
+        height: .09rem;
+        margin-top: .1rem;
+        text-align: center;
+        padding-right: .34rem;
+        margin-bottom: .22rem;
+        img{
+            width: .15rem;
+            height: .09rem;
+        }
+    }
     .publish-position{
         margin-top: .15rem;
         line-height: .19rem;
