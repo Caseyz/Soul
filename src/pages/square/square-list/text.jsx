@@ -1,11 +1,21 @@
-import React, {useState,useRef} from 'react'
+import React, {useState, useEffect} from 'react'
 
-export default (text)=>{
-    const [textHeight, setTextHeight] = useState(null);
-    const textEl = useRef(null);
-    return (
-        <h6 ref={ textEl }>
-            {text}
-        </h6>
-    )
+  function useShow(elHeight){
+    const [show, setshow] = useState(false);
+    useEffect(()=>{
+        function showClick(){
+            console.log(1,elHeight)
+            setshow(!show)
+            if(show){
+                elHeight.style.height = "500px"
+            }else{
+                elHeight.style.height = "100px"
+    
+            }
+        }
+    })
+
+    return showClick
 }
+
+export default useShow

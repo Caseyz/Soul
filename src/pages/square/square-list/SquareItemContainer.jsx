@@ -16,8 +16,27 @@ export class SquareItemContainer extends Component {
             picNumber:1,
             list: []
         }
-        // this.result = []
+        // this.arrow=React.createRef();
     }
+
+    //显示
+    showText(textEl,arrowEl){
+        let show  = false
+        return function(){
+            show = !show
+            if(show){
+                textEl.classList.remove('text-container')
+                textEl.style.overFlow = "visible"
+                // let _tem = arrowEl ? arrowEl.style.WebkitTransform = 'rotateX(180deg)' : ''
+                console.log(arrowEl.childNodes)
+            }else{
+                textEl.classList.add('text-container')
+                textEl.style.overFlow = "hidden"
+                // let _tem = arrowEl ? arrowEl.style.WebkitTransform = 'rotateX(0deg)' : ''
+            }
+        }
+    }
+
     async componentDidMount(){
         let focus = '',
             time = ''
@@ -42,13 +61,17 @@ export class SquareItemContainer extends Component {
             "pagesize":10
         })
         this.setState({list: result})
+        // setTimeout(()=>{
+        //     console.log("我是ref",this.arrow)
+        // }, 500)
 
     }
+
     render() {
         console.log(this.state.list)
         let list = this.state.list instanceof Array 
         ? this.state.list.map((item,index)=>(
-                <SquareItemUI key={item.id} info={item} tabNumber = {this.props.tabNumber}></SquareItemUI>
+                <SquareItemUI key={item.id} showText={this.showText} info={item} tabNumber = {this.props.tabNumber}></SquareItemUI>
           )) 
         : []
         return (
