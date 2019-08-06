@@ -39,12 +39,14 @@ padding-top: .2rem;
     margin: .16rem 0 0 0;
     font-size: .13rem;
     line-height: .13rem;
+    transition: all 2s;
     .publish-pic{
         margin-bottom: .15rem;
     }
     h6{
         width: 2.85rem;
         line-height: .23rem;
+        transition: all 2s;
     }
     .text-container{
         width: 2.85rem;
