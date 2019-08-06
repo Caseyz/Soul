@@ -26,12 +26,13 @@ export default (props)=>{
             setIsExceed(false)
         }
     })
+    console.log(props)
     return(
         <StyleSquareItemUI>
             <div className="square-user">
                 <img className="user-photo" src={headPhoto} alt=""/>
                 <div className="user-info">
-                    <span className="username">杨森森</span>
+                    <span className="username">{ props.tabNumber===1 ? props.info.username : '来自 # '+ props.info.starname}</span>
                     <span className="publish-time">2小时前</span>
                 </div>
             </div>
@@ -40,14 +41,14 @@ export default (props)=>{
                     <img src={publishPic1} style={{width:'.99rem',height:'1.20rem',paddingRight:'.06rem'}} alt=""/>
                     <img src={publishPic2} style={{width:'.99rem',height:'1.20rem'}} alt=""/>
                 </div>
-                <h6 className="text-container" ref={textEl}>春天的味道是蒲公英的味道,是绿色的味道，我妈平时说我笨我家狗就在旁边听着，以至于它真<br />
+                <h6 className="text-container" ref={textEl}>{props.info.note}春天的味道是蒲公英的味道,是绿色的味道，我妈平时说我笨我家狗就在旁边听着，以至于它真<br />
                     的觉得我笨出花了<br />
                     哈哈哈哈<br />
                     哈哈哈哈<br />
                     哈哈哈哈<br />
                     哈哈哈哈<br />
                 </h6>
-                <h6 className="text-container-measure" ref={fileInputEl}>春天的味道是蒲公英的味道,是绿色的味道，我妈平时说我笨我家狗就在旁边听着，以至于它真<br />
+                <h6 className="text-container-measure" ref={fileInputEl}>{props.info.note}春天的味道是蒲公英的味道,是绿色的味道，我妈平时说我笨我家狗就在旁边听着，以至于它真<br />
                     的觉得我笨出花了<br />
                     哈哈哈哈<br />
                     哈哈哈哈<br />
@@ -56,12 +57,12 @@ export default (props)=>{
                     hiehei<br />
                 </h6>
                 {isExceed && <p onClick={props.show}><img src={arrowPic} alt=""/></p>}
-                <div className="publish-position">
-                    <i className="position-pic"></i><span>北京市</span>
-                </div>
+                {props.info.address && <div className="publish-position">
+                    <i className="position-pic"></i><span>{props.info.address}</span>
+                </div>}
                 <div className="Interaction">
-                    <i className="like"></i><span>6</span>
-                    <i className="comment"></i><span>2</span>
+                    <i className="like"></i><span>{props.info.star}</span>
+                    <i className="comment"></i><span>{props.info.comments}</span>
                     <i className="collection"></i>
                 </div>
             </div>
