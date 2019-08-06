@@ -19,7 +19,7 @@ class TabExample extends Component{
   constructor(props){
     super(props)
     this.state={
-      
+
     }
   }
 
@@ -44,13 +44,13 @@ class TabExample extends Component{
         // onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
       >
         <div style={{flex:1, backgroundColor: '#fff' }}>
-          <SquareItemContainer></SquareItemContainer> 
+          <SquareItemContainer tabNumber={0}></SquareItemContainer> 
         </div>
         <div style={{flex:1, backgroundColor: '#fff' }}>
-          <SquareItemContainer hasSearch="true"></SquareItemContainer> 
+          <SquareItemContainer tabNumber={1} hasSearch="true"></SquareItemContainer> 
         </div>
         <div style={{flex:1, backgroundColor: '#fff' }}>
-          <SquareItemContainer></SquareItemContainer> 
+          <SquareItemContainer tabNumber={2}></SquareItemContainer> 
         </div>
       </Tabs>
   
