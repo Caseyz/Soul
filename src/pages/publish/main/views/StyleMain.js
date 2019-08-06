@@ -16,6 +16,7 @@ var Textarea = styled.textarea`
        /* placeholder字体大小  */
        font-size: 12px;
        /* placeholder位置  */
+       font-family:PingFangSC-Medium;
     }
 `
 
