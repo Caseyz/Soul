@@ -8,6 +8,8 @@ function MainUI(props) {
             value={ props.value } id="ASD"  
             onChange = { props.valueChange }
             ref = { props.focus }
+            onClick = { props.Click }
+            onBlur = { props.Blur }
         ></Textarea>
     )
 }
