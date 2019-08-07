@@ -2,13 +2,14 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
 // dispatch
-import { setLoginState, setPhone } from '../actionCreator'
+import { setLoginState, setPhone } from '../store/actionCreator'
 // 工具
 import http from 'utils/http'
 
 // 组件
 import AccountContainerUI from './AccountContainerUI'
 import {Toast} from 'antd-mobile'
+
 
 
 const mapState = state => ({

@@ -43,12 +43,12 @@
   top: -9999px
 }
 
-.shake {
-  animation: shake 1s infinite;
-  -webkit-animation: shake 2.2s infinite;
+.myshake {
+  animation: myshake 1s infinite;
+  -webkit-animation: myshake 2.2s infinite;
 }
 
-@-webkit-keyframes shake {
+@-webkit-keyframes myshake {
   0% {
     opacity: 0;
   }
@@ -62,7 +62,7 @@
   }
 }
 
-@keyframes shake {
+@keyframes myshake {
   0% {
     opacity: 0.8;
   }

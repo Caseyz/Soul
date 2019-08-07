@@ -1,14 +1,13 @@
-import reducer from './reducer'
-// import AccountContainer from './views/AccountContainer'
-import AccountContainer from './views/AccountRoot'
+import AccountContainer from './AccountRoot.jsx'
 import {
+  reducer,
   setLoginState,
   setPhone
-} from './actionCreator'
+} from './store'
 
 export {
-  reducer,
   AccountContainer,
+  reducer,
   setLoginState,
   setPhone
 }

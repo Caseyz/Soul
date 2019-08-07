@@ -20,7 +20,7 @@ export default {
   post(url, data, opt) {
     return fetch(this._OriginURL(url), Object.assign({
         method: 'POST',
-        body: JSON.stringify(data),
+        body: JSON.stringify(data || {}),
         mode: 'cors',
         credentials: 'include',
         headers: new Headers({
@@ -32,7 +32,7 @@ export default {
     .then(result=>result)
   },
   get(url, data, opt) {
-    url += Object.keys(data).length ? '?'+this._serialize(data) : ''
+    url += Object.keys(data || {}).length ? '?'+this._serialize(data) : ''
     return fetch(this._OriginURL(url), Object.assign({
       method: 'GET',
       mode: 'cors',

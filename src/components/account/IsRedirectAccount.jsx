@@ -23,13 +23,12 @@ class IsRedirectAccount extends Component {
     return (
       <Router>
         <Switch>
-          {console.log(this.props)}
           {
             this.props.isLogin
             ? this.props.children
             : (
                 <>
-                  <Redirect from='/' to="/account" exact></Redirect>
+                  <Redirect from="*" to="/account"></Redirect>
                   <Route path="/account" component={this.props.comp}></Route>
                 </>
               )

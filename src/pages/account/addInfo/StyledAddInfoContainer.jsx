@@ -1,9 +1,14 @@
 import React from 'react'
-import { Container, FlexMidCen } from '../components/layout/StyledFlex'
-import { LineInput } from '../components/form/styledFormGroup'
-import Button from '../components/button/Button'
+import { FlexMidCen } from '../_components/layout/'
+import { 
+    InputGroup,
+    LineInput,
+    Input,
+    Text
+} from '../_components/form-group/'
+import Button from '../_components/button/Button'
 
-import { DatePicker, List } from 'antd-mobile'
+import { DatePicker} from 'antd-mobile'
 import enUs from 'antd-mobile/lib/date-picker/locale/en_US'
 
 import style from './style'
@@ -25,7 +30,7 @@ const StyledAddInfoContainer = (props) => {
      equalPwd
    } = props
    return (
-     <Container>
+     <>
        <div style={style.title}>HI,请完善您的信息</div>
        <div style={style.tip}>填写正确信息有助于匹配，我们将保护好您的私人信息</div>
        <FlexMidCen style={{width: '100%'}}>
@@ -34,17 +39,17 @@ const StyledAddInfoContainer = (props) => {
           <img src={logoImg} alt="" style={{width: '100%', height: '100%'}}/>
          </div>
        </FlexMidCen>
+       
        <div className="info-wrap">
-        <LineInput hasBorder={true}>
-          <div className="text" style={{marginRight: '0.2rem'}}>
-            昵称
-          </div>
-          <input type="text" name="username" id=""
-            value={username}
-            onChange={setUsername}
-          />
-        </LineInput>
-        <LineInput hasBorder={true}>
+        <InputGroup 
+         hasBorder={true}
+         padding={'0.1rem 0 0.13rem'}
+         title='昵称'
+         type='text'
+         value={username}
+         onChange={setUsername}
+        ></InputGroup>
+        {/* <LineInput hasBorder={true}>
           <div className="text" style={{marginRight: '0.2rem'}}>
             签名
           </div>
@@ -52,7 +57,7 @@ const StyledAddInfoContainer = (props) => {
             value={sign}
             onChange={setSign}
           />
-        </LineInput>
+        </LineInput> */}
         
         <DatePicker
           mode="date"
@@ -61,40 +66,46 @@ const StyledAddInfoContainer = (props) => {
           value={birth}
           onChange={setBirth}
         >
-          <LineInput hasBorder={true}>
-            <div className="text" style={{marginRight: '0.2rem'}}>
-              生日
+            <div>
+                <InputGroup
+                hasBorder={true}
+                padding={'0.1rem 0 0.13rem'}
+                title='生日'
+                type='text'
+                value={birth}
+                readOnly
+                ></InputGroup>
             </div>
-            <input type="text"
-              value={birth}
-              readOnly
-            />
-          </LineInput>
         </DatePicker>
-        <LineInput hasBorder={true}>
-          <div className="text" style={{marginRight: '0.2rem'}}>
-            密码
-          </div>
-          <input type="text" name="username" id=""
-            value={pwd}
-            onChange={setPwd}
-          />
-        </LineInput>
-        <LineInput hasBorder={true}>
-          <div className="text" style={{marginRight: '0.2rem'}}>
-            再次输入密码
-          </div>
-          <input type="text" name="username" id=""
+
+        <InputGroup 
+         hasBorder={true}
+         padding={'0.1rem 0 0.13rem'}
+         title='密码'
+         type='password'
+         value={pwd}
+         getValur={setPwd}
+        ></InputGroup>
+
+        <LineInput hasBorder={true} padding={'0.1rem 0 0.13rem'}>
+          <Text>再次输入密码</Text>
+          <Input 
+            type='password'
             onBlur={equalPwd}
           />
         </LineInput>
+       
        </div>
+
        <FlexMidCen style={{marginTop: '0.44rem'}}>
-        <Button type={'normal'}>
+        <Button 
+         type={'normal'}
+         handleClick={()=>{console.log(1)}}
+        >
           完成
         </Button>
        </FlexMidCen>
-     </Container>
+     </>
    )
 }
 

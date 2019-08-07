@@ -3,13 +3,13 @@ import { LogoWrap, LogoInfo, Logo } from './components/logo/styleInputPhone'
 
 import InputContainer from './InputContainer'
 
-import Button from './components/button/Button'
-import {FlexMidCen, Container} from './components/layout/StyledFlex'
+import Button from '../_components/button/Button'
+import {FlexMidCen, Container} from '../_components/layout/'
 
 import './account.css'
 
 // 测试组件
-import AddInfoContainer from './addInfo/AddInfoContainer'
+import AddInfoContainer from '../addInfo/'
 
 
 export default (props)=>{
@@ -95,12 +95,7 @@ export default (props)=>{
 
   return (
     <Container>
-      <LogoWrap>
-        <Logo></Logo>
-        <LogoInfo>
-          <div className="content">跟随灵魂找到你</div>
-        </LogoInfo>
-      </LogoWrap>
+      
       <InputContainer
         type="phone"
         phone={phone}
