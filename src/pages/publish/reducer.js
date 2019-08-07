@@ -1,15 +1,15 @@
 // import store from 'store'
-import { Map }  from 'immutable'
+import { Map } from 'immutable'
 import { GETFOCUS, VALUE } from './actionTypes'
 
 const defaultState = Map({
-    focus:true,
-    value:''
+    focus: true,
+    value: ''
 })
 
 const reducer = (state = defaultState, action) => {
     // console.log(action.data)
-    switch(action.type){
+    switch (action.type) {
         case GETFOCUS:
             return state.set('focus', action.data)
         case VALUE:
