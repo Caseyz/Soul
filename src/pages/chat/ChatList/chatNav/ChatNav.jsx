@@ -14,7 +14,7 @@ export default class ChatNav extends Component {
         this.props.onTabChange(type)
     }
     handleFocusClick(type) {
-        this.props.location
+        // this.props.location
     }
     render() {
         return (
