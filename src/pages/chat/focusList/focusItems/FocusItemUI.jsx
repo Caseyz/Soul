@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import StyledChatItem from './StyledChatItem'
-export default class ChatItem extends Component {
+import StyledFocusItem from './StyledFocusItem'
+export default class FocusItem extends Component {
     render() {
         return (
-            <StyledChatItem>
+            <StyledFocusItem>
                 <div className="left">
                     <img src="http://via.placeholder.com/40px*40px" alt=""/>
                     <div>
@@ -16,7 +16,7 @@ export default class ChatItem extends Component {
                     <span>取消关注</span>
                 </div>
 
-            </StyledChatItem>
+            </StyledFocusItem>
         )
     }
 }

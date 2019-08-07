@@ -1,26 +1,40 @@
 import React, { Component } from 'react'
 import StyledChatNav from './StyledChatNav'
 export default class ChatNav extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            activeId: 0
+        }
+    }
+    handleMatchClick(type) {
+        this.setState({
+            activeId: type
+        })
+        this.props.onTabChange(type)
+    }
+    handleFocusClick(type) {
+        this.setState({
+            activeId: type
+        })
+        this.props.onTabChange(type)
+    }
     render() {
         return (
             <StyledChatNav>
-                <div>
-                    <strong>2</strong>
+                <div onClick={this.handleMatchClick.bind(this, 0)}>
                     <i>
-                        <span className="active">我关注的</span>
-                    </i>
-
-                </div>
-                <div>
-                    <strong>2</strong>
-                    <i>
-                        <span className="active">密友</span>
+                        <span className={this.state.activeId === 0 ? "active" : ""}>允许匹配</span>
                     </i>
                 </div>
                 <div>
-                    <strong>2</strong>
                     <i>
-                        <span className="active">关注我的</span>
+                        <span >聊天</span>
+                    </i>
+                </div>
+                <div onClick={this.handleFocusClick.bind(this, 1)}>
+                    <i>
+                        <span> 关注</span>
                     </i>
                 </div>
             </StyledChatNav>

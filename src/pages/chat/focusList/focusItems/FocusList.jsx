@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import ChatItemUI from './ChatItemUI'
+import ChatItemUI from '../../ChatList/chatItems/ChatItemUI'
 import Axios from 'axios'
-export default class ChatList extends Component {
+export default class FocusList extends Component {
     render() {
         return (
             <div>{

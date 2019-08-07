@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-const StyledChatNav = styled.div`
+const StyledFocusNav = styled.div`
     width:100%;
     height:.64rem;
     /* line-height:.64rem; */
@@ -33,4 +33,4 @@ const StyledChatNav = styled.div`
         
     }
 `
-export default StyledChatNav
+export default StyledFocusNav
