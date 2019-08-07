@@ -1,15 +1,16 @@
+
 import React, { Component } from 'react'
 import { Tabs, WhiteSpace } from 'antd-mobile';
-import ChatHeader from './chatHeader/ChatHeader'
-import ChatNav from './chatNav/ChatNav'
-import ChatItems from './chatItems/ChatList'
+import FocusHeader from './focusHeader/FocusHeader'
+import FocusNav from './focusNav/FocusNav'
+import FocusItems from './focusItems/FocusList'
 import { asyncGetAll, loadTestData, asyncGetMyFocusListData,asyncGetFocusMeList } from './actionCreator'
 import { connect } from 'react-redux'
 
 const mapState = (state) => {
   return {
-    myFocusList: state.getIn(['chat', 'myFocusList']),
-    focusMeList: state.getIn(['chat', 'focusMeList'])
+    myFocusList: state.getIn(['focus', 'myFocusList']),
+    focusMeList: state.getIn(['focus', 'focusMeList'])
   }
 }
 const mapDispatch = (dispatch) => ({
@@ -23,7 +24,7 @@ const mapDispatch = (dispatch) => ({
     dispatch(asyncGetFocusMeList());
   }
 })
-class Concern extends Component {
+class FocusListContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -54,10 +55,10 @@ class Concern extends Component {
   render() {
     return (
       <>
-        <ChatHeader></ChatHeader>
-        <ChatNav myFocusCount={this.props.myFocusList && this.props.myFocusList.length || 0} focusMeCount={this.props.focusMeList && this.props.focusMeList.length} onTabChange={this.handleTabChange.bind(this)}></ChatNav>
+        <FocusHeader></FocusHeader>
+        <FocusNav myFocusCount={this.props.myFocusList && this.props.myFocusList.length || 0} focusMeCount={this.props.focusMeList && this.props.focusMeList.length} onTabChange={this.handleTabChange.bind(this)}></FocusNav>
         <div style={{ height: "40px", border: '1px solid #aaa' }}></div>
-        <ChatItems list={this.state.list}></ChatItems>
+        <FocusItems list={this.state.list}></FocusItems>
       </>
     )
   }
@@ -76,4 +77,4 @@ class Concern extends Component {
 
 }
 
-export default connect(mapState, mapDispatch)(Concern);
+export default connect(mapState, mapDispatch)(FocusListContainer);

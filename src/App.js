@@ -14,8 +14,8 @@ import IsRedirectAccount from 'components/account/IsRedirectAccount'
 import { AccountContainer } from 'pages/account/'
 import  Publish  from 'pages/publish/'
 
-import Concern from './pages/chat/ChatList/Concern'
-import ChatNav from './pages/chat/ChatList/chatNav/ChatNav'
+import Concern from 'pages/chat/ChatList/Concern'
+import FocusListContainer from 'pages/chat/focusList/FocusListContainer'
   //广场组件
 import Square from 'pages/square/Test.jsx'
 //自己组件
@@ -31,9 +31,10 @@ class App extends Component {
         <IsRedirectAccount comp={AccountContainer}>
           <Redirect from="/" to="/dynamic" exact></Redirect>
           <Route path='/start' render={()=>(<div>start</div>)}></Route>
+          <Route path='/chat' component={Concern}></Route>
+          <Route path='/focus' component={FocusListContainer}></Route>
           <Route path='/dynamic' component={Square}></Route>
           <Route path='/publish'  component={ Publish }></Route>
-          <Route path='/chat' render={()=>(<Concern>chat</Concern>)}></Route>
           <Route path='/mine' render={ Mine }></Route>
           <Route path='/account' component={ AccountContainer }></Route>
         </IsRedirectAccount>
