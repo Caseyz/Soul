@@ -102,13 +102,18 @@
     position: absolute;
     background-color: #ddd;
     display: block;
-    z-index: 1;
+    z-index: 1 !important;
     top: auto;
     right: auto;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 1PX;
+    height: 1PX !important;
     transform-origin: 50% 100%;
     transform: scaleY(0.5);
+}
+
+.am-tabs-default-bar-content div:nth-child(2) span{
+    font-weight: 600;
+    font-size: .18rem;
 }

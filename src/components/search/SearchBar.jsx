@@ -1,4 +1,5 @@
 import React from 'react'
+import {withRouter} from 'react-router-dom'
 
 import styled from 'styled-components'
 
@@ -28,12 +29,12 @@ const StyleSearchBar = styled.div`
     }
 `
 
-export default ()=>{
+export default withRouter((props)=>{
     return(
         <StyleSearchBar>
-            <div className="search-container">
+            <div onClick={()=>{props.history.push('/dynamic/search')}} className="search-container">
                 <i></i><input type="text" placeholder="美食"/>
             </div>
         </StyleSearchBar>
     )
-}
+})

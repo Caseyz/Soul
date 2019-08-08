@@ -6,9 +6,9 @@ import StyleSquareItemContainer from './StyleSquareItemContainer'
 
 //搜索框组件导入
 import SearchBar from 'components/search/SearchBar.jsx'
-
-
-import http from 'utils/http'
+//文本箭头图片
+import arrowUPic from 'assets/images/square/箭头@3x.png'
+import arrowDPic from 'assets/images/square/arrowdown.png'
 
 export class SquareItemContainer extends Component {
     constructor(props){
@@ -18,21 +18,22 @@ export class SquareItemContainer extends Component {
             list: [],
         }
         this.showText = this.showText.bind(this)
-        this.arrowStatus = false
         // this.arrow=React.createRef();
     }
 
     //显示
-    showText(textEl,arrowEl){
+    showText(textEl,textId,tabNumber){
         let show  = false
-        let that = this
         return function(){
             show = !show
-            that.arrowStatus = !that.arrowStatus
             if(show){
+                let textArrow = document.querySelector(".textArrow"+textId+tabNumber)
+                textArrow.src = arrowDPic
                 textEl.classList.remove('text-container')
                 textEl.style.overFlow = "visible"
             }else{
+                let textArrow = document.querySelector(".textArrow"+textId+tabNumber)
+                textArrow.src = arrowUPic
                 textEl.classList.add('text-container')
                 textEl.style.overFlow = "hidden"
             }

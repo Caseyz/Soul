@@ -32,24 +32,35 @@ class TabExample extends Component{
   }
 
   componentDidMount(){
-  this.ttt = document.querySelector('.am-tabs-tab-bar-wrap')
+  // this.ttt = document.querySelector('.am-tabs-tab-bar-wrap')
   }
 
   render(){
 
-    let mel = document.querySelectorAll('.am-badge')
     return(
-      <div style={{height:'100%'}}>
+      <>
+      <Switch>  
+        <Route path="/dynamic/search" render={(props)=>{
+          return <SearchContainer/>
+        }}></Route>
 
-      <Tabs tabs={tabs}
+        <Route path="/dynamic" render={(props)=>{
+          let flag = true
+          return (
+            <div style={{height:'100%'}}>
+
+              <Tabs tabs={tabs}
         initialPage={1}
         tabBarActiveTextColor="#333"
         onChange={
           (tab,index) => {
+            let ttt = document.querySelector('.am-tabs-tab-bar-wrap')
+            let mel = document.querySelectorAll('.am-badge')
             mel.forEach((val,index)=>{mel[index].style.fontWeight="400";mel[index].style.fontSize=".15rem";})
             if(mel[index]){mel[index].style.fontWeight = "600"}
             if(mel[index]){mel[index].style.fontSize = ".18rem"}
-            index !==1 ? this.ttt.classList.add('addone') : this.ttt.classList.remove('addone')
+            // index !==1 ? this.ttt.classList.add('addone') : this.ttt.classList.remove('addone')
+            index !==1 ? ttt.classList.add('addone') : ttt.classList.remove('addone')
         } }
         // onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
       >
@@ -58,21 +69,22 @@ class TabExample extends Component{
           {/* <Scroll tabNumber={0} fatherSe=".recommend" render={com => (<SquareItemContainer squareData={com} tabNumber={0}></SquareItemContainer>)}></Scroll> */}
         </div>
         <div className="care" style={{flex:1, backgroundColor: '#fff' }}>
-          {/* <SquareItemContainer tabNumber={1} hasSearch="true"></SquareItemContainer>  */}
         <Scroll tabNumber={1} fatherSe=".care" render={com => (<SquareItemContainer squareData={com} tabNumber={1}></SquareItemContainer>)}></Scroll>
         </div>
         <div className="update" style={{flex:1, backgroundColor: '#fff' }}>
-          {/* <SquareItemContainer tabNumber={2}></SquareItemContainer>  */}
           <Scroll tabNumber={2} fatherSe=".update" render={com => (<SquareItemContainer squareData={com} tabNumber={2}></SquareItemContainer>)}></Scroll>
         </div>
       </Tabs>
-  
-      <div className="extends">
-          <span className="square-camera"><img src={camerPic} alt="camera"/></span>
-          <span className="square-signin"><img src={signInPic} alt="sign in"/></span>
-      </div>
-  
-    </div>
+
+              <div className="extends">
+                  <span className="square-camera"><img src={camerPic} alt="camera"/></span>
+                  <span className="square-signin"><img src={signInPic} alt="sign in"/></span>
+              </div>
+
+            </div>)
+        }} />
+      </Switch> 
+    </>
     )
   }
 }
