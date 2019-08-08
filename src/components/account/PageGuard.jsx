@@ -1,10 +1,7 @@
 // 依赖
 import React, { Component } from 'react'
 import {
-  HashRouter as Router,
-  Route,
   Redirect,
-  Switch
 } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -18,24 +15,21 @@ const mapState = state => ({
  * 如果为登录则跳转到start
  * 如果未登录则跳转到account
  */
-class IsRedirectAccount extends Component {
+class PageGuard extends Component {
   render() {
     return (
-      <Router>
-        <Switch>
+        <>
           {
             this.props.isLogin
             ? this.props.children
             : (
                 <>
-                  <Redirect from="*" to="/account"></Redirect>
-                  <Route path="/account" component={this.props.comp}></Route>
+                  <Redirect to="/account"></Redirect>
                 </>
               )
           }
-        </Switch>
-      </Router>
+        </>
     )
   }
 }
-export default connect(mapState)(IsRedirectAccount)
+export default connect(mapState)(PageGuard)

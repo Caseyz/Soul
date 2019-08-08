@@ -66,7 +66,7 @@ export default class InputGroup extends Component {
                             <div className="box-containers">
                                 {boxLength.map((item, index) => {
                                     return (
-                                        <div key={index} >{numList[item]}<span className="shake" style={{ display: item === numList.length && isFocus ? 'block' : 'none' }}>|</span> </div>
+                                        <div key={index} >{numList[item]}<span className="myshake" style={{ display: item === numList.length && isFocus ? 'block' : 'none' }}>|</span> </div>
                                     )
                                 })}
                             </div>
@@ -87,7 +87,7 @@ export default class InputGroup extends Component {
                             <div className="box-container">
                                 {boxLength.map((item, index) => {
                                     return (
-                                        <div key={index} >{numList[item]}<span className="shake" style={{ display: item === numList.length && isFocus ? 'block' : 'none' }}>|</span> </div>
+                                        <div key={index} >{numList[item]}<span className="myshake" style={{ display: item === numList.length && isFocus ? 'block' : 'none' }}>|</span> </div>
                                     )
                                 })}
                             </div>

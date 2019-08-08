@@ -4,11 +4,13 @@ import phone from 'assets/images/account/phone.png'
 import code from 'assets/images/account/code.png'
 import pwd from 'assets/images/account/pwd.png'
 
+
 // 图标处理
 const Label = styled.div`
   padding-left: 0.26rem;
   height: 0.25rem;
   font-size: 0.12rem;
+  margin-bottom: 0.15rem;
   display: flex;
   align-items: center;
 `;
@@ -24,7 +26,7 @@ const iconLabel = (iconName)=>{
     icon.height = '0.15rem'
     icon.img = code
   }
-  if( iconName==='pwd' ) {
+  if( iconName==='password' ) {
     icon.width = '0.15rem'
     icon.height = '0.19rem'
     icon.img = pwd
@@ -36,40 +38,32 @@ const iconLabel = (iconName)=>{
     background-image: url(${icon.img});
   `
 }
-const PhoneLabel = iconLabel('phone')
-const CodeLabel = iconLabel('code')
-const PwdLabel = iconLabel('pwd')
 
-// 输入框处理
-const Input = styled.div`
-  padding: 0.15rem 0 0.16rem;
-  display: flex;
-  align-items: center;
-  & > input {
+const Input = styled.input`
     border: none;
     font-size: 0.14rem;
-    line-height: 0.14rem;
-    height: 0.14rem;
+    line-height: 0.16rem;
+    height: 0.16rem;
     color: #999;
     margin: 0;
+    margin-left: 0.15rem;
     padding: 0;
-  }
-  & > .text {
+`
+
+const Text = styled.div`
     font-size: 0.12rem;
     color: #333;
-  }
-  & > .arrow {
+`
+
+const Arrow = styled.div`
     margin-right: 0.1rem;
     display: flex;
     align-items: center;
     font-size: 0.12rem;
-    .text{
-      font-size: 0.12rem;
-      line-height: 0.12rem;
-      margin-right: 0.08rem;
-    }
+    line-height: 0.12rem;
     &::after {
       content: "";
+      margin-left: 0.08rem;
       display: block;
       width: 0rem;
       height: 0rem;
@@ -77,10 +71,14 @@ const Input = styled.div`
       border-left: 0.045rem solid transparent;
       border-right: 0.045rem solid transparent;
     }
-  }
 `
+
 const LineInput = border({
-  component: Input,
+  component: styled.div`
+    padding: ${(props)=>(props.padding || '0 0 0.16rem')};
+    display: flex;
+    align-items: center;
+  `,
   borderWidth: '0 0 1px 0'
 })
 
@@ -90,9 +88,10 @@ const FormContainer = styled.div`
 `
 
 export {
-  PhoneLabel,
-  CodeLabel,
-  PwdLabel,
-  FormContainer,
-  LineInput
+  iconLabel,
+  Input,
+  Text,
+  Arrow,
+  LineInput,
+  FormContainer
 }

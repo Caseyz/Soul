@@ -1,25 +1,34 @@
 const baseURL = 'https://wx.zhaoyx0907.com/api'
+// const baseURL = 'http://139.199.34.125:7006'
 const urlReg = /^http[s]?:\/\/.+$/
 
 
 export default {
   _OriginURL (url) {
+    /**
+     * 添加路径的baseURL
+     */
     if( !urlReg.test(url) ) {
       url = baseURL + url
     }
     return url
   },
+
   _serialize(data) {
+    /**
+     * 序列化数据
+     */
     let _arr = Object.keys(data).reduce( (arr, key)=>{
       arr[arr.length] = `${key}=${data[key]}`
       return arr
     }, [])
     return _arr.join('&')
   },
+
   post(url, data, opt) {
     return fetch(this._OriginURL(url), Object.assign({
         method: 'POST',
-        body: JSON.stringify(data),
+        body: JSON.stringify(data || {}),
         mode: 'cors',
         credentials: 'include',
         headers: new Headers({
@@ -31,7 +40,7 @@ export default {
     .then(result=>result)
   },
   get(url, data, opt) {
-    url += Object.keys(data).length ? '?'+this._serialize(data) : ''
+    url += Object.keys(data || {}).length ? '?'+this._serialize(data) : ''
     return fetch(this._OriginURL(url), Object.assign({
       method: 'GET',
       mode: 'cors',
