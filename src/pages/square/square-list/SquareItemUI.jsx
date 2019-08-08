@@ -9,12 +9,13 @@ import StyleSquareItemUI from './StyleSquareItemUI'
 import headPhoto from 'assets/images/square/7bdc97e546fb59e65584b916021b193addde1d3a10b90-8pifaR_fw658@3x.png'
 import publishPic1 from 'assets/images/square/864fcba1be833081097df3936668bd9f@3x.png'
 import publishPic2 from 'assets/images/square/ab739ad95e95308c1491f76f4168fe20@3x.png'
-import arrowPic from 'assets/images/square/箭头@3x.png'
+import arrowUPic from 'assets/images/square/箭头@3x.png'
+import arrowDPic from 'assets/images/square/arrowdown.png'
 // import { convertPatternsToTasks } from 'fast-glob/out/managers/tasks';
 // export default React.forwardRef((props,ref)=>{
 export default (props)=>{
-
     let [isExceed,setIsExceed] = useState(false)
+    // let [arrowStatus,setarrowStatus] = useState(false)
     const fileInputEl = useRef(null);
     const textEl = useRef(null);
     const arrowEl = useRef(null);
@@ -29,6 +30,8 @@ export default (props)=>{
         }else{
             setIsExceed(false)
         }
+
+
     })
     return(
         <StyleSquareItemUI>
@@ -62,12 +65,12 @@ export default (props)=>{
                     hiehei<br />
                     hiehei<br />
                 </h6>
-                {isExceed && <p onClick={props.showText(textEl.current,arrowEl.current)}><img src={arrowPic} alt=""/></p>}
+                {isExceed && <p onClick={props.showText(textEl.current,arrowEl.current)}><img src={ props.arrowStatus ? arrowDPic : arrowUPic} alt=""/></p>}
                 {props.info.address && <div className="publish-position">
                     <i className="position-pic"></i><span>{props.info.address}</span>
                 </div>}
                 <div className="Interaction">
-                    <i className="like"></i><span>{props.info.star}</span>
+                    <i className="like" onClick={props.addLike(props.info.star)}></i><span>{props.info.star}</span>
                     <i className="comment"></i><span>{props.info.comments}</span>
                     <i className="collection"></i>
                 </div>

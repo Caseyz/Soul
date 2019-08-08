@@ -54,14 +54,16 @@ class TabExample extends Component{
         // onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
       >
         <div className="recommend" style={{flex:1, backgroundColor: '#fff' }}>
-          <SquareItemContainer tabNumber={0}></SquareItemContainer> 
+          {/* <SquareItemContainer tabNumber={0}></SquareItemContainer>  */}
+          {/* <Scroll tabNumber={0} fatherSe=".recommend" render={com => (<SquareItemContainer squareData={com} tabNumber={0}></SquareItemContainer>)}></Scroll> */}
         </div>
         <div className="care" style={{flex:1, backgroundColor: '#fff' }}>
           {/* <SquareItemContainer tabNumber={1} hasSearch="true"></SquareItemContainer>  */}
-        <Scroll fatherSe=".care" el={this.careEl} render={com => (<SquareItemContainer tabNumber={1}></SquareItemContainer>)}></Scroll>
+        <Scroll tabNumber={1} fatherSe=".care" render={com => (<SquareItemContainer squareData={com} tabNumber={1}></SquareItemContainer>)}></Scroll>
         </div>
         <div className="update" style={{flex:1, backgroundColor: '#fff' }}>
-          <SquareItemContainer tabNumber={2}></SquareItemContainer> 
+          {/* <SquareItemContainer tabNumber={2}></SquareItemContainer>  */}
+          <Scroll tabNumber={2} fatherSe=".update" render={com => (<SquareItemContainer squareData={com} tabNumber={2}></SquareItemContainer>)}></Scroll>
         </div>
       </Tabs>
   
