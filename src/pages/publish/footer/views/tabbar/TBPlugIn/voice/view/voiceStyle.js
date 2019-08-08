@@ -41,7 +41,7 @@ const VoiceST = styled.div`
         text-align:center;
         width:100%;
     }
-    .time{
+    .time {
         color: #333;
         font-size: .15rem;
         font-family: PingFangSC-Heavy;
@@ -50,6 +50,36 @@ const VoiceST = styled.div`
         text-align:center;
         width:100%;
     }
+    .luyinzhong {
+        width: .87rem;
+        height: .87rem;
+        margin:0 auto;
+    }
+    .quxiao {
+        margin:.74rem;
+        width: .3rem;
+        height:.24rem;
+    }
+    .bofang {
+        position:absolute;
+        top:0;
+        left:0;
+        bottom:0;
+        right:0;
+        margin:auto;
+        width:.87rem;
+        height:.87rem;
+    }
+    .queren {
+        position:absolute;
+        top:0;
+        right:.74rem;
+        bottom:0;
+        margin:auto;
+        width: .3rem;
+        height:.24rem;
+    }
+
 `
 export {
     VoiceST
