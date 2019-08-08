@@ -1,18 +1,23 @@
 import styled from 'styled-components'
-const StyledFocusHeader=styled.div`
+import arrowPic from 'assets/images/chat/箭头@3x.png'
+const StyledFocusHeader = styled.div`
     width:100%;
     height:.44rem;
     position:relative;
     font-weight:700;
-    font-size:.18rem;
+    font-size:.15rem;
+    color:#333333;
     i{
-        width:.44rem;
+        width:.11rem;
+        height:.07rem;
         position: absolute;
-        display:inline-block;
-        height:100%;
-        line-height:.44rem;
         text-align:center;
-        top:0
+        top:.16rem;
+        left:.1rem;
+        display:inline-block;
+        background-image:url(${arrowPic});
+        background-size:.11rem .07rem;
+        transform:rotate(90deg);
     }
     div{
         width:100%;

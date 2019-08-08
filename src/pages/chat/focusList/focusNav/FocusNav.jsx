@@ -22,12 +22,6 @@ export default class FocusNav extends Component {
                         <span className={this.state.activeId === 0 ? "active" : ""}>我关注的</span>
                     </i>
                 </div>
-                <div onClick={this.handleTabClick.bind(this, 2)}>
-                    <strong>0</strong>
-                    <i>
-                        <span className={this.state.activeId == 2 ? "active" : ""}>密友</span>
-                    </i>
-                </div>
                 <div onClick={this.handleTabClick.bind(this, 1)}>
                     <strong>{this.props.focusMeCount}</strong>
                     <i>

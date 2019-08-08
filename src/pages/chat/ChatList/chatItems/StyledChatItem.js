@@ -1,9 +1,14 @@
 import Styled from 'styled-components'
-const StyledChatItem=Styled.div`
+const StyledChatItem = Styled.div`
     width:100%;
     background:#fff;
-    display:flex;
-    padding:.1rem;
+    padding-left:.1rem;
+    .item-container{
+        border-bottom:1px solid #F5F6F7;
+        width:100%;
+        display:flex;
+        padding:.1rem .1rem .1rem 0;
+    }
     .left{
         flex:1;
         display:flex;
@@ -13,7 +18,12 @@ const StyledChatItem=Styled.div`
             display:flex;
             flex-direction:column;
             h4{
-                font-size:.16rem;
+                font-size:.14rem;
+                color:#57E1E2;
+            }
+            span{
+                color:#999999;
+                font-size:.15rem;
             }
         }
         img{
@@ -22,7 +32,10 @@ const StyledChatItem=Styled.div`
         }
     }
     .right{
-        width:.6rem;
+        span{
+            color:#999999;
+            font-size:.12rem;
+        }
     }
 `
 export default StyledChatItem

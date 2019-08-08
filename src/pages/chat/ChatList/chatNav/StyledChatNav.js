@@ -1,36 +1,37 @@
-import styled from 'styled-components'
-const StyledChatNav = styled.div`
+import Styled from 'styled-components'
+const StyledChatNav = Styled.div`
     width:100%;
-    height:.64rem;
-    /* line-height:.64rem; */
+    background:#fff;
     display:flex;
-    div{
+    padding:.1rem;
+    height:.6rem;
+    .left{
         flex:1;
-        text-align:center;
-        background-color:#fff;
-        // border:1px solid red;
-        justify-content:space-between;
         display:flex;
-        flex-direction:column;
-        
-        strong{
-            height:.28rem;
-            line-height:.28rem;
-        }
-        i{
-            span{
-                flex:1;
-                width:auto;
-                display:inline-block;
-                height:.36rem;
-                line-height:.36rem;
-                &.active{
-                    color:blue;
-                    border-bottom: 1px solid blue;
-                }
+        align-items:center;
+        div{
+            padding-left:.1rem;
+            display:flex;
+            flex-direction:column;
+            h4{
+                font-size:.16rem;
+                color:#57E1E2;
+                font-weight:normal;
             }
         }
-        
+        img{
+            width:.4rem;
+            height:.4rem;
+        }
+    }
+    .right{
+        height:100%;
+        line-height:.4rem;
+        img{
+            width:.42rem;
+            height:.21rem;
+            vertical-align:middle;
+        }
     }
 `
 export default StyledChatNav
