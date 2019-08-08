@@ -20,9 +20,9 @@ class PhoneInput extends Component {
             phone
         })
         if( phone.length>=11 ) {
-            this.props.handlePhoneState(true, phone)
+            this.props.handlePhoneState(phone, true)
         }else {
-            this.props.handlePhoneState(false, phone)
+            this.props.handlePhoneState(phone, false)
         }
     }
   }

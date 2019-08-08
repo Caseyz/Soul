@@ -33,7 +33,7 @@ class App extends Component {
           <Route path='/publish'  component={ Publish }></Route>
           <Route path='/chat' render={()=>(<Concern>chat</Concern>)}></Route>
           <Route path='/mine' render={()=>(<div>mine</div>)}></Route>
-          <Route path='/account' component={ AccountContainer }></Route>
+          {/* <Route path='/account' component={ AccountContainer }></Route> */}
         </IsRedirectAccount>
       </Provider>
     )

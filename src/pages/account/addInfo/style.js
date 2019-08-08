@@ -18,7 +18,9 @@ const style = {
   headWrap: {
     width: '1rem',
     height: '1rem',
-    position: 'relative'
+    position: 'relative',
+    overflow: 'hidden',
+    borderRadius: '50%',
   },
   headCover: {
     width: '100%',

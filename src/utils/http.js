@@ -5,18 +5,26 @@ const urlReg = /^http[s]?:\/\/.+$/
 
 export default {
   _OriginURL (url) {
+    /**
+     * 添加路径的baseURL
+     */
     if( !urlReg.test(url) ) {
       url = baseURL + url
     }
     return url
   },
+
   _serialize(data) {
+    /**
+     * 序列化数据
+     */
     let _arr = Object.keys(data).reduce( (arr, key)=>{
       arr[arr.length] = `${key}=${data[key]}`
       return arr
     }, [])
     return _arr.join('&')
   },
+
   post(url, data, opt) {
     return fetch(this._OriginURL(url), Object.assign({
         method: 'POST',

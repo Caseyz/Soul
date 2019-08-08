@@ -16,7 +16,11 @@ class PasswordInput extends Component {
       this.setState({
         password: value
       })
-      this.props.changePassword(value)
+      if (value.length > 5) {
+          this.props.changePassword(value, true)
+      }else {
+          this.props.changePassword(value, false)
+      }
   }
   render() {
     return (

@@ -7,6 +7,7 @@ import {
 import { Container } from './_components/layout/'
 import Login from './login/LoginContainer'
 import AddInfo from './addInfo/AddInfo'
+import FindPassword from './forgetpassword/FindPassword'
 
 class AccountRoot extends Component {
   constructor(props) {
@@ -19,10 +20,10 @@ class AccountRoot extends Component {
   render() {
     return (
       <Container>
-        <Redirect from='/account' to='/account/login' exact></Redirect>
-        <Route path='/account/login' component={Login}></Route>
+        {/* <Redirect from='/account' to='/account/addInfo' exact></Redirect> */}
+        <Route path='/account' component={Login} exact></Route>
         <Route path='/account/addInfo' component={AddInfo}></Route>
-        {/* <Route path='/account/findpwd' component={}></Route> */}
+        <Route path='/account/findpwd' component={FindPassword}></Route>
       </Container>
     )
   }

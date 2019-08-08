@@ -11,6 +11,8 @@ import {
     Text
 } from '../_components/form-group/'
 import Button from '../_components/button/Button'
+// 显示所有头像列表 组件
+// import ShowAllHead from './ShowAllHead'
 
 import style from './style'
 import logoImg from 'assets/images/account/logo.png'
@@ -38,22 +40,26 @@ class AddInfoContainer extends Component {
     }
     this.birthDom = React.createRef()
   }
+  // 展示所有的头像列表
   showAllHead = () => {
       console.log(1)
   }
+  // 选择头像并设置
   setHead = (head) => {
     console.log(0)
     // this.setState({
     //     head
     // })
   }
+  // 获取所有的受控组件值
   setText = (key, value)=>{
     this.setState({
         [key]: value
     })
   }
+  // 密码 与  确认密码的比较
   equalPwd = () => { 
-    if( this.state.pwd != this.state.repwd ) {
+    if( this.state.pwd !== this.state.repwd ) {
         Toast.fail('密码不一致', 1, ()=>{
             this.setState({
                 isLoading: false
@@ -61,7 +67,7 @@ class AddInfoContainer extends Component {
         })
     }
   }
-
+  // 设置用户信息的请求
   putUserInfo = async ()=>{
     this.setState({
         isLoading: true
@@ -81,17 +87,13 @@ class AddInfoContainer extends Component {
         pwd,
         birth: this.birthDom.current.innerText
     })
+    this.setState({
+        isLoading: false
+    })
     if( res.code===0 ){
-        this.setState({
-            isLoading: false
-        })
         this.props.history.push('/dynamic')
     }else {
-        Toast.fail(res.msg, 1, ()=>{
-            this.setState({
-                isLoading: false
-            })
-        })
+        Toast.fail(res.msg, 1)
     }
   }
 

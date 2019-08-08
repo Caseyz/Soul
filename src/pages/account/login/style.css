@@ -19,15 +19,15 @@
   .code-wrap {
     margin: 0.15rem 0 0;
     display: flex;
-    flex-direction: row-reverse;
+    justify-content: space-between;
     overflow: hidden;
   }
-  .forget-wrap .text {
+  .forget-wrap .text, .code-wrap .text {
     font-size: .12rem;
     color: #57E1E2;
     text-decoration: underline;
   }
-  .code-wrap .text {
+  .code-wrap .btn, .forget-wrap .btn {
     height: 0.23rem;
     display: flex;
     justify-content: center;
@@ -38,6 +38,6 @@
     border-radius: 0.11rem;
     padding: 0 0.11rem;
   }
-  .code-wrap .text.disabled{
+  .code-wrap .btn.disabled{
     background-color: #999
   }

@@ -18,7 +18,7 @@ import PasswordInput from './PasswordInput'
 import CodeInput from './CodeInput'
 
 // actionCreator
-import { setPhone } from '../store/index'
+import { setPhone, setLoginState } from '../store/index'
 
 // 第三方组件
 import { Toast } from 'antd-mobile'
@@ -32,12 +32,13 @@ class LoginContainer extends Component {
         password: '',
         code: '',
         isLoading: false,
-        btnType: 'disabled'
+        btnType: 'disabled',
+        isRegister: false
     }
   }
 
   // 设置按钮状态的处理 && 接收 phone 数据
-  handlePhoneState =(value, phone)=> {
+  handlePhoneState =(phone, value)=> {
       // 设置按钮状态
       value 
       ? this.setState({
@@ -70,6 +71,7 @@ class LoginContainer extends Component {
         code,
     })
   }
+  // 
   // 按钮对应的处理函数
   handleClick = ()=> {
       let {clickType} = this.state
@@ -81,9 +83,7 @@ class LoginContainer extends Component {
       }else if(clickType===3) {
         this.fetchByCode()
       }else if(clickType===4) {
-
-      }else {
-          
+        this.findPassword()
       }
   }
 
@@ -103,14 +103,16 @@ class LoginContainer extends Component {
         console.log("未注册")
         this.setState({
             clickType: 3,
-            isLoading: false
+            isLoading: false,
+            isRegister: false
         })
     }else if( res.code===0 ) {
         // 已注册状态逻辑
         console.log("已经注册")
         this.setState({
             clickType: 2,
-            isLoading: false
+            isLoading: false,
+            isRegister: true
         })
     }
     this.props.setPhone(this.state.phone)
@@ -125,22 +127,19 @@ class LoginContainer extends Component {
       phone,
       pwd
     })
+    this.setState({
+        isLoading: false
+    })
     if(res.code===0) {
       // 登录成功操作
       console.log('登录成功')
-      this.setState({
-          isLoading: false
-      })
-
+      // 设置全局登录状态
+      this.props.setLoginState(true)
+      this.props.history.push('/dynamic')
     }else if( res.code===1 ) {
       // 登录失败操作
       console.log('登录失败')
-      console.log(res)
-      Toast.fail(res.msg, 1, ()=>{
-        this.setState({
-          isLoading: false
-        })
-      })
+      Toast.fail(res.msg, 1)
     }
   }
   // 验证码登录 || 验证码注册
@@ -152,24 +151,39 @@ class LoginContainer extends Component {
         phone: this.state.phone,
         code: this.state.code
     })
-    console.log(res)
-    if( res.code==='1' ) {
-        Toast.fail(res.msg, 1, ()=>{
-            this.setState({
-                isLoading: false
-            })
-        })
+    this.setState({
+        isLoading: false
+    })
+    if( res.code===1 ) {
+        Toast.fail(res.msg, 1)
     }
     if( res.statu === '0' ) {
       // 验证码登录成功逻辑
       console.log('登录成功')
+      // 设置全局登录状态 
+      this.props.setLoginState(true)
+      this.props.history.push('/dynamic')
     }else if( res.statu === '1' ){
       // 用户注册成功逻辑
       console.log('注册成功')
-      this.setState({
-        isLoading: false
-      })
       this.props.history.push('/account/addInfo')
+    }
+  }
+  // 验证码找回密码
+  async findPassword() {
+    this.setState({
+        isLoading:true
+    })
+    let res = await http.get('/findpwd', {code: this.state.code})
+    this.setState({
+        isLoading: false
+    })
+    if( res.code === 0 ) {
+        this.props.history.push('/account/findpwd')
+    }else if (res.code === 1) {
+        Toast.fail(res.msg, 1)
+    }else {
+        Toast.fail('服务器出错', 1)
     }
   }
 
@@ -182,7 +196,6 @@ class LoginContainer extends Component {
   }
 
   render() {
-    let res = this.props.location.pathname
     return (
       <>
         <Logo />
@@ -193,22 +206,35 @@ class LoginContainer extends Component {
                 <>
                     <PasswordInput changePassword={this.changePassword}></PasswordInput>
                     <div className="forget-wrap">
-                    <div 
-                        className="text"
-                        onClick={this.forgetPwd}
-                    >忘记密码</div>
+                        <div 
+                            className="text"
+                            onClick={()=>{this.setState({clickType: 3})}}
+                        >验证码登录</div>
+                        <div 
+                            className="text"
+                            onClick={()=>{this.setState({clickType: 4})}}
+                        >忘记密码</div>
                     </div>
                 </>
             )
-            : this.state.clickType===3 
+            : this.state.clickType===3 || this.state.clickType===4
             ? (
                 <>
                     <CodeInput getValue={this.changeCode}></CodeInput>
                     <div className="code-wrap">
-                    <div 
-                        className="text"
-                        onClick={this.getCode}
-                    >发送验证码</div>
+                        <div 
+                            className="btn"
+                            onClick={this.getCode}
+                        >发送验证码</div>
+                        {
+                            this.state.isRegister
+                            ? <div 
+                                className="text"
+                                onClick={()=>{this.setState({clickType: 2})}}
+                              >密码登录</div>
+                            : ''
+                        }
+                        
                     </div>
                 </>
             )
@@ -227,10 +253,14 @@ class LoginContainer extends Component {
   }
 }
 
-const mapState = (state)=> ({
+const mapState = state => ({
+    isLogin: state.getIn(['account', 'isLogin']),
     phone: state.getIn(['account', 'phone'])
 })
-const mapDispatch = (dispatch)=> ({
+const mapDispatch = dispatch => ({
+    setLoginState(isLogin) {
+        dispatch(setLoginState(isLogin))
+    },
     setPhone(phone) {
         dispatch(setPhone(phone))
     }
