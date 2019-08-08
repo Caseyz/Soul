@@ -14,7 +14,7 @@ const mapState = (state) => {
 }
 const mapDispatch = (dispatch) => ({
   loadData: () => {
-    dispatch(loadTestData())
+    dispatch(asyncGetAll())
   },
   getMyFocus: () => {
     dispatch(asyncGetMyFocusListData())
@@ -54,9 +54,10 @@ class Concern extends Component {
   render() {
     return (
       <>
-        <ChatHeader></ChatHeader>
-        <ChatNav myFocusCount={this.props.myFocusList && this.props.myFocusList.length || 0} focusMeCount={this.props.focusMeList && this.props.focusMeList.length} onTabChange={this.handleTabChange.bind(this)}></ChatNav>
+        <ChatHeader {...this.props}></ChatHeader>
         <div style={{ height: "40px", border: '1px solid #aaa' }}></div>
+        <ChatNav myFocusCount={this.props.myFocusList && this.props.myFocusList.length || 0} focusMeCount={this.props.focusMeList && this.props.focusMeList.length} onTabChange={this.handleTabChange.bind(this)}></ChatNav>
+        
         <ChatItems list={this.state.list}></ChatItems>
       </>
     )

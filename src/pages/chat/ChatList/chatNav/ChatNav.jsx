@@ -1,41 +1,23 @@
 import React, { Component } from 'react'
 import StyledChatNav from './StyledChatNav'
+import soul from 'assets/images/chat/椭圆 6@2x.png'
+import newBtn from 'assets/images/chat/new@3x.png'
 export default class ChatNav extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeId: 0
-        }
-    }
-    handleMatchClick(type) {
-        this.setState({
-            activeId: type
-        })
-        this.props.onTabChange(type)
-    }
-    handleFocusClick(type) {
-        // this.props.location
-    }
     render() {
         return (
             <StyledChatNav>
-                <div onClick={this.handleMatchClick.bind(this, 0)}>
-                    <i>
-                        <span className={this.state.activeId === 0 ? "active" : ""}>允许匹配</span>
-                    </i>
+                <div className="left">
+                    <img src={soul} alt="" />
+                    <div>
+                        <h4>Soul官方</h4>
+                        <span>急！有人找你！</span>
+                    </div>
                 </div>
-                <div>
-                    <i>
-                        <span >聊天</span>
-                    </i>
+                <div className="right">
+                    <img src={newBtn} alt="" />
                 </div>
-                <div onClick={this.handleFocusClick.bind(this, 1)}>
-                    <i>
-                        <span> 关注</span>
-                    </i>
-                </div>
+
             </StyledChatNav>
         )
     }
 }
-

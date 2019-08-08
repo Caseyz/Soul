@@ -4,7 +4,7 @@ import { Tabs, WhiteSpace } from 'antd-mobile';
 import FocusHeader from './focusHeader/FocusHeader'
 import FocusNav from './focusNav/FocusNav'
 import FocusItems from './focusItems/FocusList'
-import { asyncGetAll, loadTestData, asyncGetMyFocusListData,asyncGetFocusMeList } from './actionCreator'
+import { asyncGetAll, loadTestData, asyncGetMyFocusListData, asyncGetFocusMeList } from './actionCreator'
 import { connect } from 'react-redux'
 
 const mapState = (state) => {
@@ -15,12 +15,12 @@ const mapState = (state) => {
 }
 const mapDispatch = (dispatch) => ({
   loadData: () => {
-    dispatch(loadTestData())
+    dispatch(asyncGetAll())
   },
   getMyFocus: () => {
     dispatch(asyncGetMyFocusListData())
   },
-  getFocusMe:()=>{
+  getFocusMe: () => {
     dispatch(asyncGetFocusMeList());
   }
 })
@@ -28,7 +28,9 @@ class FocusListContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      list: this.props.myFocusList,
+      list: [],
+      // myFocusList: this.props.myFocusList,
+      // focusMeList: this.props.focusMeList,
       type: 0
     }
   }
@@ -45,9 +47,6 @@ class FocusListContainer extends Component {
         this.props.getFocusMe();
         break;
       }
-      case 2: {
-        break;
-      }
       default:
         break;
     }
@@ -55,10 +54,13 @@ class FocusListContainer extends Component {
   render() {
     return (
       <>
-        <FocusHeader></FocusHeader>
+        <FocusHeader {...this.props}></FocusHeader>
         <FocusNav myFocusCount={this.props.myFocusList && this.props.myFocusList.length || 0} focusMeCount={this.props.focusMeList && this.props.focusMeList.length} onTabChange={this.handleTabChange.bind(this)}></FocusNav>
         <div style={{ height: "40px", border: '1px solid #aaa' }}></div>
-        <FocusItems list={this.state.list}></FocusItems>
+        <FocusItems
+          list={this.state.list}
+          type={this.state.type}>
+        </FocusItems>
       </>
     )
   }
@@ -66,12 +68,22 @@ class FocusListContainer extends Component {
     this.props.loadData();
   }
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps) {
+    if (nextProps && nextProps.focusMeList && nextProps.focusMeList.length > 0) {
+      nextProps.focusMeList.map(item => {
+        //找到我关注的列表中与关注我的列表中相同的id，状态设置成‘已关注’
+        const find = nextProps.myFocusList.find((elem) => {return item.id === elem.id})
+        if (find == undefined) {
+          item.status = 1 //未关注
+        } else {
+          item.status = 2 //已关注
+        }
+      })
       return {
         list: prevState.type === 0 ? nextProps.myFocusList : prevState.type === 1 ? nextProps.focusMeList : []
+        // myFocusList: nextProps.myFocusList,
+        // focusMeList: nextProps.focusMeList
       }
     }
-
     return null
   }
 
