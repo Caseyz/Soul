@@ -13,12 +13,13 @@ import comIco from 'assets/images/square/蒙层-共创@3x.png'
 
 
 const parameter = {
-    height: '0.40rem',
+    height: '.20rem',
     width: '2.97rem',
     searchPic: searchPic,
     placeHolder: '太空旅客',
-    // cancelButton: '取消',
-    paddingTop: '.49rem'
+    cancelButton: '取消',
+    paddingTop: '.49rem',
+    justifyContent: 'space-between'
   }
 
 

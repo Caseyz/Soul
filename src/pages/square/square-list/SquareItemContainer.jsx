@@ -23,6 +23,18 @@ export class SquareItemContainer extends Component {
         // this.arrow=React.createRef();
     }
 
+    // componentDidMount(){
+    //     fetch('http://red-mi.xyz/jsapi')
+    //     .then((response) => {
+    //       console.log(response)
+    //       return response.json()
+    //     })
+    //     .then((result) => {
+    //         console.log(result)
+    //     })
+
+    // }
+
     //显示
     showText(textEl, textId, tabNumber, foo){
         let show  = false
