@@ -10,10 +10,38 @@ import { Footer, FooterTop, FooterMiddle } from './footer'
 
 import TabBar from './tabbar/tabbar.jsx'
 
+
+
 const FooterUI = props => {
     return (
         <Footer>
             <FooterTop>
+                
+                {
+                    props.voice === "" 
+                    ? ""
+                    : (<>
+                        <div 
+                            className='xianshiluyin' 
+                            onClick = { props.clickplay }
+                        />
+                        <div 
+                            className='iconfont icon-close-circle cancelType'
+                            onClick = { props.cancelType }
+                        />
+                    </>)
+                }
+                {
+                    (props.voice === '' && props.voice === '')
+                    ? ''
+                    :
+                    (
+                        <div 
+                            className = 'photoAndVideo'
+                            ref = { props.refimgs }
+                        ></div>
+                    )
+                }
                 <div className = "position">
                     <img src={ addressImg } alt=""/>
                     <span>你在哪里</span>

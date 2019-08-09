@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import xianshiluyin from 'assets/images/publish/圆角矩形 5@3x.png'
+
 
 let Footer = styled.div`
     /* height:3.32rem; */
@@ -8,6 +10,7 @@ let Footer = styled.div`
 `
 
 let FooterTop = styled.div`
+    position:relative;
     padding:0 .2rem;
     height:.24rem;
     display:flex;
@@ -28,6 +31,50 @@ let FooterTop = styled.div`
             padding-left:.06rem;
         }
     }
+    .xianshiluyin {
+        width: 1rem;
+        height: .18rem;
+        background: url("${xianshiluyin}");
+        background-size:contain;
+        position: absolute;
+        top: -.25rem;
+        left: .2rem;
+    }
+    .cancelType{
+        position:absolute;
+        left: 1.25rem;
+        top: -.25rem;
+        color:#333;
+        /* background: rgba(0, 0, 0, .7); */
+        border-radius: 50%;
+        font-size: .18rem;
+        line-height: 1em;
+    }
+
+    .photoAndVideo {
+        position: absolute;
+        top: -.67rem;
+        left: .2rem;
+    }
+    .img_div{
+        width:.6rem;
+        height:.6rem;
+        margin-right:.05rem;
+        display: inline-block;
+        position: relative;
+        >img {
+            width:100%;
+            height:100%;
+        }
+        >i {
+            position:absolute;
+            top:0;
+            right:0;
+            color: #333;
+            font-size:.16rem;
+        }
+    }
+
     .setUp{
         display:flex;
         align-items:center;
