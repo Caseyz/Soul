@@ -70,6 +70,18 @@ const VoiceST = styled.div`
         width:.87rem;
         height:.87rem;
     }
+
+    .zanting {
+        position:absolute;
+        top:0;
+        left:0;
+        bottom:0;
+        right:0;
+        margin:auto;
+        width:.87rem;
+        height:.87rem;
+    }
+
     .queren {
         position:absolute;
         top:0;
@@ -79,6 +91,7 @@ const VoiceST = styled.div`
         width: .3rem;
         height:.24rem;
     }
+    
 
 `
 export {

@@ -1,4 +1,4 @@
-import { GETFOCUS, VALUE } from './actionTypes'
+import { GETFOCUS, VALUE, IMG, VOICE } from './actionTypes'
 
 const getFocus = (data) => {
     return {
@@ -15,7 +15,24 @@ const value = (data) => {
     }
 }
 
+const img = (data) => {
+    return {
+        type: IMG,
+        data
+    }
+}
+
+const voice = (data) => {
+    return {
+        type: VOICE,
+        data
+    }
+}
+
+
 export {
     getFocus,
-    value
+    value,
+    img,
+    voice
 }

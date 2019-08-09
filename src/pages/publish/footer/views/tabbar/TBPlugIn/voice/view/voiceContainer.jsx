@@ -1,10 +1,27 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { VoiceST } from './voiceStyle'
 
 import tuoyan from 'assets/images/publish/椭圆 3@3x.png'
 import bofang from 'assets/images/publish/椭圆 1 拷贝 2@3x.png'
 import quxiao from 'assets/images/publish/矩形 10@3x.png'
 import queren from 'assets/images/publish/矩形 10 拷贝@3x.png'
+
+import { voice } from '../../../../../../actionCreator'
+
+const mapStateToprops = state => {
+  return {
+    voice: state.getIn(['publish', 'voice'])
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    GetVoivc (data) {
+      dispatch(voice(data))
+    }
+  }
+}
 
 class Voice extends Component {
   constructor() {
@@ -14,13 +31,18 @@ class Voice extends Component {
       isluyin: false,
       time: 0,
       endluyin: false,
-      localVoiceId: ''
+      stopPlay: false,
     }
+
+    this.localVoiceId = ''
+    this.serverId = ''
 
     this.startRecord = this.startRecord.bind(this)
     this.endRecord = this.endRecord.bind(this)
     this.giveUpRecord = this.giveUpRecord.bind(this)
     this.playRecord = this.playRecord.bind(this)
+    this.playPause = this.playPause.bind(this)
+    this.clickConfirm = this.clickConfirm.bind(this)
   }
 
   render () {
@@ -51,14 +73,17 @@ class Voice extends Component {
               <div className='time'>{this.state.time}S</div>
               <img className='quxiao'
                 src={quxiao}
-                onClick = { this.giveUpRecord }
+                onClick={this.giveUpRecord}
               />
-              <img className='bofang'
+              <img className={this.state.stopPlay ? 'zanting' : 'bofang'}
                 src={bofang}
-                onClick = { this.playRecord }
+                onClick={this.state.stopPlay ? this.playPause : this.playRecord}
               />
-              <img className='queren' src={queren}></img>
-              <div className='clickluyin' >点击播放</div>
+              <img className='queren' 
+                src={queren}
+                onClick = { this.clickConfirm }
+              />
+              <div className='clickluyin' >{this.state.stopPlay ? '点击停止' : '点击播放'}</div>
             </>)
         }
       </VoiceST>
@@ -97,6 +122,19 @@ class Voice extends Component {
         }))
       }
     }, 1000)
+
+    this.setState({
+      stopPlay: true
+    })
+  }
+
+  //点击暂停
+  playPause () {
+    this.setState({
+      stopPlay: false
+    })
+
+    clearInterval(this.timer)
   }
 
   //点击垃圾箱，放弃录音并初始化页面
@@ -105,39 +143,47 @@ class Voice extends Component {
       isluyin: false,
       time: 0,
       endluyin: false,
-      localVoiceId: []
+      stopPlay: false,
     })
+
+    this.localVoiceId = ''
+    this.serverId = ''
+
+    clearInterval(this.timer)
+  }
+
+  //点击确认
+  clickConfirm () {
+    this.setState({
+      isluyin: false,
+      time: 0,
+      endluyin: false,
+      stopPlay: false,
+    })
+
+    this.localVoiceId = ''
+    this.serverId = ''
+
+    clearInterval(this.timer)
   }
 
 
 
   componentDidMount () {
     var that = this
-    fetch('http://red-mi.xyz/jsapi')
-      .then((response) => {
-        return response.json()
-      })
-      .then((result) => {
-        window.wx.config({
-          // debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-          appId: result.appId, // 必填，公众号的唯一标识
-          timestamp: result.timestamp, // 必填，生成签名的时间戳
-          nonceStr: result.nonceStr, // 必填，生成签名的随机串
-          signature: result.signature,// 必填，签名
-          jsApiList: [
-            "scanQRCode",//扫一扫接口
-            "chooseImage",//拍照或从手机相册中选图接口
-            'startRecord',//开始录音接口
-            'stopRecord',//停止录音接口
-            'onVoiceRecordEnd',//监听录音自动停止接口
-            'playVoice',//播放语音接口
-            'stopVoice',//停止播放接口
-            'uploadVoice'//上传语音接口
-          ]
-        })
-        window.wx.ready(function () {
+        window.wx.ready( function () {
 
-          document.querySelector('#VoiceST').addEventListener('click', (e) => {
+          document.querySelector('#VoiceST').addEventListener('click',async (e) => {
+
+            //监听播放完毕调用事件
+            window.wx.onVoicePlayEnd({
+              success: function (res) {
+                var localId = res.localId; // 返回音频的本地ID
+                console.log('播放完毕')
+                clearInterval(that.timer)
+              }
+            });
+
             //开始录音
             if (e.target.classList[0] === 'luyin') {
               window.wx.startRecord();
@@ -166,31 +212,31 @@ class Voice extends Component {
                 localId: that.localVoiceId // 需要播放的音频的本地ID，由stopRecord接口获得
               });
             }
+
+            //停止播放
+            if (e.target.classList[0] === 'zanting') {
+              window.wx.stopVoice({
+                localId: that.localVoiceId // 需要停止的音频的本地ID，由stopRecord接口获得
+              });
+            }
+            //上传到微信服务器
+            if (e.target.classList[0] === 'queren') {
+              console.log(that.localVoiceId)
+              window.wx.uploadVoice({
+                localId: that.localVoiceId, // 需要上传的音频的本地ID，由stopRecord接口获得
+                isShowProgressTips: 1, // 默认为1，显示进度提示
+                success: function (res) {
+                  that.serverId = res.serverId; // 返回音频的服务器
+                  that.props.GetVoivc(that.serverId)
+                }
+              });
+
+            }
           })
         })
-      })
+      // })
   }
 }
 
-export default Voice
+export default connect(mapStateToprops, mapDispatchToProps)(Voice)
 
-// window.wx.chooseImage({
-            //   count: 5, // 默认9
-            //   sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-            //   sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-            //   success: function (res) {
-            //     var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-            //     console.log(localIds)
-            //     if(localIds.length <= 1){
-            //         var a = document.createElement('img')
-            //         a.src = localIds
-            //         document.querySelector('#img').append(a)
-            //     }else{
-            //         localIds.forEach(pic => {
-            //             var a = document.createElement('img')
-            //             a.src = pic
-            //             document.querySelector('#img').append(a)
-            //         });
-            //     }
-            //   }
-            // });
