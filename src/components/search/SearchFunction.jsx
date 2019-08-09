@@ -16,6 +16,7 @@ padding-top: ${(props)=>{return props.parameter.paddingTop ? props.parameter.pad
         border-radius: ${(props)=>{return props.parameter.borderRadius ? props.parameter.borderRadius : '.1rem'}};
         padding-left: ${(props)=>{return props.parameter.paddingLeft ? props.parameter.paddingLeft : '.15rem'}};
         border: ${(props)=>{return props.parameter.border ? props.parameter.border : 'none'}};
+        box-shadow: ${(props)=>{return props.parameter.boxShadow ? props.parameter.boxShadow : 'none'}};
         align-items: center;
         input{
             border: none;
@@ -28,8 +29,7 @@ padding-top: ${(props)=>{return props.parameter.paddingTop ? props.parameter.pad
         }
         i{
             display: inline-block;
-            width: .11rem;
-            height: .11rem;
+            width: ${(props)=>{return props.parameter.picWidth ? props.parameter.picWidth : '.11rem'}};
             background: url( ${(props)=>{return props.parameter.searchPic ? props.parameter.searchPic : 'none'}} ) no-repeat;
             background-size: 100%;
         }

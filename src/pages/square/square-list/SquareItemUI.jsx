@@ -17,6 +17,7 @@ function foo(){
 }
 export default (props)=>{
     let [isExceed,setIsExceed] = useState(false)
+    let [flag,setFlag] = useState(false)
     const fileInputEl = useRef(null);
     const textEl = useRef(null);
     // const arrowEl = useRef(null);
