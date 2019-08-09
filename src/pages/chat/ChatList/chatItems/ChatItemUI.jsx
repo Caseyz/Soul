@@ -1,23 +1,26 @@
 import React, { Component } from 'react'
-import StyledChatItem from './StyledChatItem'
+import {StyledChatItem,BorderedItem} from './StyledChatItem'
 import EllipsisSpan from './WrapedSpan'
 export default class ChatItem extends Component {
     render() {
         return (
             <StyledChatItem>
-                <div className="item-container">
+                <BorderedItem className="item-container" onClick={this.handleItemClick.bind(this,this.props.id)}>
                     <div className="left">
                         <img src="http://via.placeholder.com/40px*40px" alt=""/>
                         <div>
-                            <h4>{this.props.userName}</h4>
-                            <EllipsisSpan>聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容</EllipsisSpan>
+                            <h4>{this.props.username}</h4>
+                            <EllipsisSpan></EllipsisSpan>
                         </div>
                     </div>
                     <div className="right">
-                        <span>8月7日下午 09:53</span>
+                        <span>{this.props.dateTime}</span>
                     </div>
-                </div>
+                </BorderedItem>
             </StyledChatItem>
         )
+    }
+    handleItemClick(id){
+        this.props.history.push({ pathname: `chat/message/${id}`, state: { } })
     }
 }

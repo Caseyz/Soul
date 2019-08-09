@@ -6,6 +6,7 @@ import FocusNav from './focusNav/FocusNav'
 import FocusItems from './focusItems/FocusList'
 import { asyncGetAll, loadTestData, asyncGetMyFocusListData, asyncGetFocusMeList } from './actionCreator'
 import { connect } from 'react-redux'
+import FocusSearch from './focusSearch/FocusSearch'
 
 const mapState = (state) => {
   return {
@@ -54,9 +55,17 @@ class FocusListContainer extends Component {
   render() {
     return (
       <>
-        <FocusHeader {...this.props}></FocusHeader>
-        <FocusNav myFocusCount={this.props.myFocusList && this.props.myFocusList.length || 0} focusMeCount={this.props.focusMeList && this.props.focusMeList.length} onTabChange={this.handleTabChange.bind(this)}></FocusNav>
-        <div style={{ height: "40px", border: '1px solid #aaa' }}></div>
+        <FocusHeader
+          {...this.props}
+        ></FocusHeader>
+        <FocusNav
+          myFocusCount={this.props.myFocusList && this.props.myFocusList.length || 0}
+          focusMeCount={this.props.focusMeList && this.props.focusMeList.length || 0}
+          onTabChange={this.handleTabChange.bind(this)}
+        >
+
+        </FocusNav>
+        <FocusSearch></FocusSearch>
         <FocusItems
           list={this.state.list}
           type={this.state.type}>
@@ -71,7 +80,7 @@ class FocusListContainer extends Component {
     if (nextProps && nextProps.focusMeList && nextProps.focusMeList.length > 0) {
       nextProps.focusMeList.map(item => {
         //找到我关注的列表中与关注我的列表中相同的id，状态设置成‘已关注’
-        const find = nextProps.myFocusList.find((elem) => {return item.id === elem.id})
+        const find = nextProps.myFocusList.find((elem) => { return item.id === elem.id })
         if (find == undefined) {
           item.status = 1 //未关注
         } else {

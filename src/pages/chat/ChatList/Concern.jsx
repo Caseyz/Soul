@@ -1,33 +1,32 @@
 import React, { Component } from 'react'
 import { Tabs, WhiteSpace } from 'antd-mobile';
-import ChatHeader from './chatHeader/ChatHeader'
+import BorderedHeader from './chatHeader/ChatHeader'
 import ChatNav from './chatNav/ChatNav'
 import ChatItems from './chatItems/ChatList'
-import { asyncGetAll, loadTestData, asyncGetMyFocusListData,asyncGetFocusMeList } from './actionCreator'
+import ChatSearch from './chatSearch/chatSearch'
+import { asyncGetChatListData } from './actionCreator'
 import { connect } from 'react-redux'
+import {
+  Route,
+  Redirect,
+  withRouter
+} from 'react-router-dom'
 
 const mapState = (state) => {
   return {
-    myFocusList: state.getIn(['chat', 'myFocusList']),
-    focusMeList: state.getIn(['chat', 'focusMeList'])
+    chatList: state.getIn(['chat', 'chatList']),
   }
 }
 const mapDispatch = (dispatch) => ({
   loadData: () => {
-    dispatch(asyncGetAll())
+    dispatch(asyncGetChatListData())
   },
-  getMyFocus: () => {
-    dispatch(asyncGetMyFocusListData())
-  },
-  getFocusMe:()=>{
-    dispatch(asyncGetFocusMeList());
-  }
 })
 class Concern extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      list: this.props.myFocusList,
+      list: [],
       type: 0
     }
   }
@@ -35,31 +34,15 @@ class Concern extends Component {
     this.setState({
       type: type,
     })
-    switch (type) {
-      case 0: {
-        this.props.getMyFocus();
-        break;
-      }
-      case 1: {
-        this.props.getFocusMe();
-        break;
-      }
-      case 2: {
-        break;
-      }
-      default:
-        break;
-    }
   }
   render() {
     return (
-      <>
-        <ChatHeader {...this.props}></ChatHeader>
-        <div style={{ height: "40px", border: '1px solid #aaa' }}></div>
-        <ChatNav myFocusCount={this.props.myFocusList && this.props.myFocusList.length || 0} focusMeCount={this.props.focusMeList && this.props.focusMeList.length} onTabChange={this.handleTabChange.bind(this)}></ChatNav>
-        
-        <ChatItems list={this.state.list}></ChatItems>
-      </>
+        <>
+          <BorderedHeader {...this.props}></BorderedHeader>
+          <ChatSearch></ChatSearch>
+          <ChatNav ></ChatNav>
+          <ChatItems list={this.props.chatList} {...this.props}></ChatItems>
+        </>
     )
   }
   async componentDidMount() {
@@ -77,4 +60,4 @@ class Concern extends Component {
 
 }
 
-export default connect(mapState, mapDispatch)(Concern);
+export default connect(mapState, mapDispatch) (withRouter(Concern));

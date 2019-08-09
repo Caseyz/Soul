@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import StyledFocusItem from './StyledFocusItem'
+import BorderedFocusItem from './StyledFocusItem'
 import BtnFocus from './BtnFocus.js'
 export default class FocusItem extends Component {
     render() {
         return (
-            <StyledFocusItem>
+            <BorderedFocusItem hasBorder={true}>
                 <div className="left">
                     <img src="http://via.placeholder.com/40px*40px" alt=""/>
                     <div>
@@ -18,7 +18,7 @@ export default class FocusItem extends Component {
                     </BtnFocus>
                 </div>
 
-            </StyledFocusItem>
+            </BorderedFocusItem>
         )
     }
     handleClick(type,id){

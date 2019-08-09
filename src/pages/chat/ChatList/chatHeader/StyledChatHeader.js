@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import arrowPic from 'assets/images/chat/箭头@3x.png'
 import focusPic from 'assets/images/chat/矢量智能对象@3x.png'
+import border from 'components/style/border'
 const StyledChatHeader=styled.div`
     width:100%;
     height:.44rem;
@@ -43,4 +44,8 @@ const StyledChatHeader=styled.div`
         }
     }
 `
-export default StyledChatHeader
+const BorderedHeader=border({
+    component:StyledChatHeader,
+    borderWidth: '0 0 1px 0'
+})
+export default BorderedHeader

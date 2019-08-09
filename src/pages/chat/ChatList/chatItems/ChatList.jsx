@@ -10,13 +10,18 @@ export default class ChatList extends Component {
                     <span>全部消息</span>
                     <i></i>
                 </div>
-                <div>{this.props.list&&this.props.list.length>0?
-                    this.props.list.map((item,index)=>{
-                        return <ChatItemUI {...item} key={item.id}></ChatItemUI>
-                    }):""
+                <div>{this.props.list && this.props.list.length > 0 ?
+                    this.props.list.map((item, index) => {
+                        let d = new Date()
+                        let m = d.getMonth() + 1;
+                        let date = d.getDate();
+                        let h = d.getHours();
+                        let s = d.getMinutes();
+                        return <ChatItemUI {...item} {...this.props} key={item.id} dateTime={m+"月"+date+"日 "+h+":"+s}></ChatItemUI>
+                    }) : ""
                 }
                 </div>
-               
+
             </StyledChatList>
 
         )

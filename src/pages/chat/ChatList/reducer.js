@@ -1,24 +1,13 @@
 import Redux from 'redux'
 const defaultState = {
-    myFocusList: [],
-    focusMeList: []
+    chatList: [],
 }
 const reducer = (state = defaultState, action) => {
     switch (action.type) {
-        case 'getMyFocus':
+        case 'getChatList':
+            console.log(action,666)
             return {
-                myFocusList: action.payload,
-                focusMeList: state.focusMeList
-            }
-        case 'getFocusMe':
-            return {
-                focusMeList: action.payload,
-                myFocusList: state.myFocusList
-            }
-        case 'getAll':
-            return {
-                myFocusList: action.payload.myFocusList,
-                focusMeList: action.payload.focusMeList
+                chatList: action.payLoad
             }
         default:
             return state

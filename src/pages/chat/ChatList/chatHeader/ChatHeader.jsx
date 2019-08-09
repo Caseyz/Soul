@@ -3,7 +3,7 @@ import StyledChatHeader from './StyledChatHeader'
 export default class ChatHeader extends Component {
     render() {
         return (
-            <StyledChatHeader>
+            <StyledChatHeader hasBorder={true}>
                 <div className="match">
                     <span>允许匹配</span>
                     <i></i>

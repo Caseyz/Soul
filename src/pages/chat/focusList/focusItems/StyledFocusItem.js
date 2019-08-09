@@ -1,10 +1,12 @@
 import Styled from 'styled-components'
 import btnPic from 'assets/images/focus/btnBackground.png'
+import border from 'components/style/border'
 const StyledFocusItem=Styled.div`
     width:100%;
     background:#fff;
     display:flex;
     padding:.1rem;
+    margin-top:.05rem;
     .left{
         flex:1;
         display:flex;
@@ -20,6 +22,7 @@ const StyledFocusItem=Styled.div`
         img{
             width:.4rem;
             height:.4rem;
+            border-radius:50%;
         }
     }
     .right{
@@ -38,4 +41,9 @@ const StyledFocusItem=Styled.div`
         }*/
     }
 `
-export default StyledFocusItem
+const BorderedFocusItem=border({
+    component:StyledFocusItem,
+    borderWidth: '1px 0 1px 0',
+    color:'#BFBFBF'
+})
+export default BorderedFocusItem
