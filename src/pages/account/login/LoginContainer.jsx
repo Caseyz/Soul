@@ -1,25 +1,17 @@
 // 依赖
 import React, { Component } from 'react'
-import {connect} from 'react-redux'
 // 引入actionCreate
 import './style.css'
-
 // 引入http请求模块
 import http from 'utils/http'
-
 // 样式组件
 import Logo from '../_components/logo/'
-import { FlexMidCen } from '../_components/layout/'
+import { FlexMidCen, Container } from '../_components/layout/'
 import Button from '../_components/button/Button'
-
 // 路由组件
 import PhoneInput from './PhoneInput'
 import PasswordInput from './PasswordInput'
 import CodeInput from './CodeInput'
-
-// actionCreator
-import { setPhone, setLoginState } from '../store/index'
-
 // 第三方组件
 import { Toast } from 'antd-mobile'
 
@@ -71,7 +63,6 @@ class LoginContainer extends Component {
         code,
     })
   }
-  // 
   // 按钮对应的处理函数
   handleClick = ()=> {
       let {clickType} = this.state
@@ -86,7 +77,6 @@ class LoginContainer extends Component {
         this.findPassword()
       }
   }
-
   
   // 验证手机号状态
   async verifyPhone() {
@@ -135,7 +125,7 @@ class LoginContainer extends Component {
       console.log('登录成功')
       // 设置全局登录状态
       this.props.setLoginState(true)
-      this.props.history.push('/dynamic')
+      this.props.history.replace('/dynamic')
     }else if( res.code===1 ) {
       // 登录失败操作
       console.log('登录失败')
@@ -162,11 +152,11 @@ class LoginContainer extends Component {
       console.log('登录成功')
       // 设置全局登录状态 
       this.props.setLoginState(true)
-      this.props.history.push('/dynamic')
+      this.props.history.replace('/dynamic')
     }else if( res.statu === '1' ){
       // 用户注册成功逻辑
       console.log('注册成功')
-      this.props.history.push('/account/addInfo')
+      this.props.history.replace('/account/addInfo')
     }
   }
   // 验证码找回密码
@@ -179,6 +169,9 @@ class LoginContainer extends Component {
         isLoading: false
     })
     if( res.code === 0 ) {
+        this.setState({
+            clickType: 2
+        })
         this.props.history.push('/account/findpwd')
     }else if (res.code === 1) {
         Toast.fail(res.msg, 1)
@@ -197,7 +190,7 @@ class LoginContainer extends Component {
 
   render() {
     return (
-      <>
+      <Container>
         <Logo />
         <PhoneInput handlePhoneState={this.handlePhoneState} phone={this.state.phone}></PhoneInput>
         {
@@ -246,24 +239,11 @@ class LoginContainer extends Component {
              type={this.state.btnType}
              isLoading={this.state.isLoading}
              handleClick={this.handleClick}
-            >确定</Button>
+            >{this.state.clickType===2 ? '登录':'确定'}</Button>
         </FlexMidCen>
-      </>
+      </Container>
     )
   }
 }
 
-const mapState = state => ({
-    isLogin: state.getIn(['account', 'isLogin']),
-    phone: state.getIn(['account', 'phone'])
-})
-const mapDispatch = dispatch => ({
-    setLoginState(isLogin) {
-        dispatch(setLoginState(isLogin))
-    },
-    setPhone(phone) {
-        dispatch(setPhone(phone))
-    }
-})
-
-export default connect(mapState, mapDispatch)(LoginContainer)
+export default LoginContainer

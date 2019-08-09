@@ -19,7 +19,8 @@ const mapState = state => ({
  * 如果未登录则跳转到account
  */
 class IsRedirectAccount extends Component {
-  render() {
+    render() {
+    console.log(this.props)
     return (
       <Router>
         <Switch>
