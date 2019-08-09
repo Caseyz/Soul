@@ -29,15 +29,14 @@ class App extends Component {
     return (
       <Provider store={store}>
         <IsRedirectAccount comp={AccountContainer}>
-          <Redirect from="/" to="/chat" exact></Redirect>
-          <Redirect from="/" to="/account" exact></Redirect>
+          <Redirect from='/' to="/dynamic" exact></Redirect>
           <Route path='/start' render={()=>(<div>start</div>)}></Route>
           <Route path='/chat' component={Concern}></Route>
           <Route path='/focus' component={FocusListContainer}></Route>
           <Route path='/dynamic' component={Square}></Route>
           <Route path='/publish'  component={ Publish }></Route>
           <Route path='/mine' render={ Mine }></Route>
-          <Route path='/account' component={ AccountContainer }></Route>
+          {/* <Route path='/account' component={ AccountContainer }></Route> */}
         </IsRedirectAccount>
       </Provider>
     )

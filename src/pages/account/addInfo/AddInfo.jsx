@@ -1,9 +1,10 @@
+// 依赖
 import React, { Component } from 'react'
-
+// http模块
 import http from 'utils/http'
-
+// 相关组件
 import { DatePicker, Picker, Toast} from 'antd-mobile'
-import { FlexMidCen } from '../_components/layout/'
+import { FlexMidCen, Container } from '../_components/layout/'
 import { 
     InputGroup,
     LineInput,
@@ -11,6 +12,8 @@ import {
     Text
 } from '../_components/form-group/'
 import Button from '../_components/button/Button'
+// 页面动画
+import Animate from 'components/high-order/Animate'
 // 显示所有头像列表 组件
 // import ShowAllHead from './ShowAllHead'
 
@@ -91,7 +94,8 @@ class AddInfoContainer extends Component {
         isLoading: false
     })
     if( res.code===0 ){
-        this.props.history.push('/dynamic')
+        this.props.history.replace('/dynamic')
+        this.props.setLoginState(true)
     }else {
         Toast.fail(res.msg, 1)
     }
@@ -107,7 +111,7 @@ class AddInfoContainer extends Component {
 
   render() {
     return (
-        <>
+        <Container>
           <div style={style.title}>HI,请完善您的信息</div>
           <div style={style.tip}>填写正确信息有助于匹配，我们将保护好您的私人信息</div>
           <FlexMidCen style={{width: '100%'}}>
@@ -182,8 +186,8 @@ class AddInfoContainer extends Component {
              完成
            </Button>
           </FlexMidCen>
-        </>
+        </Container>
       )
   }
 }
-export default AddInfoContainer
+export default Animate(AddInfoContainer)

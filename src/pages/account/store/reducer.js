@@ -11,6 +11,7 @@ const reducer = (state=defaultState, action)=>{
   switch(action.type) {
     case ISLOGIN:
       store.set(ISLOGIN, action.payload)
+      console.log('zhixing>>>>>>>>>>>>>')
       return state.set('isLogin', action.payload)
     case SETPHONE:
       store.set(SETPHONE, action.payload)
