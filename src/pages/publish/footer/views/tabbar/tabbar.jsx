@@ -57,7 +57,7 @@ class TabBarExample extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     var height =  this.props.focus ? 234 : 50
     return (
       <div style={this.state.fullScreen ? { position: 'fixed', height: '100%', width: '100%', top: 0 } : { height:height }}>
@@ -74,13 +74,13 @@ class TabBarExample extends React.Component {
             icon={<div style={{
               width: '22px',
               height: '22px',
-              background: `url("${voice}") center center /  .14rem .19rem no-repeat` }}
+              background: `url("${voice}") center center /  14px 19px no-repeat` }}
             />
             }
             selectedIcon={<div style={{
               width: '22px',
               height: '22px',
-              background: `url(${voiceSelect}) center center /  .14rem .19rem no-repeat` }}
+              background: `url(${voiceSelect}) center center /  14px 19px no-repeat` }}
             />
             }
             selected={this.state.selectedTab === 'blueTab'}
@@ -101,14 +101,14 @@ class TabBarExample extends React.Component {
               <div style={{
                 width: '22px',
                 height: '22px',
-                background: `url(${ picture }) center center /  .20rem .19rem no-repeat` }}
+                background: `url(${ picture }) center center /  20px 19px no-repeat` }}
               />
             }
             selectedIcon={
               <div style={{
                 width: '22px',
                 height: '22px',
-                background: `url(${ pictureSelect }) center center /  .20rem .19rem no-repeat` }}
+                background: `url(${ pictureSelect }) center center /  20px 19px no-repeat` }}
               />
             }
             // title="picture"

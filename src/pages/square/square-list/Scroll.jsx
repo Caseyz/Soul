@@ -40,12 +40,11 @@ class Scroll extends Component {
 
 
     async componentDidMount(){
-        Toast.loading('Loading...',1)
+        Toast.loading('Loading...')
         let pagenum = 1
         let result = await this.getSquareDate(pagenum,5)
         Toast.hide()
-        this.setState({list: [...this.state.list,...result]})
-
+        let _tem = !result.error ? this.setState({list: [...this.state.list,...result]}) : ''
         let bScroll = new BScroll(this.props.fatherSe,{
             scrollY: true,
             click: true,

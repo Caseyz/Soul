@@ -1,30 +1,22 @@
+// 引入依赖
 import React from 'react'
-
-import 'assets/styles/animate.css'
-
 import { CSSTransition } from 'react-transition-group'
+// 动画引入
+import './Animate.css'
 
 const Animate = (Comp) => (props) => {
-  console.log(props)
-  let { type, location } = props
-  let isShow = location.pathname.split('/').some((item)=>item===type)
-  let state = props.location.state
-  console.log(state)
-  let dir =  state && state.dir || 'left'
+  
   return (
     <CSSTransition
-      in={isShow}
-      timeout={1000}
-      classNames={{
-        enter: 'animated',
-        enterActive: dir === 'left' ? 'slideInLeft' : 'slideInRight',
-        exit: 'animated',
-        exitActive: dir === 'left' ? 'slideOutRight' : 'slideOutLeft'
-      }}
+      in={!!props.match}
+      timeout={300}
+      classNames={props.animate || 'page'}
       mountOnEnter
       unmountOnExit
     >
-      <Comp { ...props }></Comp>
+      <div className={props.animate || 'page'}>
+        <Comp { ...props }></Comp>
+      </div>
     </CSSTransition>
   )
 }

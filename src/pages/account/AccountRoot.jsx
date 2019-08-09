@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 import {
   Route,
-  Redirect,
-  Switch
 } from 'react-router-dom'
-import { Container } from './_components/layout/'
+import {
+    setLoginState,
+    setPhone
+} from './store/'
 import Login from './login/LoginContainer'
 import AddInfo from './addInfo/AddInfo'
 import FindPassword from './forgetpassword/FindPassword'
@@ -19,13 +21,34 @@ class AccountRoot extends Component {
   }
   render() {
     return (
-      <Container>
-        {/* <Redirect from='/account' to='/account/addInfo' exact></Redirect> */}
-        <Route path='/account' component={Login} exact></Route>
-        <Route path='/account/addInfo' component={AddInfo}></Route>
-        <Route path='/account/findpwd' component={FindPassword}></Route>
-      </Container>
+      <div style={{height: '100vh', position: 'relative'}}>
+        <Route path='/account' 
+            children={(props)=>(<Login {...this.props} {...props}></Login>)} exact>
+        </Route>
+        {/* 注册后, 用户信息添加 */}
+        <Route path='/account/addInfo' 
+            children={(props)=>(<AddInfo {...this.props} {...props}></AddInfo>)}>
+        </Route>
+        {/* 找回密码 */}
+        <Route path='/account/findpwd' 
+            children={(props)=>(<FindPassword {...this.props} {...props}></FindPassword>)}>
+        </Route>
+      </div>
     )
   }
 }
-export default AccountRoot
+
+const mapState = state => ({
+    isLogin: state.getIn(['account', 'isLogin']),
+    phone: state.getIn(['account', 'phone'])
+})
+const mapDispatch = dispatch => ({
+    setLoginState(isLogin) {
+        console.log(1)
+        dispatch(setLoginState(isLogin))
+    },
+    setPhone(phone) {
+        dispatch(setPhone(phone))
+    }
+})
+export default connect(mapState, mapDispatch)(AccountRoot)
