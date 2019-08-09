@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 
-import SquareItemUI from './SquareItemUI'
+import http from 'utils/http'
 
+import SquareItemUI from './SquareItemUI'
 import StyleSquareItemContainer from './StyleSquareItemContainer'
 
 //搜索框组件导入
@@ -18,11 +19,12 @@ export class SquareItemContainer extends Component {
             list: [],
         }
         this.showText = this.showText.bind(this)
+        this.text = false
         // this.arrow=React.createRef();
     }
 
     //显示
-    showText(textEl,textId,tabNumber){
+    showText(textEl, textId, tabNumber, foo){
         let show  = false
         return function(){
             show = !show
@@ -31,18 +33,23 @@ export class SquareItemContainer extends Component {
                 textArrow.src = arrowDPic
                 textEl.classList.remove('text-container')
                 textEl.style.overFlow = "visible"
+                foo()
             }else{
                 let textArrow = document.querySelector(".textArrow"+textId+tabNumber)
                 textArrow.src = arrowUPic
                 textEl.classList.add('text-container')
                 textEl.style.overFlow = "hidden"
+                foo()
             }
         }
     }
 
-    addLike(pre){
-        return ()=>{
-            console.log(pre)
+    addLike(id){
+        return function(){
+            http.get(
+                '/star',
+                {id}
+                )
         }
     }
 

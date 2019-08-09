@@ -43,7 +43,6 @@ class TabExample extends Component{
         <Route path="/dynamic/search" render={(props)=>{
           return <SearchContainer/>
         }}></Route>
-
         <Route path="/dynamic" render={(props)=>{
           let flag = true
           return (
@@ -66,7 +65,7 @@ class TabExample extends Component{
       >
         <div className="recommend" style={{flex:1, backgroundColor: '#fff' }}>
           {/* <SquareItemContainer tabNumber={0}></SquareItemContainer>  */}
-          {/* <Scroll tabNumber={0} fatherSe=".recommend" render={com => (<SquareItemContainer squareData={com} tabNumber={0}></SquareItemContainer>)}></Scroll> */}
+          <Scroll tabNumber={0} fatherSe=".recommend" render={com => (<SquareItemContainer squareData={com} tabNumber={0}></SquareItemContainer>)}></Scroll>
         </div>
         <div className="care" style={{flex:1, backgroundColor: '#fff' }}>
         <Scroll tabNumber={1} fatherSe=".care" render={com => (<SquareItemContainer squareData={com} tabNumber={1}></SquareItemContainer>)}></Scroll>
