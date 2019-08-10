@@ -32,14 +32,11 @@ const FooterUI = props => {
                     </>)
                 }
                 {
-                    (props.voice === '' && props.voice === '')
+                    props.voice != ''
                     ? ''
                     :
                     (
-                        <div 
-                            className = 'photoAndVideo'
-                            ref = { props.refimgs }
-                        ></div>
+                        <div className = 'photoAndVideo'></div>
                     )
                 }
                 <div className = "position">

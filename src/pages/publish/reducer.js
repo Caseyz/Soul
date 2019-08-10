@@ -5,7 +5,7 @@ import { GETFOCUS, VALUE, IMG, PHOTO, VOICE } from './actionTypes'
 const defaultState = Map({
     focus: true,
     value: '',
-    img: '',
+    img: [],
     voice:''
 })
 

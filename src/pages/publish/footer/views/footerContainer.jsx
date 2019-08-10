@@ -33,7 +33,7 @@ class FooterContainer extends Component {
             setUp: 'active'
         }
 
-        this.imgs = React.createRef()
+        this.imgs = []
 
         this.setUpClick = this.setUpClick.bind(this)
         this.stopClick = this.stopClick.bind(this)
@@ -47,7 +47,7 @@ class FooterContainer extends Component {
         console.log(this.props)
         return (
             <FooterUI
-                refimgs = { this.imgs }
+
                 {...this.props}
                 setUp = {setUp}
                 setUpClick = {this.setUpClick}
@@ -73,16 +73,13 @@ class FooterContainer extends Component {
 
     //单选按钮
     labelClick (e) {
-        // console.log(e.target.className)
         if (e.target.className === 'radio iconfont') {
-            // console.log(1)
             var a = document.querySelectorAll('.radio')
             a.forEach((item) => {
                 item.setAttribute('class', 'radio iconfont')
             })
             e.target.className = 'radio iconfont icon-check-circle'
         } else {
-            // console.log(2)
             e.target.className = 'radio iconfont'
         }
     }
@@ -120,6 +117,7 @@ class FooterContainer extends Component {
     }
 
     componentDidMount () {
+        var that = this
         fetch('http://red-mi.xyz/jsapi')
         .then((response) => {
           console.log(response)
@@ -142,13 +140,23 @@ class FooterContainer extends Component {
               'stopVoice',                //停止播放接口
               'uploadVoice',              //上传语音接口
               'downloadVoice',            //下载语音接口
+              'uploadImage',              //上车图片接口
+              'downloadImage',            //下载图片功能
             ]
           })
         })
 
         //渲染图片
-        var oFragmeng = document.createDocumentFragment(); 
-        
+        this.props.img.forEach( (item,index) => {
+            window.wx.downloadImage({
+                serverId: item, // 需要下载的图片的服务器端ID，由uploadImage接口获得
+                isShowProgressTips: 1, // 默认为1，显示进度提示
+                success: function (res) {
+                    var localId = res.localId; // 返回图片下载后的本地ID
+                    that.imgs.push(localId)
+                }
+            });
+        })
     }
 }
 
