@@ -44,7 +44,7 @@ class TabExample extends Component{
           return <SearchContainer/>
         }}></Route>
         <Route path="/dynamic" render={(props)=>{
-          let flag = true
+          // let flag = true
           return (
             <div style={{height:'100%'}}>
 
