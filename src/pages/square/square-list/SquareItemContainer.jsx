@@ -17,26 +17,33 @@ export class SquareItemContainer extends Component {
         this.state = {
             picNumber:1,
             list: [],
+            str: 0,  //点赞数
         }
         this.showText = this.showText.bind(this)
+        this.addLike = this.addLike.bind(this)
         this.text = false
         // this.arrow=React.createRef();
     }
+    
+    static getDerivedStateFromProps (nextProps, preState) {
+        return {
+            str: nextProps.squareData.list
+        }
+    }
 
-    // componentDidMount(){
-    //     fetch('http://red-mi.xyz/jsapi')
-    //     .then((response) => {
-    //       console.log(response)
-    //       return response.json()
-    //     })
-    //     .then((result) => {
-    //         console.log(result)
-    //     })
-
-    // }
+    componentDidMount(){
+        fetch('http://red-mi.xyz/jsapi')
+        .then((response) => {
+        //   console.log(response)
+          return response.json()
+        })
+        .then((result) => {
+            // console.log(result)
+        })
+    }
 
     //显示
-    showText(textEl, textId, tabNumber, foo){
+    showText(textEl, textId, tabNumber){
         let show  = false
         return function(){
             show = !show
@@ -45,30 +52,27 @@ export class SquareItemContainer extends Component {
                 textArrow.src = arrowDPic
                 textEl.classList.remove('text-container')
                 textEl.style.overFlow = "visible"
-                foo()
             }else{
                 let textArrow = document.querySelector(".textArrow"+textId+tabNumber)
                 textArrow.src = arrowUPic
                 textEl.classList.add('text-container')
                 textEl.style.overFlow = "hidden"
-                foo()
             }
         }
     }
 
-    addLike(id){
-        return function(){
-            http.get(
-                '/star',
-                {id}
-                )
-        }
+    addLike(id,index){
+        http.get('/star', {id})
+        this.setState({
+            str: this.state.str[index].star++
+        })
+
     }
 
     render() {
         let list = this.props.squareData
         ? this.props.squareData.list.map((item,index)=>(
-                <SquareItemUI key={item.id} arrowStatus={this.arrowStatus}  addLike={this.addLike} showText={this.showText} info={item} tabNumber = {this.props.tabNumber}></SquareItemUI>
+                <SquareItemUI str={this.state.str} index={index} key={item.id} arrowStatus={this.arrowStatus}  addLike={this.addLike} showText={this.showText} info={item} tabNumber = {this.props.tabNumber}></SquareItemUI>
           )) 
         : []
         return (
