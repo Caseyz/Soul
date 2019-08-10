@@ -1,15 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react'
 import StyleSquareItemUI from './StyleSquareItemUI'
+import Interaction from './Interaction/Interaction'
 // import { CSSTransition } from 'react-transition-group'
 import './TextTransition.css'
 
 //图片导入
 import headPhoto from 'assets/images/square/7bdc97e546fb59e65584b916021b193addde1d3a10b90-8pifaR_fw658@3x.png'
 import publishPic1 from 'assets/images/square/864fcba1be833081097df3936668bd9f@3x.png'
-// import publishPic2 from 'assets/images/square/ab739ad95e95308c1491f76f4168fe20@3x.png'
 import arrowDPic from 'assets/images/square/箭头@3x.png'
-// import { convertPatternsToTasks } from 'fast-glob/out/managers/tasks';
-// export default React.forwardRef((props,ref)=>{
 
 
 export default (props)=>{
@@ -101,11 +99,7 @@ export default (props)=>{
                 {props.info.address && <div className="publish-position">
                     <i className="position-pic"></i><span>{props.info.address}</span>
                 </div>}
-                <div className="Interaction">
-                    <i className="like" onClick={props.addLike.bind(null, props.info.id,props.index)}></i><span>{props.info.star}</span>
-                    <i className="comment"></i><span>{props.info.comments}</span>
-                    <i className="collection"></i>
-                </div>
+                <Interaction props={props} />
             </div>
         </StyleSquareItemUI>
     )
