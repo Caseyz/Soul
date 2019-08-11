@@ -3,10 +3,13 @@ import { Tabs, Badge } from "antd-mobile"
 //路由
 import {Route, Link, Switch } from "react-router-dom";
 
+
+//列表组件
+import SquareItemContainer from './square-list/SquareItemContainer'
 //搜索组件
 import SearchContainer from 'components/search/SearchContainer.jsx'
+import ThemeButton from './themeButton/ThemeButton'
 
-import SquareItemContainer from './square-list/SquareItemContainer'
 
 //better-scroll
 import Scroll from './square-list/Scroll.jsx'
@@ -16,37 +19,75 @@ import camerPic from '../../assets/images/square/照相机@3x.png'
 import signInPic from '../../assets/images/square/签到@3x.png'
 
 import './cover.css'
+
+import { connect } from 'react-redux'
+import { changeTheme } from './store/actionCreator'
+
 const tabs = [
   { title: <Badge>关注</Badge> },
   { title: <Badge>推荐</Badge> },
   { title: <Badge>更新</Badge> },
 ]
 
+
+const mapStates = (state) => {
+  return {
+    // title: state.square.background
+    background: state.getIn(['square', 'background'])
+  }
+}
+
+const mapDispatch = (dispatch) => ({
+  changeTheme(title) {
+    dispatch(changeTheme(title))
+  }
+})
+
+
 // const TabExample = () => (
 class TabExample extends Component{
   constructor(props){
     super(props)
     this.state={
-
+      themeColor:''
     }
   }
+
+static getDerivedStateFromProps(nextProps, prevState) {
+  const {background} = nextProps;
+  // 当传入的type发生变化的时候，更新state
+  if (background === 'black') {
+      return {
+        themeColor:'light',
+      }
+  }
+  if (background === 'white') {
+      return {
+        themeColor:'dark',
+      }
+  }
+  // 否则，对于state不进行任何操作
+  return null;
+}
 
   componentDidMount(){
   // this.ttt = document.querySelector('.am-tabs-tab-bar-wrap')
   }
 
   render(){
-
     return(
       <>
-      <Switch>  
+        {/* <p onClick={this.props.changeTheme.bind(null,this.state.themeColor)} style={themeButtonstyle}>{this.state.themeColor}</p> */}
+        <Switch>  
         <Route path="/dynamic/search" render={(props)=>{
           return <SearchContainer/>
         }}></Route>
         <Route path="/dynamic" render={(props)=>{
           // let flag = true
           return (
+            
             <div style={{height:'100%'}}>
+            <ThemeButton background={this.props.background} changeTheme={this.props.changeTheme}/>
 
               <Tabs tabs={tabs}
         initialPage={1}
@@ -63,17 +104,18 @@ class TabExample extends Component{
         } }
         // onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
       >
-        <div className="recommend" style={{flex:1, backgroundColor: '#fff' }}>
+        <div className="recommend" style={{flex:1, backgroundColor: this.props.background }}>
           {/* <SquareItemContainer tabNumber={0}></SquareItemContainer>  */}
-          <Scroll tabNumber={0} fatherSe=".recommend" render={com => (<SquareItemContainer squareData={com} tabNumber={0}></SquareItemContainer>)}></Scroll>
+          {/* <Scroll tabNumber={0} fatherSe=".recommend" render={com => (<SquareItemContainer backgroundColor= {this.props.background} squareData={com} tabNumber={0}></SquareItemContainer>)}></Scroll> */}
+          <Scroll tabNumber={0} fatherSe=".recommend" render={com => (<SquareItemContainer backgroundColor={this.props.background} squareData={com} tabNumber={0}></SquareItemContainer>)}></Scroll>
         </div>
-        <div className="care" style={{flex:1, backgroundColor: '#fff' }}>
-        <Scroll tabNumber={1} fatherSe=".care" render={com => (<SquareItemContainer squareData={com} tabNumber={1}></SquareItemContainer>)}></Scroll>
+        <div className="care" style={{flex:1, backgroundColor: this.props.background }}>
+        <Scroll tabNumber={1} fatherSe=".care" render={com => (<SquareItemContainer backgroundColor={this.props.background} squareData={com} tabNumber={1}></SquareItemContainer>)}></Scroll>
         </div>
-        <div className="update" style={{flex:1, backgroundColor: '#fff' }}>
-          <Scroll tabNumber={2} fatherSe=".update" render={com => (<SquareItemContainer squareData={com} tabNumber={2}></SquareItemContainer>)}></Scroll>
+        <div className="update" style={{flex:1, backgroundColor: this.props.background }}>
+          <Scroll tabNumber={2} fatherSe=".update" render={com => (<SquareItemContainer backgroundColor={this.props.background} squareData={com} tabNumber={2}></SquareItemContainer>)}></Scroll>
         </div>
-      </Tabs>
+      </Tabs> 
 
               <div className="extends">
                   <span className="square-camera"><img src={camerPic} alt="camera"/></span>
@@ -89,4 +131,4 @@ class TabExample extends Component{
 }
 // )
 
-export default TabExample
+export default connect(mapStates,mapDispatch)(TabExample) 

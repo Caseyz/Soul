@@ -22,7 +22,6 @@ export class SquareItemContainer extends Component {
         this.showText = this.showText.bind(this)
         this.addLike = this.addLike.bind(this)
         this.text = false
-        // this.arrow=React.createRef();
     }
     
     static getDerivedStateFromProps (nextProps, preState) {
@@ -31,16 +30,16 @@ export class SquareItemContainer extends Component {
         }
     }
 
-    componentDidMount(){
-        fetch('http://red-mi.xyz/jsapi')
-        .then((response) => {
-        //   console.log(response)
-          return response.json()
-        })
-        .then((result) => {
-            // console.log(result)
-        })
-    }
+    // componentDidMount(){
+    //     fetch('http://red-mi.xyz/jsapi')
+    //     .then((response) => {
+    //     //   console.log(response)
+    //       return response.json()
+    //     })
+    //     .then((result) => {
+    //         // console.log(result)
+    //     })
+    // }
 
     //显示
     showText(textEl, textId, tabNumber){
@@ -76,7 +75,7 @@ export class SquareItemContainer extends Component {
           )) 
         : []
         return (
-        <StyleSquareItemContainer>
+        <StyleSquareItemContainer  backgroundColor= {this.props.backgroundColor}>
             {this.props.tabNumber===1 ? <SearchBar /> : ''}
             {list}
         </StyleSquareItemContainer>

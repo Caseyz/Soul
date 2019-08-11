@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import StyleSquareItemUI from './StyleSquareItemUI'
 import Interaction from './Interaction/Interaction'
+import Voice from './voice/Voice'
 // import { CSSTransition } from 'react-transition-group'
 import './TextTransition.css'
 
@@ -40,7 +41,11 @@ export default (props)=>{
                 </div>
             </div>
             <div className="publish-message">
+                
                 <div className="publish-pic"> 
+                    {
+                        props.info.libname&&<Voice />
+                    }
                     {
                         props.info.image.split(",").map((item,index)=>{
                             //picNumber=2，2为测试数据
