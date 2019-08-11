@@ -32,9 +32,9 @@ let FooterTop = styled.div`
         }
     }
     .xianshiluyin {
-        width: 1rem;
+        width: .99rem;
         height: .18rem;
-        background: url("${xianshiluyin}");
+        background: url("${xianshiluyin}") no-repeat;
         background-size:contain;
         position: absolute;
         top: -.25rem;
@@ -55,23 +55,26 @@ let FooterTop = styled.div`
         position: absolute;
         top: -.67rem;
         left: .2rem;
+        height: .6rem;
     }
     .img_div{
         width:.6rem;
         height:.6rem;
-        margin-right:.05rem;
+        margin-right:.1rem;
         display: inline-block;
         position: relative;
         >img {
             width:100%;
             height:100%;
+            border-radius: .10rem;
         }
-        >i {
+        >i{
             position:absolute;
-            top:0;
-            right:0;
-            color: #333;
+            top:-3px;
+            left:50px;
+            color: #57E1E2;
             font-size:.16rem;
+            z-index: 888;
         }
     }
 

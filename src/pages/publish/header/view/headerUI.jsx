@@ -10,7 +10,7 @@ function Header(props){
           <div className="header_goBack_icon" 
             onClick={ props.goback }
           ></div>
-          <div className="issue">发布</div>
+          <div className="issue" onClick = { props.publish }>发布</div>
         </div>
     </Head>
  )

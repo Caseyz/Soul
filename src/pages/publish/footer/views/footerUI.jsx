@@ -31,14 +31,25 @@ const FooterUI = props => {
                         />
                     </>)
                 }
-                {
-                    props.voice != ''
-                    ? ''
-                    :
-                    (
-                        <div className = 'photoAndVideo'></div>
-                    )
-                }
+                     
+                <div className = 'photoAndVideo'>
+                    {         
+                        props.serverid.map((item, index) => {
+                            return (
+                            <div className = 'img_div'>
+                                <img src={item} data-id = {index} alt="" width = '60px'  height = '60px' />
+                                <i 
+                                    className = 'iconfont icon-close-circle cancelType' 
+                                    data-id = {index} 
+                                    onClick = { props.ShfitSomePic.bind(this,index) }
+                                />
+                            </div>
+                            )
+                                     
+                        })        
+                    }
+                </div>
+                    
                 <div className = "position">
                     <img src={ addressImg } alt=""/>
                     <span>你在哪里</span>
