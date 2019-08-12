@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom'
 
 import { TopMsgContainer } from './TopMsgStyle'
 import { Header } from '../../header/'
 import Time from '../time/Time'
+
 
 
 class TopMsg extends Component {
@@ -23,16 +25,17 @@ class TopMsg extends Component {
                         transform:`scale(${(this.state.changeHeight+this.props.scaleHegiht)/this.state.changeHeight})`
                     }}
                 />
-                <Header></Header>
+                <Header myselfData={this.props.myselfData}></Header>
                 <div className="avatar">
-                    <img src={require('assets/images/mine/avatar.png')} alt=""/>
-                    <p>SAYN</p>
+                    <img src={this.props.myselfData.head} alt=""/>
+                    {/* <img src={require('assets/images/mine/avatar.png')} alt=""/> */}
+                    <p>{this.props.myselfData.username}</p>
                 </div>
                 <div className="signature">
-                    <p>只会笑的提莫</p>
-                    <span></span>
+                    <p>{this.props.myselfData.sign}</p>
+                    <span onClick={this.handleSignature.bind(this)}></span>
                 </div>
-                <Time className="time"></Time>
+                <Time myselfData={this.props.myselfData} className="time"></Time>
             </TopMsgContainer>
         );
     }
@@ -42,8 +45,10 @@ class TopMsg extends Component {
         this.setState((prevState,props) => ({
             changeHeight: prevState.changeHeight = H
         }))
-
+    }
+    handleSignature() {
+        this.props.history.push('/mine/setting/signature')
     }
 }
 
-export default TopMsg;
+export default withRouter(TopMsg);

@@ -19,6 +19,7 @@ import FocusListContainer from 'pages/chat/focusList/FocusListContainer'
   //广场组件
 // import Square from 'pages/square/Test.jsx'
 import {Square} from 'pages/square'
+import Square from 'pages/square/Test.jsx'
 //自己组件
 import { Mine } from 'pages/mine/'
 
@@ -38,7 +39,8 @@ class App extends Component {
           <Route path='/publish'  component={ Publish }></Route>
           <Route path='/mine' render={ Mine }></Route>
           {/* <Route path='/account' component={ AccountContainer }></Route> */}
-        </IsRedirectAccount> 
+          <Route path='/account' component={ AccountContainer }></Route>
+        </IsRedirectAccount>
       </Provider>
     )
   }
