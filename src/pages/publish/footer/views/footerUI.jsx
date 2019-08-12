@@ -34,7 +34,7 @@ const FooterUI = props => {
 
                 <div className='photoAndVideo'>
                     {
-                        props.serverid.map((item, index) => {
+                        props.localid.map((item, index) => {
                             return (
                                 <div className='img_div' key={item}>
                                     <img
