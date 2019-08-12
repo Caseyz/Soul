@@ -9,7 +9,22 @@ class Scroll extends Component {
         this.state = {
             list:[]
         }
+        this.flage = true  //判断是否还有数据
     }
+
+    getImgs(serverId){
+        wx.downloadImage({
+            serverId, // 需要下载的图片的服务器端ID，由uploadImage接口获得
+            isShowProgressTips: 1, // 默认为1，显示进度提示
+            success: function (res) {
+            res.localId; // 返回图片下载后的本地ID
+            }
+        });
+    }
+
+
+
+
 
     async getSquareDate(pagenum,pagesize){
         let focus = '',
@@ -34,6 +49,11 @@ class Scroll extends Component {
             "pagenum":pagenum,
             "pagesize":pagesize
         })
+        
+        result = result.map(async(item,index)=>{
+            let img = await getImgs(item.image)
+            item.image = img
+        })
 
         return result
     }
@@ -54,9 +74,9 @@ class Scroll extends Component {
         bScroll.on('pullingUp',async ()=>{
             pagenum++
             Toast.loading('Loading...',30)
-            let result = await this.getSquareDate(pagenum,5)
+            let result = this.flage && await this.getSquareDate(pagenum,5)
             if(!result.length){
-                console.log(1)
+                this.flage = false
                 Toast.offline('没有更多内容了',2)
                 bScroll.finishPullUp()
                 return 0

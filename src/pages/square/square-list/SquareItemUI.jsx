@@ -19,7 +19,7 @@ export default (props)=>{
     let elWidth = 0
     let picWidth = 0
     let picHeight = 0
-    let picNumber = props.info.image.split(",").length
+    let picNumber = props.info.image && props.info.image.split(",").length
     useEffect(()=>{
         elHeight = fileInputEl.current ? fileInputEl.current.offsetHeight : 0
         elWidth = fileInputEl.current ? fileInputEl.current.offsetWidth : 0
@@ -47,7 +47,7 @@ export default (props)=>{
                         props.info.libname&&<Voice />
                     }
                     {
-                        props.info.image.split(",").map((item,index)=>{
+                        props.info.image && props.info.image.split(",").map((item,index)=>{
                             //picNumber=2，2为测试数据
                             switch(picNumber=2){
                                 case 1:
