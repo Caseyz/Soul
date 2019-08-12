@@ -12,15 +12,15 @@ class Scroll extends Component {
         this.flage = true  //判断是否还有数据
     }
 
-    getImgs(serverId){
-        wx.downloadImage({
-            serverId, // 需要下载的图片的服务器端ID，由uploadImage接口获得
-            isShowProgressTips: 1, // 默认为1，显示进度提示
-            success: function (res) {
-            res.localId; // 返回图片下载后的本地ID
-            }
-        });
-    }
+    // getImgs(serverId){
+    //     wx.downloadImage({
+    //         serverId, // 需要下载的图片的服务器端ID，由uploadImage接口获得
+    //         isShowProgressTips: 1, // 默认为1，显示进度提示
+    //         success: function (res) {
+    //         res.localId; // 返回图片下载后的本地ID
+    //         }
+    //     });
+    // }
 
 
 
@@ -50,10 +50,10 @@ class Scroll extends Component {
             "pagesize":pagesize
         })
         
-        result = result.map(async(item,index)=>{
-            let img = await getImgs(item.image)
-            item.image = img
-        })
+        // result = result.map(async(item,index)=>{
+        //     let img = await getImgs(item.image)
+        //     item.image = img
+        // })
 
         return result
     }
