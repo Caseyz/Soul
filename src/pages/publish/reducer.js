@@ -1,6 +1,6 @@
 // import store from 'store'
 import { Map } from 'immutable'
-import { GETFOCUS, VALUE, IMG, SERVERID, VOICE } from './actionTypes'
+import { GETFOCUS, VALUE, IMG, LOCALID, VOICE } from './actionTypes'
 
 const defaultState = Map({
     focus: true,
@@ -9,7 +9,7 @@ const defaultState = Map({
     img: [],
     voice:'',
     //本地的
-    serverid:[]
+    localid:[]
 })
 
 const reducer = (state = defaultState, action) => {
@@ -23,8 +23,8 @@ const reducer = (state = defaultState, action) => {
             return state.set('img', action.data)
         case VOICE:
             return state.set('voice', action.data)
-        case SERVERID:
-            return state.set('serverid', action.data)
+        case LOCALID:
+            return state.set('localid', action.data)
 
         default:
             return state

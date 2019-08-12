@@ -21,22 +21,22 @@ import Emotion from 'components/emoji/EmojiMart.jsx'
 
 
 
-import { img, serverid } from '../../../actionCreator'
+import { img, localid } from '../../../actionCreator'
 
 
 const mapState = state => ({
   focus: state.getIn(['publish', 'focus']),
   voice: state.getIn(['publish', 'voice']),
   img: state.getIn(['publish', 'img']),
-  serverid: state.getIn(['publish', 'serverid']),
+  localid: state.getIn(['publish', 'localid']),
 })
 
 const mapDispatch = dispatch => ({
   GetImages (data) {
     dispatch(img(data))
   },
-  SetServerid (data) {
-    dispatch(serverid(data))
+  SetLocalId (data) {
+    dispatch(localid(data))
   }
 })
 
@@ -128,11 +128,12 @@ class TabBarExample extends React.Component {
                     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
                     sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
                     success: function (res) {
-                      that.localIds = [...that.props.serverid, ...res.localIds]; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
 
+                      that.localIds = [...that.props.localid, ...res.localIds]; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                      console.log(that.serverId)
                       //上传图片
-                      that.serverId = that.props.img || []
-
+                      that.serverId = []
+                      console.log(that.serverId)
                       that.localIds.forEach(Item => {
                         window.wx.uploadImage({
                           localId: Item, // 需要上传的图片的本地ID，由chooseImage接口获得
@@ -143,7 +144,7 @@ class TabBarExample extends React.Component {
                         });
                       })
                       that.props.GetImages(that.serverId)
-                      that.props.SetServerid(that.localIds)
+                      that.props.SetLocalId(that.localIds)
                     }
                   });
                 })
@@ -191,15 +192,15 @@ class TabBarExample extends React.Component {
 
                   //选择图片
                   window.wx.chooseImage({
-                    count: 4, // 默认9
+                    count: 4 - (that.props.img.length || 0), // 默认9
                     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
                     sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
                     success: function (res) {
 
-                      that.localIds = [...that.props.serverid, ...res.localIds]; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                      that.localIds = [...that.props.localid, ...res.localIds]; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
 
                       //上传图片
-                      that.serverId = that.props.img || []
+                      that.serverId = []
 
                       that.localIds.forEach(Item => {
                         window.wx.uploadImage({
@@ -211,7 +212,7 @@ class TabBarExample extends React.Component {
                         });
                       })
                       that.props.GetImages(that.serverId)
-                      that.props.SetServerid(that.localIds)
+                      that.props.SetLocalId(that.localIds)
                     }
                   });
                 })

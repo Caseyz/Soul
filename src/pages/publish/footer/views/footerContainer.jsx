@@ -4,13 +4,13 @@ import { connect } from 'react-redux'
 
 import FooterUI from './footerUI'
 
-import { voice, img, serverid } from '../../actionCreator'
+import { voice, img, localid } from '../../actionCreator'
 
 const mapStateToprops = state => {
     return {
         voice: state.getIn(['publish', 'voice']),
         img: state.getIn(['publish', 'img']),
-        serverid: state.getIn(['publish', 'serverid']),
+        localid: state.getIn(['publish', 'localid']),
     }
 }
 
@@ -23,8 +23,8 @@ const mapDispatchToProps = dispatch => {
         amendImg (data) {
             dispatch(img(data))
         },
-        amendServerid (data) {
-            dispatch(serverid(data))
+        amendLocalId (data) {
+            dispatch(localid(data))
         }
     }
 }
@@ -46,7 +46,6 @@ class FooterContainer extends Component {
     }
     render () {
         var setUp = this.state.setUp
-
         return (
             <FooterUI
                 { ...this.props }
@@ -69,6 +68,7 @@ class FooterContainer extends Component {
         })
     }
 
+    //让事件只发生在该元素上，子元素不发生
     stopClick (e) {
         e.stopPropagation()
     }
@@ -88,7 +88,6 @@ class FooterContainer extends Component {
 
     //多选按钮
     moreLabelClick (e) {
-        // console.log(e.target.className)
         if (e.target.className === 'iconfont') {
             e.target.className = 'iconfont icon-check-circle'
         } else {
@@ -105,68 +104,39 @@ class FooterContainer extends Component {
     clickplay () {
         var that = this
         window.wx.ready(function () {
+            
+            //下载音频
             window.wx.downloadVoice({
-                serverId: that.props.voice, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
-                isShowProgressTips: 1, // 默认为1，显示进度提示
+                serverId: that.props.voice, 
+                isShowProgressTips: 1, 
                 success: function (res) {
-                    that.localId = res.localId; // 返回音频的本地ID
+                    that.localId = res.localId; 
                 }
             });
+
+            //播放音频
             window.wx.playVoice({
-                localId: that.localId // 需要播放的音频的本地ID，由stopRecord接口获得
+                localId: that.localId 
             });
         }) 
     }
 
     //取消某一个图片
     ShfitSomePic (index) {
+        //修改本地图片
+        var localid = this.props.localid
+        localid.splice(index,1)
+        this.props.amendLocalId(localid)
 
-        var serveridLocal = this.props.serverid
-        serveridLocal.splice(index,1)
-        this.props.amendServerid(serveridLocal)
-
-        console.log(this.props.img.length)
+        //修改服务器图片
         var imgLocal = this.props.img
         imgLocal.splice(index,1)
         this.props.amendImg(imgLocal)
-        console.log(this.props.img.length)
+        
         //强制刷新页面
         this.forceUpdate()
     }
 
-    componentDidMount () { 
-        // fetch('http://red-mi.xyz/jsapi')
-        // .then((response) => {
-        //   return response.json()
-        // })
-        // .then((result) => {
-        //   window.wx.config({
-        //     debug: true,                  // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-        //     // appId: result.appId,          // 必填，公众号的唯一标识
-        //     // timestamp: result.timestamp,  // 必填，生成签名的时间戳
-        //     // nonceStr: result.nonceStr,    // 必填，生成签名的随机串
-        //     // signature: result.signature,  // 必填，签名
-        //     appId: 'wxa2c9a8765b5b419d',          // 必填，公众号的唯一标识
-        //     timestamp:1565599024,  // 必填，生成签名的时间戳
-        //     nonceStr: "G7tSWw89kY3xRuuT",    // 必填，生成签名的随机串
-        //     signature: "5ff39e5f0b433ea4a05d869a0f91090afa2491f4",  // 必填，签名
-        //     jsApiList: [
-        //       "scanQRCode",               //扫一扫接口
-        //       "chooseImage",              //拍照或从手机相册中选图接口
-        //       'startRecord',              //开始录音接口
-        //       'stopRecord',               //停止录音接口
-        //       'onVoiceRecordEnd',         //监听录音自动停止接口
-        //       'playVoice',                //播放语音接口
-        //       'stopVoice',                //停止播放接口
-        //       'uploadVoice',              //上传语音接口
-        //       'downloadVoice',            //下载语音接口
-        //       'uploadImage',              //上传图片接口
-        //       'downloadImage',            //下载图片功能
-        //     ]
-        //   })
-        // })
-
-    }
 }
 
 export default connect(mapStateToprops, mapDispatchToProps)(FooterContainer)
