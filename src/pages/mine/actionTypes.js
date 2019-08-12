@@ -1,2 +1,3 @@
-// export const ISLOGIN = 'account/isLogin'
-export const SETPHONE = 'account/setPhone'
+export const MYSELFDATA = 'mine/myselfData'
+export const GOLD = 'mine/GOLD'
+export const FRIENDDATA = 'mine/friendData'

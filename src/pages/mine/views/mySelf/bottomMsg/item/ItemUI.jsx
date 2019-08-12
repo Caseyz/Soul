@@ -2,7 +2,7 @@ import React from 'react';
 
 import { RFlag } from './ItemStyle'
 
-export default () => {
+export default (props) => {
     return(
         <div className="item">
             <div className="progressBar">
@@ -19,9 +19,9 @@ export default () => {
                         2019-07-20 23:50:01
                     </div>
                     <div className="msg">
-                        <p>您出生了,你说呢您出生了,你说呢您出生了,你说呢您出生了,你说呢您出生了,你说呢您出生了,你说呢</p>
-                        <img src={require('assets/images/mine/test.png')} alt=""/>
-                        <img src={require('assets/images/mine/test.png')} alt=""/>
+                        <p>{props.data.note}</p>
+                        {/* <img src={require('assets/images/mine/test.png')} alt=""/>
+                        <img src={require('assets/images/mine/test.png')} alt=""/> */}
                     </div>
                 </div>
             </div>
