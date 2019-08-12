@@ -4,13 +4,13 @@ import { connect } from 'react-redux'
 
 import FooterUI from './footerUI'
 
-import { voice, img } from '../../actionCreator'
+import { voice, img, serverid } from '../../actionCreator'
 
 const mapStateToprops = state => {
     return {
         voice: state.getIn(['publish', 'voice']),
         img: state.getIn(['publish', 'img']),
-        photo: state.getIn(['publish', 'photo'])
+        serverid: state.getIn(['publish', 'serverid']),
     }
 }
 
@@ -23,6 +23,9 @@ const mapDispatchToProps = dispatch => {
         amendImg (data) {
             dispatch(img(data))
         },
+        amendServerid (data) {
+            dispatch(serverid(data))
+        }
     }
 }
 
@@ -30,10 +33,8 @@ class FooterContainer extends Component {
     constructor() {
         super()
         this.state = {
-            setUp: 'active'
+            setUp: 'active',
         }
-
-        this.imgs = []
 
         this.setUpClick = this.setUpClick.bind(this)
         this.stopClick = this.stopClick.bind(this)
@@ -41,14 +42,15 @@ class FooterContainer extends Component {
         this.moreLabelClick = this.moreLabelClick.bind(this)
         this.cancelType = this.cancelType.bind(this)
         this.clickplay = this.clickplay.bind(this)
+        this.ShfitSomePic = this.ShfitSomePic.bind(this)
     }
     render () {
         var setUp = this.state.setUp
-        console.log(this.props)
+
         return (
             <FooterUI
-
-                {...this.props}
+                { ...this.props }
+                imgs ={ this.imgs }
                 setUp = {setUp}
                 setUpClick = {this.setUpClick}
                 stopClick = {this.stopClick}
@@ -56,12 +58,12 @@ class FooterContainer extends Component {
                 moreLabelClick = {this.moreLabelClick}
                 cancelType = {this.cancelType}
                 clickplay = { this.clickplay }
+                ShfitSomePic = { this.ShfitSomePic }
             ></FooterUI>
         )
     }
 
     setUpClick (e) {
-        //e.currentTarget.dataset.id 拿到自定义属性的值
         this.setState({
             setUp: ('active' === e.currentTarget.dataset.id ? '' : 'active')
         })
@@ -116,47 +118,54 @@ class FooterContainer extends Component {
         }) 
     }
 
-    componentDidMount () {
-        var that = this
-        fetch('http://red-mi.xyz/jsapi')
-        .then((response) => {
-          console.log(response)
-          return response.json()
-        })
-        .then((result) => {
-          window.wx.config({
-            debug: true,                  // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-            appId: result.appId,          // 必填，公众号的唯一标识
-            timestamp: result.timestamp,  // 必填，生成签名的时间戳
-            nonceStr: result.nonceStr,    // 必填，生成签名的随机串
-            signature: result.signature,  // 必填，签名
-            jsApiList: [
-              "scanQRCode",               //扫一扫接口
-              "chooseImage",              //拍照或从手机相册中选图接口
-              'startRecord',              //开始录音接口
-              'stopRecord',               //停止录音接口
-              'onVoiceRecordEnd',         //监听录音自动停止接口
-              'playVoice',                //播放语音接口
-              'stopVoice',                //停止播放接口
-              'uploadVoice',              //上传语音接口
-              'downloadVoice',            //下载语音接口
-              'uploadImage',              //上车图片接口
-              'downloadImage',            //下载图片功能
-            ]
-          })
-        })
+    //取消某一个图片
+    ShfitSomePic (index) {
 
-        //渲染图片
-        this.props.img.forEach( (item,index) => {
-            window.wx.downloadImage({
-                serverId: item, // 需要下载的图片的服务器端ID，由uploadImage接口获得
-                isShowProgressTips: 1, // 默认为1，显示进度提示
-                success: function (res) {
-                    var localId = res.localId; // 返回图片下载后的本地ID
-                    that.imgs.push(localId)
-                }
-            });
-        })
+        var serveridLocal = this.props.serverid
+        serveridLocal.splice(index,1)
+        this.props.amendServerid(serveridLocal)
+
+        console.log(this.props.img.length)
+        var imgLocal = this.props.img
+        imgLocal.splice(index,1)
+        this.props.amendImg(imgLocal)
+        console.log(this.props.img.length)
+        //强制刷新页面
+        this.forceUpdate()
+    }
+
+    componentDidMount () { 
+        // fetch('http://red-mi.xyz/jsapi')
+        // .then((response) => {
+        //   return response.json()
+        // })
+        // .then((result) => {
+        //   window.wx.config({
+        //     debug: true,                  // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        //     // appId: result.appId,          // 必填，公众号的唯一标识
+        //     // timestamp: result.timestamp,  // 必填，生成签名的时间戳
+        //     // nonceStr: result.nonceStr,    // 必填，生成签名的随机串
+        //     // signature: result.signature,  // 必填，签名
+        //     appId: 'wxa2c9a8765b5b419d',          // 必填，公众号的唯一标识
+        //     timestamp:1565599024,  // 必填，生成签名的时间戳
+        //     nonceStr: "G7tSWw89kY3xRuuT",    // 必填，生成签名的随机串
+        //     signature: "5ff39e5f0b433ea4a05d869a0f91090afa2491f4",  // 必填，签名
+        //     jsApiList: [
+        //       "scanQRCode",               //扫一扫接口
+        //       "chooseImage",              //拍照或从手机相册中选图接口
+        //       'startRecord',              //开始录音接口
+        //       'stopRecord',               //停止录音接口
+        //       'onVoiceRecordEnd',         //监听录音自动停止接口
+        //       'playVoice',                //播放语音接口
+        //       'stopVoice',                //停止播放接口
+        //       'uploadVoice',              //上传语音接口
+        //       'downloadVoice',            //下载语音接口
+        //       'uploadImage',              //上传图片接口
+        //       'downloadImage',            //下载图片功能
+        //     ]
+        //   })
+        // })
+
     }
 }
 

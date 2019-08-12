@@ -62,7 +62,6 @@ const Gold = styled.div`
     }
 `
 const Firends = styled.div`
-    /* margin-right: 0.07rem; */
     display: flex;
     height: 0.25rem;
     align-items: center;

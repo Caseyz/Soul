@@ -21,18 +21,22 @@ import Emotion from 'components/emoji/EmojiMart.jsx'
 
 
 
-import { img } from '../../../actionCreator'
+import { img, serverid } from '../../../actionCreator'
 
 
 const mapState = state => ({
   focus: state.getIn(['publish', 'focus']),
   voice: state.getIn(['publish', 'voice']),
   img: state.getIn(['publish', 'img']),
+  serverid: state.getIn(['publish', 'serverid']),
 })
 
 const mapDispatch = dispatch => ({
   GetImages (data) {
     dispatch(img(data))
+  },
+  SetServerid (data) {
+    dispatch(serverid(data))
   }
 })
 
@@ -50,7 +54,6 @@ class TabBarExample extends React.Component {
   }
 
   render () {
-
     var height = this.props.focus ? 234 : 50
     return (
       <div style={this.state.fullScreen ? { position: 'fixed', height: '100%', width: '100%', top: 0 } : { height: height, width: '100%' }}>
@@ -82,12 +85,11 @@ class TabBarExample extends React.Component {
               this.setState({
                 selectedTab: 'blueTab',
               });
-
             }}
             data-seed="logId"
           >
             {
-              this.props.img == ''
+              this.props.img.length == 0
                 ? <Voice></Voice>
                 : <div style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>只能上传一种格式的资源哟^_^</div>
             }
@@ -116,46 +118,48 @@ class TabBarExample extends React.Component {
                 selectedTab: 'redTab',
               });
 
-              if(this.props.voice == ''){
+              if (this.props.voice == '' && this.props.img.length < 4) {
                 var that = this
                 window.wx.ready(function () {
-  
+
                   //选择图片
                   window.wx.chooseImage({
-                    count: 4, // 默认9
+                    count: 4 - (that.props.img.length || 0), // 默认9
                     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
                     sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
                     success: function (res) {
-                      that.localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-  
+                      that.localIds = [...that.props.serverid, ...res.localIds]; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+
                       //上传图片
-                      that.serverId = []
-  
-                      that.localIds.forEach( Item => {
+                      that.serverId = that.props.img || []
+
+                      that.localIds.forEach(Item => {
                         window.wx.uploadImage({
                           localId: Item, // 需要上传的图片的本地ID，由chooseImage接口获得
                           isShowProgressTips: 1, // 默认为1，显示进度提示
                           success: function (res) {
-                            var serverId = res.serverId; // 返回图片的服务器端ID
-                            that.serverId.push(serverId)
+                            that.serverId.push(res.serverId)
                           }
                         });
                       })
                       that.props.GetImages(that.serverId)
+                      that.props.SetServerid(that.localIds)
                     }
                   });
                 })
               }
-        
+
             }}
             data-seed="logId1"
           >
-            <div>{this.props.img}</div>
-            {/* {
+            {
               this.props.voice === ''
-                ? <div className='Images' style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>只能上传一种格式的资源哟^_^</div>
-                : <div className='Images' style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>请选择图片资源哟^_^</div>
-            } */}
+                ? 
+                  this.props.img < 4
+                  ?<div className='Images' style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>请选择图片资源哟^_^</div>
+                  :<div className='Images' style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>最多上传四张图片哟(灬°ω°灬) </div>
+                : <div className='Images' style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>只能上传一种格式的资源哟^_^</div>
+            }
           </TabBar.Item>
           <TabBar.Item
             icon={
@@ -180,10 +184,48 @@ class TabBarExample extends React.Component {
               this.setState({
                 selectedTab: 'greenTab',
               });
+
+              if (this.props.voice === '' && this.props.img.length < 4) {
+                var that = this
+                window.wx.ready(function () {
+
+                  //选择图片
+                  window.wx.chooseImage({
+                    count: 4, // 默认9
+                    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+                    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+                    success: function (res) {
+
+                      that.localIds = [...that.props.serverid, ...res.localIds]; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+
+                      //上传图片
+                      that.serverId = that.props.img || []
+
+                      that.localIds.forEach(Item => {
+                        window.wx.uploadImage({
+                          localId: Item, // 需要上传的图片的本地ID，由chooseImage接口获得
+                          isShowProgressTips: 1, // 默认为1，显示进度提示
+                          success: function (res) {
+                            that.serverId.push(res.serverId)
+                          }
+                        });
+                      })
+                      that.props.GetImages(that.serverId)
+                      that.props.SetServerid(that.localIds)
+                    }
+                  });
+                })
+              }
+
             }}
           >
-            <div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }} />
-            {/* {this.renderContent('tackPicture')} */}
+            {
+              this.props.voice === ''
+                ? this.props.img.length < 4
+                  ? <div className='Images' style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>OPPO至美一拍，炫出你的美ヾ(@^▽^@)ノ</div>
+                  : <div className='Images' style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>最多上传四张照片哦٩(๑❛ᴗ❛๑)۶٩</div>
+                : <div className='Images' style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>只能上传一种格式的资源哟(T＿T)</div>
+            }
           </TabBar.Item>
           <TabBar.Item
             icon={{ uri: `${emoticon}` }}
@@ -206,15 +248,3 @@ class TabBarExample extends React.Component {
 }
 
 export default connect(mapState, mapDispatch)(TabBarExample)
-// console.log(localIds)
-                    // if(localIds.length <= 1){
-                    //     var a = document.createElement('img')
-                    //     a.src = localIds
-                    //     document.querySelector('#img').append(a)
-                    // }else{
-                    //     localIds.forEach(pic => {
-                    //         var a = document.createElement('img')
-                    //         a.src = pic
-                    //         document.querySelector('#img').append(a)
-                    //     });
-                    // }

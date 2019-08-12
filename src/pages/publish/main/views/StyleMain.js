@@ -7,8 +7,8 @@ var Textarea = styled.textarea`
     font-size: .12rem;
     font-family:PingFangSC-Medium,PingFang-SC-Bold;
     caret-color:#57e1e2;
-    word-wrap:break-word;
-    word-break:break-all;
+    /* word-wrap:break-word;
+    word-break:break-all; */
     resize:none;//去右下角灰点
     ::placeholder {
         /* placeholder颜色  */

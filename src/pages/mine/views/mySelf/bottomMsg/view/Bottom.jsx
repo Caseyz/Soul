@@ -5,11 +5,10 @@ import Item from '../item/Item'
 
 class Bottom extends Component {
     render() {
+        // console.log(this.props)
         return (
             <BStyle>
-                <Item></Item>
-                <Item></Item>
-                <Item></Item>
+                <Item myselfData={this.props.myselfData}></Item>
             </BStyle>
         );
     }

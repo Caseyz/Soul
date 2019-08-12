@@ -6,6 +6,7 @@ const TopMsgContainer = styled.div`
     background-size: 100% 100%;
     background-repeat: no-repeat;
     position: relative;
+    z-index: 100;
     overflow: hidden;
     >img{
         position: absolute;
@@ -19,6 +20,8 @@ const TopMsgContainer = styled.div`
         img{
             height: 0.65rem;
             width: 0.64rem;
+            border-radius: 50%;
+            opacity: 0.8;
         }
         p{
             margin-top: 0.08rem;

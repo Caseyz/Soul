@@ -1,11 +1,10 @@
-import reducer from './reducer'
 import Mine from './views/Mine'
-import {
-  setPhone
-} from './actionCreator'
+import reducer from './reducer'
+// import MySelf from './views/mySelf/MySelf'
+
 
 export {
-  setPhone,
-  reducer,
   Mine,
+  reducer,
+  // MySelf
 }
