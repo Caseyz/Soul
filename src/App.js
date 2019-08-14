@@ -40,8 +40,8 @@ class App extends Component {
             <Route path='/dynamic' component={Square}></Route>
             <Route path='/publish' component={Publish}></Route>
             <Route path='/mine' component={ Mine }></Route>
+            {/* <Route path='/test' component={Test}></Route> */}
             {/* <Route path='/account' component={ AccountContainer }></Route> */}
-
           </SocketConnection>
         </IsRedirectAccount>
       </Provider>
