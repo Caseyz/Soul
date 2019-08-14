@@ -8,7 +8,9 @@ const parameter = {
     searchPic: searchPic,
     placeHolder: '搜索签名或聊天记录',
     paddingTop: '.1rem',
-    paddingLeft:".1rem"
+    paddingLeft:".1rem",
+    picWidth:".12rem",
+    picHeight:".12rem"
 }
 export default class chatSearch extends Component {
     handleClick(){

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import FocusItem from './FocusItem'
-import Axios from 'axios'
+import StyledFocusList from './StyledFocusList'
 export default class FocusList extends Component {
     constructor(props) {
         super(props);
@@ -11,13 +11,13 @@ export default class FocusList extends Component {
     }
     render() {
         return (
-            <div>{
+            <StyledFocusList>{
                 this.props.list && this.props.list.length > 0 ?
                     this.props.list.map((item, index) => {
-                        return <FocusItem {...item} key={item.id} type={this.props.type == 1 && item.status == 2 ? 2 : this.props.type}></FocusItem>
+                        return <FocusItem {...item} {...this.props} key={item.id} type={this.props.type == 1 && item.status == 2 ? 2 : this.props.type}></FocusItem>
                     }) : ""
             }
-            </div>
+            </StyledFocusList>
         )
     }
     static getDerivedStateFromProps(nextProps, prevState) {

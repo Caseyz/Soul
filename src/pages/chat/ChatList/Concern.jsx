@@ -14,7 +14,7 @@ import {
 
 const mapState = (state) => {
   return {
-    chatList: state.getIn(['chat', 'chatList']),
+    chatList: state.getIn(['chat', 'chatList'])
   }
 }
 const mapDispatch = (dispatch) => ({
@@ -42,6 +42,7 @@ class Concern extends Component {
           <ChatSearch></ChatSearch>
           <ChatNav ></ChatNav>
           <ChatItems list={this.props.chatList} {...this.props}></ChatItems>
+          {/* <div>{this.props.test}</div> */}
         </>
     )
   }

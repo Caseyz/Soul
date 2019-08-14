@@ -4,7 +4,7 @@ import BtnFocus from './BtnFocus.js'
 export default class FocusItem extends Component {
     render() {
         return (
-            <BorderedFocusItem hasBorder={true}>
+            <BorderedFocusItem hasBorder={true} onClick={this.handleItemClick.bind(this,this.props.data.id,this.props.data.username)}>
                 <div className="left">
                     <img src="http://via.placeholder.com/40px*40px" alt=""/>
                     <div>
@@ -23,5 +23,9 @@ export default class FocusItem extends Component {
     }
     handleClick(type,id){
         this.props.btnClick(type,id)
+    }
+    handleItemClick(id,username){
+        console.log(this.props)
+        this.props.data.history.push({ pathname: `chat/message/${id}`, query : {username} })
     }
 }

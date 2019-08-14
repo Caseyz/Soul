@@ -10,7 +10,9 @@ const parameter = {
     paddingTop: '.1rem',
     paddingLeft:".1rem",
     background:'#fff',
-    border:'1px solid #ddd'
+    border:'1px solid #ddd',
+    picWidth:".2rem",
+    picHeight:".16rem"
 }
 export default class FocusSearch extends Component {
     handleClick(){

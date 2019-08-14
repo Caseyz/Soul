@@ -5,11 +5,11 @@ export default class ChatWinHeader extends Component {
         return (
             <StyledChatWinHeader>
                 <i onClick={this.handleBackClick.bind(this)}></i>
-                <div><span>{this.props.username}</span></div>
+                <div><span>{this.props.location.query && this.props.location.query.username}</span></div>
             </StyledChatWinHeader>
         )
     }
-    handleFocusClick(){
-        this.props.history.push('/focus')
+    handleBackClick() {
+        this.props.history.goBack()
     }
 }
