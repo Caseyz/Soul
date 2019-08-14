@@ -22,7 +22,7 @@ import Square from 'pages/square/Test.jsx'
 import { Mine } from 'pages/mine/'
 
 // 测试
-// import Test from './test/Test'
+import Test from './test/Test'
 
 class App extends Component {
   render() {
@@ -36,6 +36,7 @@ class App extends Component {
           <Route path='/dynamic' component={Square}></Route>
           <Route path='/publish'  component={ Publish }></Route>
           <Route path='/mine' render={ Mine }></Route>
+          {/* <Route path='/test' component={Test}></Route> */}
           {/* <Route path='/account' component={ AccountContainer }></Route> */}
         </IsRedirectAccount>
       </Provider>

@@ -29,6 +29,7 @@ class FindPassword extends Component {
   }
 
   handleClick = async () => {
+    console.log(this.props)
     this.setState({
         isLoading: true
     })
@@ -43,7 +44,7 @@ class FindPassword extends Component {
         Toast.fail(res.msg, 1)
     }else if (res.code === 0) {
         console.log('修改成功')
-        this.props.history.back()
+        this.props.history.goBack()
     }else {
         console.log(res.code)
     }

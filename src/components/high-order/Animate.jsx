@@ -5,7 +5,7 @@ import { CSSTransition } from 'react-transition-group'
 import './Animate.css'
 
 const Animate = (Comp) => (props) => {
-  
+  console.log(props)
   return (
     <CSSTransition
       in={!!props.match}
@@ -14,7 +14,7 @@ const Animate = (Comp) => (props) => {
       mountOnEnter
       unmountOnExit
     >
-      <div className={props.animate || 'page'}>
+      <div className={props.animate || 'page' +' '+ props.className || ''}>
         <Comp { ...props }></Comp>
       </div>
     </CSSTransition>
