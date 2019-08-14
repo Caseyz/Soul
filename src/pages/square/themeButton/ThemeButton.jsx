@@ -31,7 +31,6 @@ export default class ThemeButton extends Component {
         this.refs.themebutton.right = "-0.1rem"
     }
 
-
     render() {
         return (
             <StyleThemeButton

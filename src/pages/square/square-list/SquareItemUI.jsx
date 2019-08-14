@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import StyleSquareItemUI from './StyleSquareItemUI'
 import Interaction from './Interaction/Interaction'
 import Voice from './voice/Voice'
+import {Link} from 'react-router-dom'
 // import { CSSTransition } from 'react-transition-group'
 import './TextTransition.css'
 
@@ -19,7 +20,7 @@ export default (props)=>{
     let elWidth = 0
     let picWidth = 0
     let picHeight = 0
-    let picNumber = props.info.image && props.info.image.split(",").length
+    let picNumber = props.info.image instanceof Array && props.info.image.length
     useEffect(()=>{
         elHeight = fileInputEl.current ? fileInputEl.current.offsetHeight : 0
         elWidth = fileInputEl.current ? fileInputEl.current.offsetWidth : 0
@@ -34,7 +35,10 @@ export default (props)=>{
     return(
         <StyleSquareItemUI>
             <div className="square-user">
+                {/* 头像 */}
+                <Link to={'/mine/friend/'+props.info.uid}>
                 <img className="user-photo" src={headPhoto} alt=""/>
+                </Link>
                 <div className="user-info">
                     <span className="username">{ props.tabNumber===1 ? props.info.username : '来自 # '+ props.info.starname}</span>
                     <span className="publish-time">2小时前</span>
@@ -47,7 +51,8 @@ export default (props)=>{
                         props.info.libname&&<Voice />
                     }
                     {
-                        props.info.image && props.info.image.split(",").map((item,index)=>{
+                        // props.info.image && props.info.image.split(",").map((item,index)=>{
+                        props.info.image instanceof Array && props.info.image.map((item,index)=>{
                             //picNumber=2，2为测试数据
                             switch(picNumber=2){
                                 case 1:
@@ -68,9 +73,12 @@ export default (props)=>{
 
                             }
                             return(
-                                    <img key={item} src={publishPic1} style={{width:picWidth,height:picHeight,marginRight: index===1&&picNumber===2?'.90rem':'.05rem',marginBottom: picNumber===2 ? '.04rem' :0 }} alt=""/>
+                                <>
+                                    <img key={item} src={item} style={{width:picWidth,height:picHeight,marginRight: index===1&&picNumber===2?'.90rem':'.05rem',marginBottom: picNumber===2 ? '.04rem' :0 }} alt=""/>
+                                    {/* {item} 测试用 */}
+                                </>
                             )
-                        })
+                        }) 
                     }
                     
                 </div>
