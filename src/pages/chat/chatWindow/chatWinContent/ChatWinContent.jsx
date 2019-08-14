@@ -34,13 +34,6 @@ class ChatWinContent extends Component {
                 <div id="container" className="scroll-container">
                     <div>
                         <ul>
-                            {/* <Talk direction='left'>
-                                </Talk>
-                                <Talk direction='right'>
-                                </Talk>
-                                <Talk direction='left'>
-                                </Talk> */}
-
                             {
                                 this.state.msgList.length >= 1 && (<p>{formatJsonDate(this.state.msgList[0].timeStamp)}</p>)
                             }
