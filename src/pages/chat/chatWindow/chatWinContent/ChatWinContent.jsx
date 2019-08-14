@@ -3,7 +3,7 @@ import { StyledChatWinContent, BorderedInput } from './StyledChatWinContent'
 import { connect } from 'react-redux'
 import Talk from './Talk'
 import { pushMsg, sendMsg } from 'components/socket/'
-import Item from 'antd-mobile/lib/popover/Item';
+import { formatJsonDate } from 'utils/date'
 import BScroll from 'better-scroll'
 
 const mapState = (state) => {
@@ -40,6 +40,11 @@ class ChatWinContent extends Component {
                                 </Talk>
                                 <Talk direction='left'>
                                 </Talk> */}
+
+                            {
+                                this.state.msgList.length >= 1 && (<p>{formatJsonDate(this.state.msgList[0].timeStamp)}</p>)
+                            }
+
                             {
                                 this.state.msgList && this.state.msgList.length > 0 ?
                                     this.state.msgList.map((item, key) => (
@@ -47,6 +52,8 @@ class ChatWinContent extends Component {
                                         </Talk>
                                     )) : ""
                             }
+
+
                         </ul>
                     </div>
                 </div>
@@ -75,6 +82,7 @@ class ChatWinContent extends Component {
     static getDerivedStateFromProps(nextProps, preStates) {
         if (nextProps && nextProps.msgList.length > 0 && nextProps.match.params.id) {
             let _userMsg = nextProps.msgList.find((item) => item.id == nextProps.match.params.id)
+            console.log(_userMsg)
             return {
                 msgList: _userMsg ? _userMsg.msgs : []
             }
@@ -103,7 +111,7 @@ class ChatWinContent extends Component {
                 message: ''
             })
             if (ret) {
-                this.props.pushMsg({ fromId: '1004', msg: this.state.message })
+                this.props.pushMsg({ fromId: '1004', msg: this.state.message, timeStamp: Date.now() })
             }
         }
     }

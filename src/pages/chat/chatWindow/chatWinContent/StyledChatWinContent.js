@@ -20,6 +20,10 @@ const StyledChatWinContent = Styled.div`
     }
     ul{
         flex:1;
+        p{
+            text-align:center;
+            margin-top:.15rem;
+        }
     }
 `
 const input = Styled.div`
