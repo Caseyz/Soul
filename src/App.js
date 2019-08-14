@@ -19,7 +19,7 @@ import FocusListContainer from 'pages/chat/focusList/FocusListContainer'
   //广场组件
 // import Square from 'pages/square/Test.jsx'
 import {Square} from 'pages/square'
-import Square from 'pages/square/Test.jsx'
+// import Square from 'pages/square/Test.jsx'
 //自己组件
 import { Mine } from 'pages/mine/'
 
@@ -31,13 +31,13 @@ class App extends Component {
     return (
       <Provider store={store}>
         <IsRedirectAccount comp={AccountContainer}>
-          <Redirect from="/" to="/publish" exact></Redirect>
+          <Redirect from="/" to="/dynamic" exact></Redirect>
           <Route path='/start' render={()=>(<div>start</div>)}></Route>
           <Route path='/chat' component={ChatRoot}></Route>
           <Route path='/focus' component={FocusListContainer}></Route>
           <Route path='/dynamic' component={Square}></Route>
           <Route path='/publish'  component={ Publish }></Route>
-          <Route path='/mine' render={ Mine }></Route>
+          <Route path='/mine' component={ Mine }></Route>
           {/* <Route path='/account' component={ AccountContainer }></Route> */}
           <Route path='/account' component={ AccountContainer }></Route>
         </IsRedirectAccount>

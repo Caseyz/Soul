@@ -69,7 +69,7 @@ class HeaderContainer extends Component {
       address,
       image
     }
-    console.log(data)
+
     var res = await http.post(url, data)
     if (res.code == 0) {
       Toast.success('发布成功', 1, null, true)
@@ -84,3 +84,5 @@ class HeaderContainer extends Component {
 }
 
 export default connect(mapStateToprops)(HeaderContainer)
+
+
