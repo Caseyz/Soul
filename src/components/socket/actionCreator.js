@@ -16,11 +16,11 @@ const createSocket = (from) => {
                 if (event.data != '对方不在线') {
                     dispatch({
                         type: 'pushMsg',
-                        payload: { fromId: "1002", msg: event.data }
+                        payload: { fromId: "1006", msg: event.data, timeStamp: event.timeStamp }
                     })
 
                 }
-            }    
+            }
 
             ws.onerror = function () {
                 // setMessage("出错了")
