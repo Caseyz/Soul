@@ -34,6 +34,7 @@ class FooterContainer extends Component {
         super()
         this.state = {
             setUp: 'active',
+            ceshi: ''
         }
 
         this.setUpClick = this.setUpClick.bind(this)
@@ -48,6 +49,7 @@ class FooterContainer extends Component {
         var setUp = this.state.setUp
         return (
             <FooterUI
+                ceshi = {this.state.ceshi}
                 { ...this.props }
                 imgs ={ this.imgs }
                 setUp = {setUp}
@@ -135,6 +137,19 @@ class FooterContainer extends Component {
         
         //强制刷新页面
         this.forceUpdate()
+
+        var that = this
+        window.wx.downloadImage({
+            serverId: this.props.img[0]||'', // 需要下载的图片的服务器端ID，由uploadImage接口获得
+            isShowProgressTips: 1, // 默认为1，显示进度提示
+            success: function (res) {
+            var localId = res.localId; // 返回图片下载后的本地ID
+            console.log(localId)
+            that.setState({
+                ceshi:localId
+            } )
+            }
+            });
     }
 
 }

@@ -19,7 +19,7 @@ import FocusListContainer from 'pages/chat/focusList/FocusListContainer'
   //广场组件
 // import Square from 'pages/square/Test.jsx'
 import {Square} from 'pages/square'
-
+// import Square from 'pages/square/Test.jsx'
 //自己组件
 import { Mine } from 'pages/mine/'
 import {SocketConnection} from 'components/socket/'

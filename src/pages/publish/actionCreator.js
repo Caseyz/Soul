@@ -7,7 +7,6 @@ const getFocus = (data) => {
     }
 }
 
-
 const value = (data) => {
     return {
         type: VALUE,
@@ -36,11 +35,10 @@ const localid = (data) => {
     }
 }
 
-
 export {
     getFocus,
     value,
     img,
     voice,
-    localid
+    localid,
 }

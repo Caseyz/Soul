@@ -11,13 +11,13 @@ import {reducer as socket} from 'components/socket/'
 
 // 添加 reducer combin
 const reducer = combineReducers({
-  account,
   publish,
   chat,
   focus,
   square,
   mine,
-  socket
+  socket,
+  account,
 })
 // 添加 reducer combin 
 
