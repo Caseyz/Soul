@@ -12,19 +12,20 @@ class Scroll extends Component {
         this.flage = true  //判断是否还有数据
     }
 
-    // getImgs(serverId){
-    //     wx.downloadImage({
-    //         serverId, // 需要下载的图片的服务器端ID，由uploadImage接口获得
-    //         isShowProgressTips: 1, // 默认为1，显示进度提示
-    //         success: function (res) {
-    //         res.localId; // 返回图片下载后的本地ID
-    //         }
-    //     });
-    // }
-
-
-
-
+    //-------------------------------------------------------------------
+    getImgs(serverId){
+        return new Promise((resolve, reject)=>{
+            window.wx.downloadImage({
+                serverId, // 需要下载的图片的服务器端ID，由uploadImage接口获得
+                isShowProgressTips: 1, // 默认为1，显示进度提示
+                success: function (res) {
+                    var localId = res.localId; // 返回图片下载后的本地ID
+                    resolve(localId)
+                }
+            });
+        })
+    }
+    //---------------------------------------------------------------------
 
     async getSquareDate(pagenum,pagesize){
         let focus = '',
@@ -49,22 +50,32 @@ class Scroll extends Component {
             "pagenum":pagenum,
             "pagesize":pagesize
         })
-        
-        // result = result.map(async(item,index)=>{
-        //     let img = await getImgs(item.image)
-        //     item.image = img
-        // })
+        console.log(result)
+        //---------------------------------------------
+        result instanceof Array && result !==[] && await result.map(async (item,index)=>{
+            console.log(item.image) 
+            if(item.image && item.image.split('&').length>1){
+                let imgArr = item.image.split('&').slice(1)
+                item.image = []
+                imgArr.forEach(async (value, index) => {
+                    let img = await this.getImgs(value)
+                    //将从微信或取得图片替换掉原请求数据中的字符串
+                    item.image.push(img) 
+                });
 
+            }else{
+                console.log(2)
+            }
+        })
+        console.log(result)
         return result
     }
-
-
     async componentDidMount(){
         Toast.loading('Loading...')
         let pagenum = 1
         let result = await this.getSquareDate(pagenum,5)
         Toast.hide()
-        let _tem = !result.error ? this.setState({list: [...this.state.list,...result]}) : ''
+        let _tem = !result.error&&result instanceof Array  ? this.setState({list: [...this.state.list,...result]}) : ''
         let bScroll = new BScroll(this.props.fatherSe,{
             scrollY: true,
             click: true,
