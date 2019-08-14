@@ -7,6 +7,7 @@ import { reducer as chat}  from 'pages/chat/ChatList/'
 import {reducer as focus} from 'pages/chat/focusList/'
 import {reducer as square} from 'pages/square/'
 import { reducer as mine } from 'pages/mine/'
+import {reducer as socket} from 'components/socket/'
 
 // 添加 reducer combin
 const reducer = combineReducers({
@@ -15,8 +16,9 @@ const reducer = combineReducers({
   chat,
   focus,
   square,
-  mine
-// 添加 reducer combin 
+  mine,
+  socket
 })
+// 添加 reducer combin 
 
 export default reducer

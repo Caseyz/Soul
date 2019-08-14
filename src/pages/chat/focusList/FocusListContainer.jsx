@@ -7,6 +7,7 @@ import FocusItems from './focusItems/FocusList'
 import { asyncGetAll, loadTestData, asyncGetMyFocusListData, asyncGetFocusMeList } from './actionCreator'
 import { connect } from 'react-redux'
 import FocusSearch from './focusSearch/FocusSearch'
+import StyledFocusListContainer from './StylesFocusListContainer'
 
 const mapState = (state) => {
   return {
@@ -54,7 +55,7 @@ class FocusListContainer extends Component {
   }
   render() {
     return (
-      <>
+      <StyledFocusListContainer>
         <FocusHeader
           {...this.props}
         ></FocusHeader>
@@ -68,9 +69,10 @@ class FocusListContainer extends Component {
         <FocusSearch></FocusSearch>
         <FocusItems
           list={this.state.list}
-          type={this.state.type}>
+          type={this.state.type}
+          {...this.props}>
         </FocusItems>
-      </>
+      </StyledFocusListContainer>
     )
   }
   async componentDidMount() {

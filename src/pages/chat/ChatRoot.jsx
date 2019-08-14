@@ -7,7 +7,7 @@ import ChatWinContainer from './chatWindow/ChatWinContainer'
 export default class ChatRoot extends Component {
     render() {
         return (
-            <div>
+            <div style={{width:'100%' ,height:'100%'}}>
                 <Route path='/chat' component={Concern} exact></Route>
                 <Route path="/chat/message/:id" component={ChatWinContainer}></Route>
             </div>
