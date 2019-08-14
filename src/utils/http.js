@@ -38,6 +38,7 @@ export default {
     )
     .then(res=>res.json())
     .then(result=>result)
+    .catch(e=>console.log(e.stack))
   },
   get(url, data, opt) {
     url += Object.keys(data || {}).length ? '?'+this._serialize(data) : ''
@@ -48,5 +49,6 @@ export default {
     }, !!opt ? opt : {}))
     .then(res=>res.json())
     .then(result=>result)
+    .catch(e=>console.log(e.stack))
   }
 }
