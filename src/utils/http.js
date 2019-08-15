@@ -42,6 +42,7 @@ export default {
   },
   get(url, data, opt) {
     url += Object.keys(data || {}).length ? '?'+this._serialize(data) : ''
+    console.log(url)
     return fetch(this._OriginURL(url), Object.assign({
       method: 'GET',
       mode: 'cors',

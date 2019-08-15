@@ -16,11 +16,11 @@ const FooterUI = props => {
     return (
         <Footer>
             <FooterTop>
-                <img id='ceshi'
+                {/* <img id='ceshi'
                  width='100px'
                  height="100px"
                  src = {props.ceshi}
-                ></img>
+                ></img> */}
                 {
                     props.voice === ""
                         ? ""
@@ -60,9 +60,11 @@ const FooterUI = props => {
                     }
                 </div>
 
-                <div className="position">
+                <div className="position"
+                    onClick={props.checkoutAddress}
+                >
                     <img src={addressImg} alt="" />
-                    <span>你在哪里</span>
+                    <span>{props.address}</span>
                 </div>
                 <div
                     className="setUp"
