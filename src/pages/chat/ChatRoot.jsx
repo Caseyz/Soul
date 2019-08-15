@@ -8,7 +8,7 @@ export default class ChatRoot extends Component {
     render() {
         return (
             <div style={{width:'100%' ,height:'100%'}}>
-                <Route path='/chat' component={Concern} exact></Route>
+                <Route path='/home/chat' component={Concern} exact></Route>
                 <Route path="/chat/message/:id" component={ChatWinContainer}></Route>
             </div>
         )

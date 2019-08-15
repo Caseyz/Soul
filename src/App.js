@@ -16,13 +16,16 @@ import Publish from 'pages/publish/'
 
 import ChatRoot from 'pages/chat/ChatRoot'
 import FocusListContainer from 'pages/chat/focusList/FocusListContainer'
-  //广场组件
+
+import { Home } from './pages/home/index'
+import { SoulTestContainer, ToTestContainer } from './pages/feature/index'
+//广场组件
 // import Square from 'pages/square/Test.jsx'
-import {Square} from 'pages/square'
+import { Square } from 'pages/square'
 // import Square from 'pages/square/Test.jsx'
 //自己组件
 import { Mine } from 'pages/mine/'
-import {SocketConnection} from 'components/socket/'
+import { SocketConnection } from 'components/socket/'
 
 // 测试
 // import Test from './test/Test'
@@ -33,15 +36,20 @@ class App extends Component {
       <Provider store={store}>
         <IsRedirectAccount comp={AccountContainer}>
           <SocketConnection>
-            <Redirect from='/' to="/chat" exact></Redirect>
+            <Redirect from='/' to="/home/dynamic" exact></Redirect>
+            <Route path="/home" render={props => <Home {...props}></Home>}></Route>
+            {/* 灵魂测试 */}
+            <Route path="/soulTest" render={props => <SoulTestContainer {...props}></SoulTestContainer>}></Route>
+            {/* 测一测组件 */}
+            <Route path="/toTest" render={props => <ToTestContainer {...props}></ToTestContainer>}></Route>
             <Route path='/start' render={() => (<div>start</div>)}></Route>
             <Route path='/chat' component={ChatRoot}></Route>
             <Route path='/focus' component={FocusListContainer}></Route>
             <Route path='/dynamic' component={Square}></Route>
             <Route path='/publish' component={Publish}></Route>
-            <Route path='/mine' component={ Mine }></Route>
+            <Route path='/mine' component={Mine}></Route>
             {/* <Route path='/test' component={Test}></Route> */}
-            {/* <Route path='/account' component={ AccountContainer }></Route> */}
+            <Route path='/account' component={AccountContainer}></Route>
           </SocketConnection>
         </IsRedirectAccount>
       </Provider>

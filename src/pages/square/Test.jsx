@@ -79,10 +79,10 @@ static getDerivedStateFromProps(nextProps, prevState) {
       <>
         {/* <p onClick={this.props.changeTheme.bind(null,this.state.themeColor)} style={themeButtonstyle}>{this.state.themeColor}</p> */}
         <Switch>  
-        <Route path="/dynamic/search" render={(props)=>{
+        <Route path="/home/dynamic/search" render={(props)=>{
           return <SearchContainer/>
         }}></Route>
-        <Route path="/dynamic" render={(props)=>{
+        <Route path="/home/dynamic" render={(props)=>{
           // let flag = true
           return (
             

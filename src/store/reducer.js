@@ -8,6 +8,7 @@ import {reducer as focus} from 'pages/chat/focusList/'
 import {reducer as square} from 'pages/square/'
 import { reducer as mine } from 'pages/mine/'
 import {reducer as socket} from 'components/socket/'
+import {reducer as planet} from 'pages/home/planet/store/index'
 
 // 添加 reducer combin
 const reducer = combineReducers({
@@ -18,6 +19,7 @@ const reducer = combineReducers({
   mine,
   socket,
   account,
+  planet,
 })
 // 添加 reducer combin 
 
