@@ -1,4 +1,4 @@
-import { GETFOCUS, VALUE, IMG, VOICE, LOCALID } from './actionTypes'
+import { GETFOCUS, VALUE, IMG, VOICE, LOCALID, ADDRESS } from './actionTypes'
 
 const getFocus = (data) => {
     return {
@@ -35,10 +35,18 @@ const localid = (data) => {
     }
 }
 
+const address = (data) => {
+    return {
+        type: ADDRESS,
+        data
+    }
+}
+
 export {
     getFocus,
     value,
     img,
     voice,
     localid,
+    address
 }

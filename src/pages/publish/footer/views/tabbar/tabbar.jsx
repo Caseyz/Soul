@@ -145,11 +145,13 @@ class TabBarExample extends React.Component {
                           isShowProgressTips: 1, // 默认为1，显示进度提示
                           success: function (res) {
                             that.serverId.push(res.serverId)
+  
+                            //如果出错可能这两条位置放置问题
+                            that.props.GetImages(that.serverId)
+                            that.props.SetLocalId(that.localIds)
                           }
                         });
                       })
-                      that.props.GetImages(that.serverId)
-                      that.props.SetLocalId(that.localIds)
                     }
                   });
                 })
@@ -213,11 +215,11 @@ class TabBarExample extends React.Component {
                           isShowProgressTips: 1, // 默认为1，显示进度提示
                           success: function (res) {
                             that.serverId.push(res.serverId)
+                            that.props.GetImages(that.serverId)
+                            that.props.SetLocalId(that.localIds)
                           }
                         });
                       })
-                      that.props.GetImages(that.serverId)
-                      that.props.SetLocalId(that.localIds)
                     }
                   });
                 })
@@ -258,11 +260,10 @@ class TabBarExample extends React.Component {
     var emoji = arg.native
     var value = this.props.value + emoji
     this.props.modifiValue(value)
-
-    var _emoji = "{}"+ arg.colons + "{}"
-    // var _value = this.props._value + _emoji
   }
 }
 
 export default connect(mapState, mapDispatch)(TabBarExample)
 
+// 1237378768e7q8e7r8qwesafdasdfasdfaxss111
+// 1237378768e7q8e7r8qwesafdasdfasdfaxss111

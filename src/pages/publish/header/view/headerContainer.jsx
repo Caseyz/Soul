@@ -12,6 +12,7 @@ const mapStateToprops = state => {
     voice: state.getIn(['publish', 'voice']),
     img: state.getIn(['publish', 'img']),
     value: state.getIn(['publish', 'value']),
+    address: state.getIn(['publish', 'address']),
   }
 }
 
@@ -41,7 +42,7 @@ class HeaderContainer extends Component {
     moment.locale('zh-cn');
 
     var url = 'https://wx.zhaoyx0907.com/api/senddynamic'
-    var address = "北京"
+    var address = this.props.address
     var libname = ["快乐星球", "悲伤星球", "务实星球"]
     var randomNumber = Math.round( Math.random()*2 )
     var image = ''
@@ -51,7 +52,6 @@ class HeaderContainer extends Component {
     }
 
     if(this.props.img.length > 0) {
-      console.log(1)
       this.props.img.forEach(item => {
         item = '&' + item
         image += item
@@ -75,7 +75,7 @@ class HeaderContainer extends Component {
       Toast.success('发布成功', 1, null, true)
       
       setTimeout(() => {
-        this.props.history.push('/dynamic')
+        this.props.history.push('/home/dynamic')
       },1000)
     } else {
       Toast.fail('发布失败TvT', 1, null, true)

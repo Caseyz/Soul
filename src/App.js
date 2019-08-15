@@ -33,7 +33,7 @@ class App extends Component {
       <Provider store={store}>
         <IsRedirectAccount comp={AccountContainer}>
           <SocketConnection>
-            <Redirect from='/' to="/chat" exact></Redirect>
+            <Redirect from='/' to="/publish" exact></Redirect>
             <Route path='/start' render={() => (<div>start</div>)}></Route>
             <Route path='/chat' component={ChatRoot}></Route>
             <Route path='/focus' component={FocusListContainer}></Route>
