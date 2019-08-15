@@ -8,7 +8,7 @@ import './TextTransition.css'
 
 //图片导入
 import headPhoto from 'assets/images/square/7bdc97e546fb59e65584b916021b193addde1d3a10b90-8pifaR_fw658@3x.png'
-import publishPic1 from 'assets/images/square/864fcba1be833081097df3936668bd9f@3x.png'
+// import publishPic1 from 'assets/images/square/864fcba1be833081097df3936668bd9f@3x.png'
 import arrowDPic from 'assets/images/square/箭头@3x.png'
 
 
@@ -48,7 +48,7 @@ export default (props)=>{
                 
                 <div className="publish-pic"> 
                     {
-                        props.info.libname&&<Voice />
+                        props.info.image && !(props.info.image instanceof Array) && <Voice voiceId = {props.info.image} />
                     }
                     {
                         // props.info.image && props.info.image.split(",").map((item,index)=>{
@@ -75,7 +75,7 @@ export default (props)=>{
                             return(
                                 <>
                                     <img key={item} src={item} style={{width:picWidth,height:picHeight,marginRight: index===1&&picNumber===2?'.90rem':'.05rem',marginBottom: picNumber===2 ? '.04rem' :0 }} alt=""/>
-                                    {/* {item} 测试用 */}
+                                    {item} 测试用
                                 </>
                             )
                         }) 

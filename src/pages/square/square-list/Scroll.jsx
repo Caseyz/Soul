@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import BScroll from 'better-scroll'
 import http from 'utils/http'
-import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
+import { Toast } from 'antd-mobile';
+import { promises } from 'dns';
 
 class Scroll extends Component {
     constructor(props){
@@ -13,6 +14,7 @@ class Scroll extends Component {
     }
 
     //-------------------------------------------------------------------
+    //获取图片
     getImgs(serverId){
         return new Promise((resolve, reject)=>{
             window.wx.downloadImage({
@@ -25,6 +27,23 @@ class Scroll extends Component {
             });
         })
     }
+
+    //获取语音
+    getImgs(serverId){
+        return new Promise((resolve,reject)=>{
+            window.wx.downloadVoice({
+                serverId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+                isShowProgressTips: 1, // 默认为1，显示进度提示
+                success: function (res) {
+                var localId = res.localId; // 返回音频的本地ID
+                resolve(localId)
+                }
+            });
+        })
+    }
+
+
+    
     //---------------------------------------------------------------------
 
     async getSquareDate(pagenum,pagesize){
@@ -63,7 +82,7 @@ class Scroll extends Component {
                     item.image.push(img) 
                 });
 
-            }else{
+            }else if(item.image){
                 console.log(2)
             }
         })
@@ -71,7 +90,7 @@ class Scroll extends Component {
         return result
     }
     async componentDidMount(){
-        Toast.loading('Loading...')
+        Toast.loading('Loading...',3,'',false)
         let pagenum = 1
         let result = await this.getSquareDate(pagenum,5)
         Toast.hide()

@@ -9,6 +9,10 @@ const VoiceStyle = styled.div`
     }
 `
 export default class Voice extends Component {
+    constructor(props){
+        super(props)
+        this.clickplay = this.clickplay.bind(this)
+    }
 
 //===============================================================================
     // componentDidMount () {
@@ -43,25 +47,25 @@ export default class Voice extends Component {
 
 //==================================================================================
 //  点击播放
-// clickplay () {
-//     var that = this
+clickplay () {
+    console.log(this.props.voiceId)
+    var that = this
 
-//     window.wx.ready(function () {
-//     //下载语音组件
-//         window.wx.downloadVoice({
-//             serverId: that.props.voice, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
-//             isShowProgressTips: 1, // 默认为1，显示进度提示
-//             success: function (res) {
-//                 that.localId = res.localId; // 返回音频的本地ID
-//             }
-//         });
+    window.wx.ready(function () {
+    //下载语音组件
+        window.wx.downloadVoice({
+            serverId: that.props.voice, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+            isShowProgressTips: 1, // 默认为1，显示进度提示
+            success: function (res) {
+                that.localId = res.localId; // 返回音频的本地ID
+            }
+        });
     //播放语音组件
-//         window.wx.playVoice({
-//             localId: that.localId // 需要播放的音频的本地ID，由stopRecord接口获得
-//         });
-//     }) 
-//     console.log(1)
-// }
+        window.wx.playVoice({
+            localId: that.localId // 需要播放的音频的本地ID，由stopRecord接口获得
+        });
+    }) 
+}
 //====================================================================================
 
     render() {

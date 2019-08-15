@@ -8,7 +8,7 @@ import {Route, Link, Switch } from "react-router-dom";
 import SquareItemContainer from './square-list/SquareItemContainer'
 //搜索组件
 import SearchContainer from 'components/search/SearchContainer.jsx'
-import ThemeButton from './themeButton/ThemeButton'
+// import ThemeButton from './themeButton/ThemeButton'
 
 
 //better-scroll
@@ -87,7 +87,7 @@ static getDerivedStateFromProps(nextProps, prevState) {
           return (
             
             <div style={{height:'100%'}}>
-            <ThemeButton background={this.props.background} changeTheme={this.props.changeTheme}/>
+            {/* <ThemeButton background={this.props.background} changeTheme={this.props.changeTheme}/> */}
 
               <Tabs tabs={tabs}
         initialPage={1}

@@ -30,6 +30,7 @@ padding-top: ${(props)=>{return props.parameter.paddingTop ? props.parameter.pad
         i{
             display: inline-block;
             width: ${(props)=>{return props.parameter.picWidth ? props.parameter.picWidth : '.11rem'}};
+            height: ${(props)=>{return props.parameter.picWidth ? props.parameter.picWidth : '.11rem'}};
             background: url( ${(props)=>{return props.parameter.searchPic ? props.parameter.searchPic : 'none'}} ) no-repeat;
             background-size: 100%;
         }
