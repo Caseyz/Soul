@@ -4,8 +4,6 @@ import Header from './header/'
 import Main from './main/'
 import Footer from './footer/'
 
-
-
 class Publish extends Component {
   render () {
     return (
@@ -17,7 +15,5 @@ class Publish extends Component {
     )
   }
 }
-
-
 
 export default Publish

@@ -38,9 +38,11 @@ export default {
     )
     .then(res=>res.json())
     .then(result=>result)
+    .catch(e=>console.log(e.stack))
   },
   get(url, data, opt) {
     url += Object.keys(data || {}).length ? '?'+this._serialize(data) : ''
+    console.log(url)
     return fetch(this._OriginURL(url), Object.assign({
       method: 'GET',
       mode: 'cors',
@@ -48,5 +50,6 @@ export default {
     }, !!opt ? opt : {}))
     .then(res=>res.json())
     .then(result=>result)
+    .catch(e=>console.log(e.stack))
   }
 }

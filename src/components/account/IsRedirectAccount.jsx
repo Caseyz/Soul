@@ -29,8 +29,8 @@ class IsRedirectAccount extends Component {
             ? this.props.children
             : (
                 <>
-                  <Redirect from="*" to="/account"></Redirect>
-                  <Route path="/account" component={this.props.comp}></Route>
+                  <Redirect from="*" to="/"></Redirect>
+                  <Route path="/" component={this.props.comp}></Route>
                 </>
               )
           }

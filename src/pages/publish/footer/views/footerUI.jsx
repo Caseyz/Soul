@@ -16,7 +16,11 @@ const FooterUI = props => {
     return (
         <Footer>
             <FooterTop>
-
+                {/* <img id='ceshi'
+                 width='100px'
+                 height="100px"
+                 src = {props.ceshi}
+                ></img> */}
                 {
                     props.voice === ""
                         ? ""
@@ -36,7 +40,7 @@ const FooterUI = props => {
                     {
                         props.localid.map((item, index) => {
                             return (
-                                <div className='img_div' key={item}>
+                                <div className='img_div' key={item + index}>
                                     <img
                                         src={item}
                                         data-id={index}
@@ -56,9 +60,11 @@ const FooterUI = props => {
                     }
                 </div>
 
-                <div className="position">
+                <div className="position"
+                    onClick={props.checkoutAddress}
+                >
                     <img src={addressImg} alt="" />
-                    <span>你在哪里</span>
+                    <span>{props.address}</span>
                 </div>
                 <div
                     className="setUp"

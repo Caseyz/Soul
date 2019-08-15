@@ -5,7 +5,7 @@ export default class ChatItem extends Component {
     render() {
         return (
             <StyledChatItem>
-                <BorderedItem className="item-container" onClick={this.handleItemClick.bind(this,this.props.id)}>
+                <BorderedItem className="item-container" onClick={this.handleItemClick.bind(this,this.props.id,this.props.username)}>
                     <div className="left">
                         <img src="http://via.placeholder.com/40px*40px" alt=""/>
                         <div>
@@ -20,7 +20,7 @@ export default class ChatItem extends Component {
             </StyledChatItem>
         )
     }
-    handleItemClick(id){
-        this.props.history.push({ pathname: `chat/message/${id}`, state: { } })
+    handleItemClick(id,username){
+        this.props.history.push({ pathname: `chat/message/${id}`, query : { username} })
     }
 }

@@ -44,6 +44,6 @@ const StyledFocusItem=Styled.div`
 const BorderedFocusItem=border({
     component:StyledFocusItem,
     borderWidth: '1px 0 1px 0',
-    color:'#BFBFBF'
+    color:'#BFBFBF',
 })
 export default BorderedFocusItem

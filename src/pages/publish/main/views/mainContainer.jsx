@@ -34,7 +34,6 @@ class MainContainer extends Component {
     }
 
     render () {
-        console.log(this.props)
         return (
             <MainUI 
             focus = { this.inputRef } 

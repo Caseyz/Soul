@@ -1,11 +1,11 @@
 import Redux from 'redux'
 const defaultState = {
     chatList: [],
+    ws:null
 }
 const reducer = (state = defaultState, action) => {
     switch (action.type) {
         case 'getChatList':
-            console.log(action,666)
             return {
                 chatList: action.payLoad
             }

@@ -14,7 +14,7 @@ class Mine extends Component {
     render() {
         return (
             <>
-                <Route path='/mine' exact component={ MySelf }></Route>
+                <Route path='/home/mine' exact component={ MySelf }></Route>
                 <Route path='/mine/gold' component={ Gold }></Route>
                 <Route path="/mine/friend/:userId" component={ Friend }></Route>
                 <Route path='/mine/setting' component={ Sett }></Route>

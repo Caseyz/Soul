@@ -21,7 +21,7 @@ import Emotion from 'components/emoji/EmojiMart.jsx'
 
 
 
-import { img, localid } from '../../../actionCreator'
+import { img, localid, value } from '../../../actionCreator'
 
 
 const mapState = state => ({
@@ -29,6 +29,7 @@ const mapState = state => ({
   voice: state.getIn(['publish', 'voice']),
   img: state.getIn(['publish', 'img']),
   localid: state.getIn(['publish', 'localid']),
+  value: state.getIn(['publish', 'value']),
 })
 
 const mapDispatch = dispatch => ({
@@ -37,6 +38,9 @@ const mapDispatch = dispatch => ({
   },
   SetLocalId (data) {
     dispatch(localid(data))
+  },
+  modifiValue (data) {
+    dispatch(value(data))
   }
 })
 
@@ -51,6 +55,7 @@ class TabBarExample extends React.Component {
     };
 
     this.localIds = []
+    this.handleOnChange = this.handleOnChange.bind(this)
   }
 
   render () {
@@ -130,21 +135,23 @@ class TabBarExample extends React.Component {
                     success: function (res) {
 
                       that.localIds = [...that.props.localid, ...res.localIds]; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-                      console.log(that.serverId)
+
                       //上传图片
                       that.serverId = []
-                      console.log(that.serverId)
+
                       that.localIds.forEach(Item => {
                         window.wx.uploadImage({
                           localId: Item, // 需要上传的图片的本地ID，由chooseImage接口获得
                           isShowProgressTips: 1, // 默认为1，显示进度提示
                           success: function (res) {
                             that.serverId.push(res.serverId)
+  
+                            //如果出错可能这两条位置放置问题
+                            that.props.GetImages(that.serverId)
+                            that.props.SetLocalId(that.localIds)
                           }
                         });
                       })
-                      that.props.GetImages(that.serverId)
-                      that.props.SetLocalId(that.localIds)
                     }
                   });
                 })
@@ -155,10 +162,10 @@ class TabBarExample extends React.Component {
           >
             {
               this.props.voice === ''
-                ? 
-                  this.props.img < 4
-                  ?<div className='Images' style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>请选择图片资源哟^_^</div>
-                  :<div className='Images' style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>最多上传四张图片哟(灬°ω°灬) </div>
+                ?
+                this.props.img < 4
+                  ? <div className='Images' style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>请选择图片资源哟^_^</div>
+                  : <div className='Images' style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>最多上传四张图片哟(灬°ω°灬) </div>
                 : <div className='Images' style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>只能上传一种格式的资源哟^_^</div>
             }
           </TabBar.Item>
@@ -208,11 +215,11 @@ class TabBarExample extends React.Component {
                           isShowProgressTips: 1, // 默认为1，显示进度提示
                           success: function (res) {
                             that.serverId.push(res.serverId)
+                            that.props.GetImages(that.serverId)
+                            that.props.SetLocalId(that.localIds)
                           }
                         });
                       })
-                      that.props.GetImages(that.serverId)
-                      that.props.SetLocalId(that.localIds)
                     }
                   });
                 })
@@ -240,12 +247,23 @@ class TabBarExample extends React.Component {
               });
             }}
           >
-            <Emotion></Emotion>
+            <Emotion
+              handle={this.handleOnChange}
+            ></Emotion>
           </TabBar.Item>
         </TabBar>
       </div>
     );
   }
+
+  handleOnChange (arg) {
+    var emoji = arg.native
+    var value = this.props.value + emoji
+    this.props.modifiValue(value)
+  }
 }
 
 export default connect(mapState, mapDispatch)(TabBarExample)
+
+// 1237378768e7q8e7r8qwesafdasdfasdfaxss111
+// 1237378768e7q8e7r8qwesafdasdfasdfaxss111

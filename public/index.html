@@ -51,9 +51,9 @@
             // nonceStr: result.nonceStr,    // 必填，生成签名的随机串
             // signature: result.signature,  // 必填，签名
             appId: 'wxa2c9a8765b5b419d',          // 必填，公众号的唯一标识
-            timestamp:1565621314,  // 必填，生成签名的时间戳
-            nonceStr: "4S91587pzXJtqDrr",    // 必填，生成签名的随机串
-            signature: "08f3db1d3e432453949b9fe61de0d0c9fd89c832",  // 必填，签名
+            timestamp:1565867132,  // 必填，生成签名的时间戳
+            nonceStr: "KwO4hTQECdzcNLfy",    // 必填，生成签名的随机串
+            signature: "bddf1ebe4ce9ded72a506857a0d01f3c303e33b7",  // 必填，签名
             jsApiList: [
               "scanQRCode",               //扫一扫接口
               "chooseImage",              //拍照或从手机相册中选图接口
@@ -67,6 +67,8 @@
               'uploadImage',              //上传图片接口
               'downloadImage',            //下载图片功能
               "updateAppMessageShareData",//自定义“分享给朋友”及“分享到QQ”按钮的分享内容
+              "getLocation",              //获取地址
+              'openLocation',             //调取微信地图
             ]
           })
         })

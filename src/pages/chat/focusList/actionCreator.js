@@ -3,10 +3,12 @@ import http from 'utils/http.js'
 const asyncGetMyFocusListData = () => {
     return async (dispatch) => {
         const myFocus = await http.get('/getfocus', {});
-        dispatch({
-            type: 'getMyFocus',
-            payload: myFocus.focus
-        })
+        if(myFocus&&myFocus.focus){
+            dispatch({
+                type: 'getMyFocus',
+                payload: myFocus.focus
+            })
+        }
         // setTimeout(() => {
         //     dispatch({
         //         type: "getMyFocus",
@@ -27,10 +29,12 @@ const asyncGetMyFocusListData = () => {
 const asyncGetFocusMeList = () => {
     return async (dispatch) => {
         const focusMe = await http.get('/focusme', {});
-        dispatch({
-            type: 'getFocusMe',
-            payload: focusMe.focus
-        })
+        if(focusMe&&focusMe.focus){
+            dispatch({
+                type: 'getFocusMe',
+                payload: focusMe.focus
+            })
+        }
         // fetch("https://api.zhaoyx0907.com/focusme").then((response) => {
         //     return response.json
         // }).then((ret) => {
@@ -70,10 +74,11 @@ const asyncGetAll = () => {
             //     }));
             console.log(myFocus, 1111)
             console.log(focusMe, 33333333)
-            dispatch({
-                type: "getAll",
-                payload: { myFocusList: myFocus.focus, focusMeList: focusMe.focus }
-            })
+            if (myFocus && focusMe && myFocus.focus && focusMe.focus)
+                dispatch({
+                    type: "getAll",
+                    payload: { myFocusList: myFocus.focus, focusMeList: focusMe.focus }
+                })
         } catch (error) {
             console.error(error);
         }
@@ -103,7 +108,7 @@ const loadTestData = () => {
                             "userName": "张三 3",
                             "head": "/head/0/1.jpg"
                         }],
-                        focusMeList:[]
+                        focusMeList: []
                         // focusMeList: [{
                         //     "id": 1001,
                         //     "userName": "TOM 1",
