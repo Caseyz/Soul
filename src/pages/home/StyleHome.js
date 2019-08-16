@@ -38,6 +38,10 @@ const StyleHome = styled.div`
                             height: .24rem;
                             /* background: red; */
                         }
+                        .planet-img{
+                            width: .31rem;
+                            height: .235rem;
+                        }
                         span{
                                 font-weight: bold;
                                 color: #333;
@@ -49,8 +53,11 @@ const StyleHome = styled.div`
                             border-radius: 50%;
                             text-align: center;
                             line-height: .5rem;
-                            position: relative;
+                            position: absolute;
                             top: -.08rem;
+                            left: 0;
+                            right: 0;
+                            margin: auto;
                             z-index: 1000
                             span{
                                 color: #fff;
@@ -64,7 +71,7 @@ const StyleHome = styled.div`
                                 line-height: .6rem;
                                 background-color: #fff;
                                 position: absolute;
-                                top: -.1rem;
+                                top: -.15rem;
                                 /* left: .065rem; */
                                 right: 0;
                                 left: 0;

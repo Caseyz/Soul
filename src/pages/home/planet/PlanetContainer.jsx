@@ -159,7 +159,6 @@ class PlanetContainer extends Component {
                     isHidden={this.isHidden.bind(this)}
                     stop={this.stop.bind(this)}></PlaneHead>
                 {/* 星球界面旋转球界面 */}
-                {console.log(this.props.planetData.toJS())}
                 <PlaneUI isClickCart={this.isClickCart.bind(this)}
                     options={{
                         callback: () => { alert(1)},

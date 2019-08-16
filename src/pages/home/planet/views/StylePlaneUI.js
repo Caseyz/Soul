@@ -47,7 +47,7 @@ import styled from 'styled-components'
         /* animation:move 10s linear infinite; */
         font-size: .12rem;
         position: absolute;
-        transform: scale(.8);
+        transform: scale(0.8);
     }
 
     .tag span{
