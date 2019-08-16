@@ -9,6 +9,13 @@ import StyleHome from './StyleHome'
 
 import plazaImg from 'assets/images/home/guangchang3x.png'
 import chatImg from 'assets/images/home/liaotian3x.png'
+import planetImg from 'assets/images/home/planet@3x.png'
+import mineImg from 'assets/images/home/mine@3x.png'
+
+import planetedImg from 'assets/images/home/planeted.png'
+import plazaedImg from 'assets/images/home/plazaed@3x.png'
+import chatedImg from 'assets/images/home/chated.png'
+import minedImg from 'assets/images/home/mined.png'
 
 /** 
  * 首页主要路由的导航界面组件
@@ -18,7 +25,9 @@ import chatImg from 'assets/images/home/liaotian3x.png'
 */
 
 export default class Home extends Component {
+  
     render() {
+        const routePath = this.props.location.pathname
         return (
             <StyleHome>
                 <main>
@@ -38,13 +47,14 @@ export default class Home extends Component {
                     <ul>
                         <li>
                             <Link className="link" to="/home">
-                                <img src="" alt="" />
+                                <img src={routePath==='/home' ? planetedImg : planetImg} alt="" className="planet-img"/>
                                 <span>星球</span>
                             </Link>
                         </li>
                         <li>
                             <Link className="link" to="/home/dynamic">
-                                <img src={plazaImg} alt="" />
+                                {console.log(routePath)}
+                                <img src={routePath==='/home/dynamic' ? plazaedImg : plazaImg} alt="" />
                                 <span>广场</span>
                             </Link>
                         </li>
@@ -58,13 +68,13 @@ export default class Home extends Component {
                         </li>
                         <li>
                             <Link className="link" to="/home/chat">
-                                <img src={chatImg} alt="" />
+                                <img src={routePath==='/home/chat' ? chatedImg : chatImg} alt="" />
                                 <span>聊天</span>
                             </Link>
                         </li>
                         <li>
                             <Link className="link" to="/home/mine">
-                                <img src="" alt="" />
+                                <img src={routePath==='/home/mine' ? minedImg : mineImg} alt="" />
                                 <span>自己</span>
                             </Link>
                         </li>
