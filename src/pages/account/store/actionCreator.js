@@ -1,4 +1,4 @@
-import { ISLOGIN, SETPHONE } from './actionTypes'
+import { ISLOGIN, SETPHONE, SETUID } from './actionTypes'
 
 const setLoginState = (isLogin) => {
   return {
@@ -12,8 +12,14 @@ const setPhone = (phone) => {
     payload: phone
   }
 }
-
+const setUid = (uid) => {
+    return {
+        type: SETUID,
+        payload: uid
+    }
+}
 export {
   setLoginState,
-  setPhone
+  setPhone,
+  setUid
 }

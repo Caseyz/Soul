@@ -15,7 +15,7 @@ import Button from '../_components/button/Button'
 // 页面动画
 import Animate from 'components/high-order/Animate'
 // 显示所有头像列表 组件
-// import ShowAllHead from './ShowAllHead'
+import ShowAllHead from './ShowAllHead'
 
 import style from './style'
 import logoImg from 'assets/images/account/logo.png'
@@ -39,20 +39,30 @@ class AddInfoContainer extends Component {
       sign: '',
       birth: '',
       pwd: '',
-      repwd: ''
+      repwd: '',
+      isShowAllHead: false
     }
     this.birthDom = React.createRef()
   }
   // 展示所有的头像列表
   showAllHead = () => {
-      console.log(1)
+      this.setState({
+          isShowAllHead: true
+      })
+  }
+  // 隐藏所有头像列表
+  hiddenAllHead = () => {
+      this.setState({
+          isShowAllHead: false
+      })
+      return;
   }
   // 选择头像并设置
   setHead = (head) => {
     console.log(0)
-    // this.setState({
-    //     head
-    // })
+    this.setState({
+        head
+    })
   }
   // 获取所有的受控组件值
   setText = (key, value)=>{
@@ -186,6 +196,20 @@ class AddInfoContainer extends Component {
              完成
            </Button>
           </FlexMidCen>
+        {/* {
+              this.state.isShowAllHead && this.allHead
+              ? ( */}
+                    <ShowAllHead 
+                      animate="opacity"
+                      hasWrap={true}
+                      showAnimate={this.state.isShowAllHead}
+                      heads={this.allHead}
+                      hiddenAllHead={this.hiddenAllHead}
+                      setHead={this.setHead}
+                    />
+                {/* )
+              : ''
+          } */}
         </Container>
       )
   }
