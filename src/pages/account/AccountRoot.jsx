@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {
   Route,
+  Redirect
 } from 'react-router-dom'
 import {
     setLoginState,
-    setPhone
+    setPhone,
+    setUid
 } from './store/'
 import Login from './login/LoginContainer'
 import AddInfo from './addInfo/AddInfo'
@@ -22,6 +24,7 @@ class AccountRoot extends Component {
   render() {
     return (
       <div style={{height: '100vh', position: 'relative'}}>
+        <Redirect to='/account'></Redirect>
         <Route path='/account' 
             children={(props)=>(<Login {...this.props} {...props}></Login>)} exact>
         </Route>
@@ -49,6 +52,9 @@ const mapDispatch = dispatch => ({
     },
     setPhone(phone) {
         dispatch(setPhone(phone))
+    },
+    setUid(uid) {
+        dispatch(setUid(uid))
     }
 })
 export default connect(mapState, mapDispatch)(AccountRoot)

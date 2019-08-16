@@ -5,18 +5,26 @@ import { CSSTransition } from 'react-transition-group'
 import './Animate.css'
 
 const Animate = (Comp) => (props) => {
-  console.log(props)
   return (
     <CSSTransition
-      in={!!props.match}
+      in={!!props.match || props.showAnimate}
       timeout={300}
       classNames={props.animate || 'page'}
       mountOnEnter
       unmountOnExit
     >
-      <div className={props.animate || 'page' +' '+ props.className || ''}>
+      {
+          !props.hasWrap
+          ? (
+            <div className={props.animate || 'page' +' '+ props.className || ''}>
+                <Comp { ...props }></Comp>
+            </div>
+           )
+          : <Comp { ...props }></Comp>
+      }
+      {/* <div className={props.animate || 'page' +' '+ props.className || ''}>
         <Comp { ...props }></Comp>
-      </div>
+      </div> */}
     </CSSTransition>
   )
 }
