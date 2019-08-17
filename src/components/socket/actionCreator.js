@@ -1,4 +1,4 @@
-var test = false
+var test = true
 var currentId = "1004"
 const createSocket = (from) => {
     return (dispatch) => {
