@@ -64,13 +64,13 @@ class Header extends Component {
         this.props.loadData()
     }
     handleSetting() {
-        this.props.history.push('/mine/setting')
+        this.props.history.push('/setting')
     }
     handleFriend() {
-        this.props.history.push('/mine/seach')
+        this.props.history.push('/friend')
     }
     handleGold() {
-        this.props.history.push('/mine/gold')
+        this.props.history.push('/gold')
     }
     
 }

@@ -1,7 +1,11 @@
 import styled from 'styled-components'
 
 const Pass = styled.div`
+    position: relative;
+    z-index: 1000;
     padding: 0.3rem 0.1rem 0 0.1rem;
+    height: 100%;
+    background-color: #eee;
     .hint{
         margin-top: 0.1rem;
         width: 100%;

@@ -1,12 +1,16 @@
 import styled from 'styled-components'
 
 const Item = styled.div`
+    position: relative;
+    z-index: 1000;
     height: 0.4rem;
     width: 100%;
     margin-top: 0.1rem;
     padding: 0 0.08rem 0 0.22rem;
     background-color: #ffffff;
     >div{
+        position: relative;
+        z-index: 1000;
         line-height: 0.4rem;
         display: inline-block;
     }

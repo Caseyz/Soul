@@ -1,13 +1,16 @@
 import styled from 'styled-components'
 
 const BirthStyle = styled.div`
+    position: relative;
+    z-index: 1000;
     background-color: #eee;
     height: 100%;
 `
 
 const DateTime = styled.div`
-    height: 100%;
     padding: 0.12rem;
+    height: 100%;
+    background-color: #eee;
     .time{
         height: 4.4rem;
         background-color: #ffffff;

@@ -16,10 +16,10 @@ class Sett extends Component {
     render() {
         return (
             <SetStyle>
-                <Route path='/mine/setting' exact component={ Setting }></Route>
+                {/* <Route path='/mine/setting' exact component={ Setting }></Route>
                 <Route path='/mine/setting/signature'  component={ Signature }></Route>
                 <Route path='/mine/setting/birthday' exact component={ Birthday }></Route>
-                <Route path='/mine/setting/password' exact component={ PassWord }></Route>
+                <Route path='/mine/setting/password' exact component={ PassWord }></Route> */}
             </SetStyle>
         );
     }

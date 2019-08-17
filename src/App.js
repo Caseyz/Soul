@@ -35,7 +35,7 @@ class App extends Component {
       <Provider store={store}>
         <IsRedirectAccount comp={AccountContainer}>
           <SocketConnection>
-            <Redirect from='/' to="/mine/friend/1001" exact></Redirect>
+            {/* <Redirect from='/' to="/mine/friend/1001" exact></Redirect> */}
             <Route path="/home" render={props => <Home {...props}></Home>}></Route>
             <Redirect from="/" to="/home" exact></Redirect>
             <Route path="/home" component={Home}></Route>
