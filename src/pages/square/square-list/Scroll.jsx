@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import BScroll from 'better-scroll'
 import http from 'utils/http'
-import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
+import { Toast } from 'antd-mobile';
+import { promises } from 'dns';
 
 class Scroll extends Component {
     constructor(props){
@@ -13,6 +14,7 @@ class Scroll extends Component {
     }
 
     //-------------------------------------------------------------------
+    //获取图片
     getImgs(serverId){
         return new Promise((resolve, reject)=>{
             window.wx.downloadImage({
@@ -25,6 +27,35 @@ class Scroll extends Component {
             });
         })
     }
+
+    getLocalImg(localId){
+        return new Promise((resolve,reject)=>{
+            window.wx.getLocalImgData({
+                localId, // 图片的localID
+                success: function (res) {
+                var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
+                resolve(localData)
+                }
+            });
+        })
+    }
+
+    //获取语音
+    // getVoice(serverId){
+    //     return new Promise((resolve,reject)=>{
+    //         window.wx.downloadVoice({
+    //             serverId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+    //             isShowProgressTips: 1, // 默认为1，显示进度提示
+    //             success: function (res) { 
+    //             var localId = res.localId; // 返回音频的本地ID
+    //             resolve(localId)
+    //             }
+    //         });
+    //     })
+    // }
+
+
+    
     //---------------------------------------------------------------------
 
     async getSquareDate(pagenum,pagesize){
@@ -50,28 +81,26 @@ class Scroll extends Component {
             "pagenum":pagenum,
             "pagesize":pagesize
         })
-        console.log(result)
         //---------------------------------------------
         result instanceof Array && result !==[] && await result.map(async (item,index)=>{
-            console.log(item.image) 
             if(item.image && item.image.split('&').length>1){
                 let imgArr = item.image.split('&').slice(1)
                 item.image = []
                 imgArr.forEach(async (value, index) => {
                     let img = await this.getImgs(value)
+                    img = await this.getLocalImg(img)
                     //将从微信或取得图片替换掉原请求数据中的字符串
                     item.image.push(img) 
                 });
 
-            }else{
+            }else if(item.image){
                 console.log(2)
             }
         })
-        console.log(result)
         return result
     }
     async componentDidMount(){
-        Toast.loading('Loading...')
+        Toast.loading('Loading...',3,'',false)
         let pagenum = 1
         let result = await this.getSquareDate(pagenum,5)
         Toast.hide()

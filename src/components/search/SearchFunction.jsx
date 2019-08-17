@@ -66,7 +66,7 @@ class SearchFunction extends Component {
                 <div className="search-container">
                     <i onClick={this.handleSubmit}></i><input type="text" value={this.state.inputValue} onChange={this.handleChange} placeholder={this.props.searchStyle.placeHolder} />
                 </div>
-                {this.props.searchStyle.cancelButton ? <div className="cancelButton" onClick={() => { this.props.history.push('/dynamic') }}>取消</div> : ''}
+                {this.props.searchStyle.cancelButton ? <div className="cancelButton" onClick={() => { this.props.history.goBack() }}>取消</div> : ''}
             </StyleSearch>
         )
     }

@@ -8,7 +8,7 @@ import {Route, Link, Switch } from "react-router-dom";
 import SquareItemContainer from './square-list/SquareItemContainer'
 //搜索组件
 import SearchContainer from 'components/search/SearchContainer.jsx'
-import ThemeButton from './themeButton/ThemeButton'
+// import ThemeButton from './themeButton/ThemeButton'
 
 
 //better-scroll
@@ -79,15 +79,15 @@ static getDerivedStateFromProps(nextProps, prevState) {
       <>
         {/* <p onClick={this.props.changeTheme.bind(null,this.state.themeColor)} style={themeButtonstyle}>{this.state.themeColor}</p> */}
         <Switch>  
-        <Route path="/home/dynamic/search" render={(props)=>{
+        <Route path="/dynamic/search" render={(props)=>{
           return <SearchContainer/>
         }}></Route>
-        <Route path="/home/dynamic" render={(props)=>{
+        <Route path="/dynamic" render={(props)=>{
           // let flag = true
           return (
             
             <div style={{height:'100%'}}>
-            <ThemeButton background={this.props.background} changeTheme={this.props.changeTheme}/>
+            {/* <ThemeButton background={this.props.background} changeTheme={this.props.changeTheme}/> */}
 
               <Tabs tabs={tabs}
         initialPage={1}

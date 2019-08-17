@@ -32,7 +32,7 @@ const StyleSearchBar = styled.div`
 export default withRouter((props)=>{
     return(
         <StyleSearchBar>
-            <div onClick={()=>{props.history.push('/dynamic/search')}} className="search-container">
+            <div onClick={()=>{props.history.push('/home/dynamic/search')}} className="search-container">
                 <i></i><input type="text" placeholder="美食"/>
             </div>
         </StyleSearchBar>

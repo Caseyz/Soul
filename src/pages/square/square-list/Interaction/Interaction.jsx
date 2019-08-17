@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import {withRouter} from 'react-router-dom'
 
-export default class Interaction extends Component {
+class Interaction extends Component {
     constructor(props){
         super(props)
     }
@@ -12,9 +13,13 @@ export default class Interaction extends Component {
         return (
             <div className="Interaction">
                 <i className="like" onClick={addLike.bind(null,info.id,index)}></i><span>{info.star}</span>
-                <i className="comment"></i><span>{info.comments}</span>
+                <i className="comment" onClick={()=>{this.props.history.push('/home')}}></i><span>{info.comments}</span>
                 <i className="collection"></i>
             </div>
         )
     }
 }
+
+export default withRouter(Interaction) 
+
+

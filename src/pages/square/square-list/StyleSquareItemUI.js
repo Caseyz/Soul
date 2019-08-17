@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import likeActiveImg from 'assets/images/square/like-active.png'
+import likeImg from 'assets/images/square/like.png'
 
 const StyleSquareItemUI = styled.div`
 padding-top: .2rem;
@@ -106,15 +108,16 @@ padding-top: .2rem;
             vertical-align: middle;
         }
         .like{
-            background: url(${require("assets/images/square/爱心@3x.png")}) no-repeat;
+            background: url(${require("assets/images/square/like-active.png")}) no-repeat;
+            background: url( ${(props) => { return props.goods ? likeActiveImg : likeImg }} ) no-repeat;
             background-size: 100%; 
         }
         .comment{
-            background: url(${require("assets/images/square/图层 9 拷贝@3x.png")}) no-repeat;
+            background: url(${require("assets/images/square/message.png")}) no-repeat;
             background-size: 100%; 
         }
         .collection{            
-            background: url(${require("assets/images/square/图层 7 拷贝@3x.png")}) no-repeat;
+            background: url(${require("assets/images/square/collect.png")}) no-repeat;
             background-size: 100%; 
         }
     }

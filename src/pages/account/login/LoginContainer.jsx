@@ -25,7 +25,9 @@ class LoginContainer extends Component {
         code: '',
         isLoading: false,
         btnType: 'disabled',
-        isRegister: false
+        isRegister: false,
+        isFetchCode: false,
+        countdownTime: 60
     }
   }
 
@@ -51,13 +53,14 @@ class LoginContainer extends Component {
   }
   // 请求发送验证码
   getCode = async ()=> {
+    if( this.state.isFetchCode ) return;
     console.log('请求发送验证码')
     let res = await http.get('/code', {
       phone: this.state.phone
     })
-    console.log(res)
+    this.countdownFetchCode()
   }
-  // 获取验证码
+  // 获取用户输入验证码
   changeCode = code=> {
     this.setState({
         code,
@@ -92,10 +95,10 @@ class LoginContainer extends Component {
         // 未注册状态逻辑
         console.log("未注册")
         this.setState({
-            clickType: 3,
             isLoading: false,
             isRegister: false
         })
+        this.changeClickType(3)
     }else if( res.code===0 ) {
         // 已注册状态逻辑
         console.log("已经注册")
@@ -117,6 +120,7 @@ class LoginContainer extends Component {
       phone,
       pwd
     })
+    console.log(res)
     this.setState({
         isLoading: false
     })
@@ -125,7 +129,8 @@ class LoginContainer extends Component {
       console.log('登录成功')
       // 设置全局登录状态
       this.props.setLoginState(true)
-      this.props.history.replace('/dynamic')
+      this.props.setUid(res.id)
+      this.props.history.replace('/home/dynamic')
     }else if( res.code===1 ) {
       // 登录失败操作
       console.log('登录失败')
@@ -141,6 +146,7 @@ class LoginContainer extends Component {
         phone: this.state.phone,
         code: this.state.code
     })
+    console.log(res)
     this.setState({
         isLoading: false
     })
@@ -151,11 +157,13 @@ class LoginContainer extends Component {
       // 验证码登录成功逻辑
       console.log('登录成功')
       // 设置全局登录状态 
+      this.props.setUid(res.id)
       this.props.setLoginState(true)
-      this.props.history.replace('/dynamic')
+      this.props.history.replace('/home/dynamic')
     }else if( res.statu === '1' ){
       // 用户注册成功逻辑
       console.log('注册成功')
+      this.props.setUid(res.id)
       this.props.history.replace('/account/addInfo')
     }
   }
@@ -179,7 +187,37 @@ class LoginContainer extends Component {
         Toast.fail('服务器出错', 1)
     }
   }
-
+  // 改变clickType
+  changeClickType = (type)=>{
+    if( type===3 || type===4 ) {
+        this.getCode()
+    }
+    this.setState({
+        clickType: type
+    })
+  }
+  // 验证码发送倒计时
+  countdownFetchCode() {
+    if (this.timer) return;
+    let time = this.state.countdownTime
+    this.setState({
+      isFetchCode: true
+    })
+    this.timer = setInterval(()=> {
+      this.setState({
+          countdownTime: --this.state.countdownTime
+      })
+      if( this.state.countdownTime === 0 ) {
+          clearInterval(this.timer)
+          this.timer = null
+          this.setState({
+              isFetchCode: false,
+              countdownTime: time
+          })
+      }
+    },1000)
+  }
+  
   componentDidMount() {
       if (this.state.phone.length === 11) {
         this.setState({
@@ -187,7 +225,9 @@ class LoginContainer extends Component {
         })
       }
   }
-
+  componentWillUnmount() {
+      clearInterval(this.timer)
+  }
   render() {
     return (
       <Container>
@@ -201,11 +241,11 @@ class LoginContainer extends Component {
                     <div className="forget-wrap">
                         <div 
                             className="text"
-                            onClick={()=>{this.setState({clickType: 3})}}
+                            onClick={()=>{this.changeClickType(3)}}
                         >验证码登录</div>
                         <div 
                             className="text"
-                            onClick={()=>{this.setState({clickType: 4})}}
+                            onClick={()=>{this.changeClickType(4)}}
                         >忘记密码</div>
                     </div>
                 </>
@@ -216,18 +256,17 @@ class LoginContainer extends Component {
                     <CodeInput getValue={this.changeCode}></CodeInput>
                     <div className="code-wrap">
                         <div 
-                            className="btn"
+                            className={this.state.isFetchCode?'btn disabled':'btn'}
                             onClick={this.getCode}
-                        >发送验证码</div>
+                        >{this.state.isFetchCode ? `${this.state.countdownTime}s`:''}重新发送</div>
                         {
                             this.state.isRegister
                             ? <div 
                                 className="text"
-                                onClick={()=>{this.setState({clickType: 2})}}
+                                onClick={()=>{this.changeClickType(2)}}
                               >密码登录</div>
                             : ''
                         }
-                        
                     </div>
                 </>
             )

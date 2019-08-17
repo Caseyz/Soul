@@ -7,13 +7,13 @@ import './style.css'
 const Starting = (props)=> {
     let [cutTime, setCutTime] = useState(3)
     let handleClick=()=>{
-        props.history.push('/')
+        props.closeStarting()
     }
     useEffect(()=>{
         let time = setInterval(()=>{
             setCutTime(--cutTime)
             if( cutTime === -1 ) {
-                props.history.push('/test')
+                props.closeStarting()
             }
         },1000)
         return ()=>{

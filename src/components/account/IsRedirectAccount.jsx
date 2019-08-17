@@ -7,6 +7,7 @@ import {
   Switch
 } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Animate from 'components/high-order/Animate'
 
 // 状态
 const mapState = state => ({
@@ -20,7 +21,6 @@ const mapState = state => ({
  */
 class IsRedirectAccount extends Component {
     render() {
-    console.log(this.props)
     return (
       <Router>
         <Switch>
@@ -39,4 +39,4 @@ class IsRedirectAccount extends Component {
     )
   }
 }
-export default connect(mapState)(IsRedirectAccount)
+export default connect(mapState)(Animate(IsRedirectAccount))

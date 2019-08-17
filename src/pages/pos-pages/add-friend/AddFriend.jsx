@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Header from '../dynamic-details/Header'
+import Animate from 'components/high-order/Animate'
 import Search from 'components/search/SearchFunction'
 import searchPic from 'assets/images/search/button.png'
 const parameter = {
@@ -30,4 +31,4 @@ class AddFriend extends Component {
     )
   }
 }
-export default AddFriend
+export default Animate(AddFriend)
