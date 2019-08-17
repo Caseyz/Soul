@@ -1,4 +1,4 @@
-var test=true;
+var test=false;
 function sendMsg(ws = null, {
     to = '',
     from = '',
@@ -6,9 +6,9 @@ function sendMsg(ws = null, {
 }) {
     if (ws) {
         if(test){
-            var msg = '{"from":"' + from + '","to":"' + to + '","message":"' + msg + '"}'
-            ws.send(msg)
-            console.log("send============,",msg)
+            var message = '{"from":"' + from + '","to":"' + to + '","message":"' + msg + '"}'
+            ws.send(message)
+            console.log("send============,",message)
         }else{
             let message = { from, to, msg }
             ws.send(JSON.stringify(message))

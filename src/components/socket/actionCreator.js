@@ -1,9 +1,9 @@
-var test = true
+var test = false
 var currentId = "1004"
 const createSocket = (from) => {
     return (dispatch) => {
         if ("WebSocket" in window) {
-            let ws = new WebSocket("ws://139.199.34.125:7007/chat/" + from)
+            let ws = new WebSocket("ws://localhost:8081/" + from)
             ws.onopen = function () {
                 // setMessage("连接成功")
                 console.log('socket链接成功')
@@ -44,7 +44,7 @@ const createSocket = (from) => {
         }
 
     }
-
+    //ws://139.199.34.125:7007/chat/
     // function setMessage(message) {
     //     document.getElementById("content").innerHTML = message;
     // }

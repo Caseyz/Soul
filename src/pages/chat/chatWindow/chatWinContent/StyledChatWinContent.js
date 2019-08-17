@@ -15,7 +15,7 @@ const StyledChatWinContent = Styled.div`
         flex: 1;
         div.bscroll-vertical-scrollbar{
             top:.44rem !important;
-            bottom:.4rem !important;
+            bottom:.9rem !important;
         }
     }
     ul{
