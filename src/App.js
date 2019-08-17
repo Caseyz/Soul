@@ -49,7 +49,7 @@ class App extends Component {
             <Route path='/dynamic' component={Square}></Route>
             <Route path='/mine' component={Mine}></Route> */}
             {/* <Route path='/test' component={Test}></Route> */}
-            <Route path='/publish' component={Publish}></Route>
+            {/* <Route path='/publish' component={Publish}></Route> */}
             <Route path="/toTest" component={ToTestContainer}></Route>
             {/* <Route path='/start' component={() => (<div>start</div>)}></Route> */}
 
