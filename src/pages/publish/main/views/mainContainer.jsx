@@ -62,7 +62,8 @@ class MainContainer extends Component {
 
     componentDidMount () {
         //刚加载让输入框获得焦点
-        this.inputRef.current.focus();
+        // this.inputRef.current.readonly = "asd"
+        // this.inputRef.current.focus();
     }
 }
 
