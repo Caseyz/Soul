@@ -10,9 +10,6 @@
 .starting{
     animation: scaleBg 5s linear;
     height: 100%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-image: url(../../../assets/images/account/starting.jpg);
 }
 .closeWrap {
     padding-top: 0.32rem ;

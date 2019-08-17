@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Logo from 'pages/account/_components/logo/'
 import Animate from 'components/high-order/Animate'
+import {StartingWrap} from './styledComponents'
 
 import './style.css'
 
@@ -22,14 +23,14 @@ const Starting = (props)=> {
         }
     })
     return (
-        <div className='starting' style={{padding: '0 0.2rem'}}>
+        <StartingWrap className='starting' style={{padding: '0 0.2rem'}}>
             <div className='closeWrap'>
                 <div className="closeIcon" onClick={handleClick}>
                     {cutTime}秒&nbsp;跳过
                 </div>
             </div>
             <Logo></Logo>
-        </div>
+        </StartingWrap>
     )
 }
 export default Animate(Starting)
