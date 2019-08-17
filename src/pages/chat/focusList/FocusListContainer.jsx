@@ -8,6 +8,7 @@ import { asyncGetAll, loadTestData, asyncGetMyFocusListData, asyncGetFocusMeList
 import { connect } from 'react-redux'
 import FocusSearch from './focusSearch/FocusSearch'
 import StyledFocusListContainer from './StylesFocusListContainer'
+import Animate from 'components/high-order/Animate'
 
 const mapState = (state) => {
   return {
@@ -54,8 +55,10 @@ class FocusListContainer extends Component {
     }
   }
   render() {
+    console.log("------------------------------------------")
     return (
       <StyledFocusListContainer>
+        <div>哈哈哈</div>
         <FocusHeader
           {...this.props}
         ></FocusHeader>
@@ -100,4 +103,4 @@ class FocusListContainer extends Component {
 
 }
 
-export default connect(mapState, mapDispatch)(FocusListContainer);
+export default connect(mapState, mapDispatch)(Animate(FocusListContainer));

@@ -23,6 +23,7 @@ import DynamicDetails from 'pages/pos-pages/dynamic-details/DynamicItem'
 import SoulMoney from 'pages/pos-pages/soul-money/SoulMoney'
 import SoulTest from 'pages/pos-pages/soul-test/SoulTest'
 import TestSelf from 'pages/pos-pages/test-self/TestSelf'
+import FocusListContainer from 'pages/chat/focusList/FocusListContainer'
 
 class App extends Component {
     constructor(props) {
@@ -131,6 +132,11 @@ class App extends Component {
                             <Route path='/testself/:id' children={
                                 (props) => (
                                     <TestSelf {...props}></TestSelf>
+                                )
+                            }></Route>
+                            <Route path='/focus' children={
+                                (props) => (
+                                    <FocusListContainer {...props}></FocusListContainer>
                                 )
                             }></Route>
                         </SocketConnection>

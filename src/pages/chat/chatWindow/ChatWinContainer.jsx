@@ -3,8 +3,9 @@ import ChatWinHeader from './chatWinHeader/ChatWinHeader'
 import ChatWinContent from './chatWinContent/ChatWinContent'
 import StyledChatWinContainer from './StyledChatWinContainer'
 import ChatWinBars from './chatWinFooter/ChatWinBars'
+import Animate from 'components/high-order/Animate'
 
-export default class ChatWinContainer extends Component { 
+class ChatWinContainer extends Component { 
     render() {
         return (
             <StyledChatWinContainer>
@@ -16,3 +17,4 @@ export default class ChatWinContainer extends Component {
     }
     
 }
+export default (Animate(ChatWinContainer))

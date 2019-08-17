@@ -21,3 +21,6 @@
     /* border-top:1px solid #999; */
     margin-top: 4px;
 }
+.leftItem{
+    justify-content: left !important;
+}
