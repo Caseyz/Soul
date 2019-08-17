@@ -41,7 +41,7 @@ class HeaderContainer extends Component {
   async publish () {
     moment.locale('zh-cn');
 
-    var url = 'https://wx.zhaoyx0907.com/api/senddynamic'
+    var url = '/senddynamic'
     var address = this.props.address
     var libname = ["快乐星球", "悲伤星球", "务实星球"]
     var randomNumber = Math.round( Math.random()*2 )
