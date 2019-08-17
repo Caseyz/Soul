@@ -7,6 +7,8 @@ import { Header } from '../../header/'
 import { DateTime } from './BirthdayStyle'
 import http from 'utils/http'
 
+let mine = "'/home/mine'"
+
 const nowTimeStamp = Date.now();
 const now = new Date('1998-03-04');
 let minDate = new Date('1950-01-01');
@@ -69,7 +71,10 @@ class Birthday extends Component {
     };
     async handleWay() {
         if(this.state.value === '1998-03-04'){
-
+            showToastNoMask('生日修改成功,即将返回')
+            setTimeout(() => {
+                    this.props.history.push(mine)
+            }, 1200)
         }
         if(this.state.value !== '1998-03-04'){
             Toast.loading('Loading...');
@@ -77,18 +82,16 @@ class Birthday extends Component {
                 birth: this.state.value
             })
             Toast.hide();
-            console.log(result)
             if (result.code === 1) {
                 showToastNoMask('生日修改失败,请稍后再试')
             }
             if (result.code === 0) {
                 showToastNoMask('生日修改成功,即将返回')
                 setTimeout(() => {
-                    this.props.history.push('/mine')
-                }, 1000)
+                    this.props.history.push(mine)
+                }, 1200)
             }
-            console.log(this.state.value)
-        }
+        } 
         
     }
 }

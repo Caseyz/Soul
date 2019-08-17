@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import {setLoginState} from 'pages/account/'
 
 import { Header } from '../../header/'
 import { Pass } from './PassWordStyle'
@@ -80,9 +82,10 @@ class PassWord extends Component {
                 if (result.code === 0) {
                     showToastNoMask('密码修改成功,即将退出')
                     setTimeout(() => {
-                        store.set('account/isLogin','false')
-                        this.props.history.push('/account')
-                    }, 1000)
+                        // store.set('account/isLogin','false')
+                        // this.props.history.push('/')
+                        this.props.loginOut()
+                    }, 1200)
                 }
             } else {
                 showToastNoMask('两次密码不一致')
@@ -91,4 +94,7 @@ class PassWord extends Component {
     }
 }
 
-export default PassWord;
+const mapDispatch = (dispatch)=>({
+    loginOut:()=> dispatch(setLoginState(false))
+})
+export default connect(null, mapDispatch)(PassWord);
