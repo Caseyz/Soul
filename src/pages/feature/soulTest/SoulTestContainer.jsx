@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import Animate from 'components/high-order/Animate.jsx'
+
 import { BackTitleHead } from 'components/index'
 
 import TestContentContainer from './views/TestContentContainer'
@@ -10,12 +12,13 @@ import TestContentContainer from './views/TestContentContainer'
  * 2019-08-06
  */
 
-export default class SoulTestContainer extends Component {
+class SoulTestContainer extends Component {
 
     // 返回按钮回调函数
     callbackBack(){
         this.props.history.goBack()
     }
+
 
     render() {
         return (
@@ -28,3 +31,5 @@ export default class SoulTestContainer extends Component {
         )
     }
 }
+
+export default Animate(SoulTestContainer)

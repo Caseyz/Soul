@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import {
     Route,
-    Redirect
 } from 'react-router-dom'
 // store 引入
 import store from '@/store/'
@@ -54,83 +53,66 @@ class App extends Component {
                         showAnimate={!this.state.isInStarting}
                     >
                         <SocketConnection>
-
-                            {/* 灵魂测试 */}
-                            <Route path='/soulTest' render={
-                                (props) => (
-                                    <SoulTestContainer
-                                        {...props}
-                                    ></SoulTestContainer>
-                                )
-                            }></Route>
-
-                            {/* 测一测 */}
-                            <Route path='/toTest' render={
-                                (props) => (
-                                    <ToTestContainer
-                                        {...props}
-                                    ></ToTestContainer>
-                                )
-                            }></Route>
-                            
-                            {/* 发布 */}
-                            <Route path='/publish' render={
-                                (props) => (
-                                    <Publish
-                                        {...props}
-                                    ></Publish>
-                                )
-                            }></Route>
-                            
-                            {/* 登录 */}
-                            <Route path='/account' exact render={
-                                (props) => (
-                                    <AccountContainer
-                                        {...props}
-                                    ></AccountContainer>
-                                )
-                            }></Route>
-
-
-
-                            
                             <Route path="/" component={Home} ></Route>
                             <Route path='/comment/:id' children={
                                 (props) => (
-                                    <DynamicDetails
-                                        {...props}
-                                        className='flex'
-                                    ></DynamicDetails>
+                                    <DynamicDetails {...props}></DynamicDetails>
                                 )
                             }></Route>
-        
-                            <Route path=''></Route>
+
+                            {/* <Route path=''></Route> */}
                             <Route path='/addfriend' children={
                                 (props) => (
-                                    <AddFriend
-                                        {...props}
-                                    ></AddFriend>
+                                    <AddFriend {...props}></AddFriend>
                                 )
                             }></Route>
 
                             <Route path='/soulmoney' children={
                                 (props) => (
-                                    <SoulMoney
-                                        {...props}
-                                    ></SoulMoney>
+                                    <SoulMoney {...props}></SoulMoney>
                                 )
                             }></Route>
 
+                            {/* 灵魂测试试题组件 */}
                             <Route path='/soultest/:id' children={
                                 (props) => (
-                                    <SoulTest
-                                        {...props}
-                                    ></SoulTest>
+                                    <SoulTest {...props}></SoulTest>
                                 )
                             }></Route>
 
+                            {/* 测一测测试题组件 */}
                             <Route path='/testself/:id' children={
                                 (props) => (
+                                    <TestSelf {...props}></TestSelf>
+                                )
+                            }></Route>
+
+
+                            {/* 灵魂测试 */}
+                            <Route path='/soulTest' children={
+                                (props) => (
+                                    <SoulTestContainer {...props}></SoulTestContainer>
+                                )
+                            }></Route>
+
+                            {/* 测一测 */}
+                            <Route path='/toTest' children={
+                                (props) => (
+                                    <ToTestContainer {...props}></ToTestContainer>
+                                )
+                            }></Route>
+
+                            {/* 发布 */}
+                            <Route path='/publish' children={
+                                (props) => (
+                                    <Publish {...props}></Publish>
+                                )
+                            }></Route>
+
+                            {/* 登录 */}
+                            {/* <Route path='/account' exact children={
+                                (props) => (
+<<<<<<< HEAD
                                     <TestSelf {...props}></TestSelf>
                                 )
                             }></Route>
@@ -139,6 +121,11 @@ class App extends Component {
                                     <FocusListContainer {...props}></FocusListContainer>
                                 )
                             }></Route>
+=======
+                                    <AccountContainer {...props}></AccountContainer>
+                                )} ></Route> */}
+                                
+>>>>>>> addPageLink-2019-08-17-zhengkaixuan
                         </SocketConnection>
                     </IsRedirectAccount>
                 </div>

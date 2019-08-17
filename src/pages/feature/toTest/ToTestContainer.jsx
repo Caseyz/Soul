@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import { Route, Switch } from 'react-router-dom'
 
+import Animate from 'components/high-order/Animate.jsx'
+
 import { ChangeCartHead } from 'components/index'
 
 import ToTest from './views/ToTest'
@@ -13,7 +15,7 @@ import MyAttr from './views/MyAttr'
  *   2019-08-07
  */
 
-export default class ToTestContainer extends Component {
+ class ToTestContainer extends Component {
 
     constructor(props){
         super(props)
@@ -50,3 +52,5 @@ export default class ToTestContainer extends Component {
         )
     }
 }
+
+export default Animate(ToTestContainer)

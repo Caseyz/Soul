@@ -8,7 +8,7 @@ import styled from 'styled-components'
 
 const StyleHome = styled.div`
         position: relative;
-        z-index: 1000;
+        z-index: 500;
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -58,7 +58,7 @@ const StyleHome = styled.div`
                             left: 0;
                             right: 0;
                             margin: auto;
-                            z-index: 1000
+                            z-index: 200;
                             span{
                                 color: #fff;
                             }

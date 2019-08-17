@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Route, Link, Redirect } from 'react-router-dom'
+import Animate from 'components/high-order/Animate'
 
 import PlanetContainer from './planet/PlanetContainer'
 import StyleHome from './StyleHome'
@@ -32,9 +33,9 @@ export default class Home extends Component {
             <StyleHome>
                 <main>
                     {/* 星球组件 */}
-                    <Redirect from='/' to='/dynamic' exact></Redirect>
-                    <Route path='/home' component={PlanetContainer}/>
-                    <Route path='/chat' component={ChatRoot} ></Route>
+                    <Redirect from='/' to='/dynamic' ></Redirect>
+                    <Route path='/home' component={PlanetContainer} />
+                    <Route path='/chat' component={ChatRoot}></Route>
                     <Route path='/dynamic' component={Square}></Route>
                     <Route path='/mine' component={Mine}></Route> 
                 </main>

@@ -15,19 +15,20 @@ export default function TextItem(props) {
             {
                 props.data.map((value, index) => {
                     return <StyleTextItem key={index} data={value}>
-                        {value.isTitle ? <h3>{value.isTitle}</h3> : null}
-                        <img src={value.imgUrl} alt="" />
-                        <div className="content-top">
-                            <p className="title">
-                                <img src={value.PsdImg} alt="" className="img-psd" />
-                                <span>{value.testTitle}</span>
-                            </p>
-                            <p>{value.isTitled}</p>
+                        <div onClick={(e) => props.handleClick(index)}>
+                            {value.isTitle ? <h3>{value.isTitle}</h3> : null}
+                            <img src={value.imgUrl} alt="" />
+                            <div className="content-top">
+                                <p className="title">
+                                    <img src={value.PsdImg} alt="" className="img-psd" />
+                                    <span>{value.testTitle}</span>
+                                </p>
+                                <p>{value.isTitled}</p>
+                            </div>
+                            {value.isGoTest ? <div className="isGOText">
+                                <span>开始测试</span>
+                            </div> : null}
                         </div>
-                        {value.isGoTest ? <div className="isGOText">
-                            <span>开始测试</span>
-                        </div> : null}
-
                     </StyleTextItem>
                 })
             }
