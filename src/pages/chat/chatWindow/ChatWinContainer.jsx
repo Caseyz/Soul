@@ -10,7 +10,7 @@ export default class ChatWinContainer extends Component {
             <StyledChatWinContainer>
                 <ChatWinHeader {...this.props}/>
                 <ChatWinContent {...this.props}/>
-                {/* <ChatWinBars/> */}
+                <ChatWinBars/>
             </StyledChatWinContainer>
         )
     }

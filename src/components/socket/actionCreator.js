@@ -1,3 +1,5 @@
+var test = true
+var currentId = "1004"
 const createSocket = (from) => {
     return (dispatch) => {
         if ("WebSocket" in window) {
@@ -11,17 +13,24 @@ const createSocket = (from) => {
                 })
             }
             ws.onmessage = function (event) {
-                // setMessage(event.data)
-                console.log(event, "接收到消息" + event)
+                console.log(event, "接收到消息----------------")
+                // console.log(JSON.parse(event.data), "接收到消息----------------")
+                let to = event.currentTarget.url.substring(event.currentTarget.url.length - 4)
                 if (event.data != '对方不在线') {
+                    let _data = test ? null : JSON.parse(event.data)
                     dispatch({
                         type: 'pushMsg',
-                        payload: { fromId: "1006", msg: event.data, timeStamp: event.timeStamp }
+                        payload: {
+                            fromId: test ? (to == currentId ? "1001" : "1004") : _data.from,
+                            to: test ? (to == currentId ? "1004" : "1001") : _data.to,
+                            msg: test ? event.data : _data.message,
+                            timeStamp: event.timeStamp
+                        }
                     })
 
                 }
             }
-
+            // ws://localhost:8081/
             ws.onerror = function () {
                 // setMessage("出错了")
                 console.log('出错了')

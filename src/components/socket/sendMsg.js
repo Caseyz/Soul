@@ -1,14 +1,22 @@
-function sendMsg({
-    ws = null,
+var test=true;
+function sendMsg(ws = null, {
     to = '',
+    from = '',
     msg = '没写消息'
 }) {
     if (ws) {
-        var msg = '{"uid":"' + to + '","to":"' + to + '","message":"' + msg + '"}'
-        ws.send(msg)
-        console.log("send============")
+        if(test){
+            var msg = '{"from":"' + from + '","to":"' + to + '","message":"' + msg + '"}'
+            ws.send(msg)
+            console.log("send============,",msg)
+        }else{
+            let message = { from, to, msg }
+            ws.send(JSON.stringify(message))
+
+            console.log("send============,",message)
+        }
         return true
-    }else{
+    } else {
         return false
     }
 }

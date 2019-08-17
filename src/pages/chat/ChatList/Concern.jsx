@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Tabs, WhiteSpace } from 'antd-mobile';
+import { Tabs, WhiteSpace, Toast } from 'antd-mobile';
 import BorderedHeader from './chatHeader/ChatHeader'
 import ChatNav from './chatNav/ChatNav'
 import ChatItems from './chatItems/ChatList'
@@ -37,13 +37,13 @@ class Concern extends Component {
   }
   render() {
     return (
-        <>
-          <BorderedHeader {...this.props}></BorderedHeader>
-          <ChatSearch></ChatSearch>
-          <ChatNav ></ChatNav>
-          <ChatItems list={this.props.chatList} {...this.props}></ChatItems>
-          {/* <div>{this.props.test}</div> */}
-        </>
+      <>
+        <BorderedHeader {...this.props}></BorderedHeader>
+        <ChatSearch></ChatSearch>
+        <ChatNav ></ChatNav>
+        <ChatItems list={this.props.chatList} {...this.props}></ChatItems>
+        {/* <div>{this.props.test}</div> */}
+      </>
     )
   }
   async componentDidMount() {
@@ -61,4 +61,4 @@ class Concern extends Component {
 
 }
 
-export default connect(mapState, mapDispatch) (withRouter(Concern));
+export default connect(mapState, mapDispatch)(withRouter(Concern));
