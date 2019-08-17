@@ -13,6 +13,7 @@ import {
 } from 'react-router-dom'
 
 const mapState = (state) => {
+  console.log(state)
   return {
     chatList: state.getIn(['chat', 'chatList'])
   }
@@ -36,6 +37,7 @@ class Concern extends Component {
     })
   }
   render() {
+    console.log(this.props.chatList,9999999999999999999999999)
     return (
       <>
         <BorderedHeader {...this.props}></BorderedHeader>
@@ -48,6 +50,7 @@ class Concern extends Component {
   }
   async componentDidMount() {
     this.props.loadData();
+    console.log("1")
   }
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps) {

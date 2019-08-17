@@ -33,8 +33,8 @@ export default class Home extends Component {
                 <main>
                     {/* 星球组件 */}
                     <Redirect from='/' to='/dynamic' exact></Redirect>
-                    <Route path='/home' component={PlanetContainer} />
-                    <Route path='/chat' component={ChatRoot}></Route>
+                    <Route path='/home' component={PlanetContainer}/>
+                    <Route path='/chat' component={ChatRoot} ></Route>
                     <Route path='/dynamic' component={Square}></Route>
                     <Route path='/mine' component={Mine}></Route> 
                 </main>
