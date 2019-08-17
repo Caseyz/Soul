@@ -67,7 +67,7 @@ class Header extends Component {
         this.props.history.push('/mine/setting')
     }
     handleFriend() {
-        this.props.history.push('/mine/friend/1001')
+        this.props.history.push('/mine/seach')
     }
     handleGold() {
         this.props.history.push('/mine/gold')

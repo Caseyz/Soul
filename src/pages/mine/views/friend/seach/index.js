@@ -1,5 +1,5 @@
-import Seach from './views/Seach'
+import AddFriend from 'pages/pos-pages/add-friend/AddFriend'
 
 export {
-    Seach
+    AddFriend
 }
