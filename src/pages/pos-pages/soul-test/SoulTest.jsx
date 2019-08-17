@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Header from '../dynamic-details/Header'
+import Animate from 'components/high-order/Animate'
 import Question from './Question'
 import {
     SoulTestWrap
@@ -46,4 +47,4 @@ class SoulTest extends Component {
     )
   }
 }
-export default SoulTest
+export default Animate(SoulTest)

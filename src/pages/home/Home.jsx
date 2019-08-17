@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, Redirect } from 'react-router-dom'
 import PlanetContainer from './planet/PlanetContainer'
 import PlazaContainer from './plaza/PlazaContainer'
 import MineContainer from './mine/MineContainer'
@@ -32,6 +32,7 @@ export default class Home extends Component {
             <StyleHome>
                 <main>
                     {/* 星球组件 */}
+                    <Redirect from='/' to='/dynamic'></Redirect>
                     <Route path='/home' exact render={ (props)=><PlanetContainer {...props}></PlanetContainer> } />
                     {/* 广场组件 */}
                     <Route path='/home/dynamic' render={(props)=><PlazaContainer {...props}></PlazaContainer> }/>

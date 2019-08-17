@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Header from '../dynamic-details/Header'
+import Animate from 'components/high-order/Animate'
 import {
     Container,
     MainWrap,
@@ -119,4 +120,4 @@ class SoulMoney extends Component {
     )
   }
 }
-export default SoulMoney
+export default Animate(SoulMoney)

@@ -92,6 +92,7 @@
     bottom: 0;
     background: #fff;
     z-index: 1000;
+    overflow: hidden;
 }
 .model-enter {
     opacity: 0;
