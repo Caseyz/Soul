@@ -29,7 +29,7 @@ import Signature from 'pages/mine/views/set/signature/Signature'
 import Birthday from 'pages/mine/views/set/birthday/Birthday'
 import PassWord from  'pages/mine/views/set/password/PassWord'
 import Sett from 'pages/mine/views/set/settingItem/Setting'
-import { AddFriend } from 'pages/mine/views/friend/seach/'
+
 import { Friend as FriendMsg} from 'pages/mine/views/friend/friendMsg/'
 import Gold from 'pages/mine/views/gold/gold'
 
