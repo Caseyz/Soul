@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
+import SoulMoney from 'pages/pos-pages/soul-money/SoulMoney'
+
 class Gold extends Component {
     render() {
         return (
-            <div>
-                金币
-            </div>
+            <SoulMoney>
+            </SoulMoney>
         );
     }
 }
