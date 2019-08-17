@@ -4,6 +4,8 @@ import { TextItem } from 'components/index'
 
 import StyleTestContainer from './StyleTestContentContainer'
 
+import { withRouter } from 'react-router-dom'
+ 
 import TextImg1 from 'assets/images/soulText/banner1@3x.png'
 import TextImg2 from 'assets/images/soulText/banner2@3x.png'
 import TextImg3 from 'assets/images/soulText/banner3@3x.png'
@@ -16,7 +18,7 @@ import PsdImg from 'assets/images/soulText/password1@3x.png'
  *   2019-08-06
  */
 
-export default class TestContentContainer extends Component {
+class TestContentContainer extends Component {
     constructor(props){
         super(props)
         // 渲染数据
@@ -58,11 +60,19 @@ export default class TestContentContainer extends Component {
             ]
         }
     }
+
+    handleClick(value){
+        console.log(this.props)
+        this.props.history.push(`/soultest/${value}`)
+    }
+
     render() {
         return (
             <StyleTestContainer>
-                <TextItem data={this.state.renderData}></TextItem>
+                <TextItem data={this.state.renderData} handleClick={this.handleClick.bind(this)}></TextItem>
             </StyleTestContainer>
         )
     }
 }
+
+export default withRouter(TestContentContainer)

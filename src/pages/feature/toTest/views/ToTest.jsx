@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import { ToTestItem } from 'components/index'
 
+import { withRouter } from 'react-router-dom'
+
 import StyleToTest from './StyleToTest'
 
 import bannerImg1 from 'assets/images/toTest/banner1@3x.png'
@@ -14,7 +16,7 @@ import bannerImg4 from 'assets/images/toTest/banner4@3x.png'
  *   2019-08-07
  */
 
-export default class ToTest extends Component {
+class ToTest extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -47,11 +49,20 @@ export default class ToTest extends Component {
         }
     }
 
+
+    clickHandle(value){
+        console.log(123432)
+        this.props.history.push(`/testself/${value}`)
+    }
+
     render() {
         return (
             <StyleToTest>
-                <ToTestItem questionsList={this.state.questionsList}></ToTestItem>
+                <ToTestItem questionsList={this.state.questionsList} clickHandle={this.clickHandle.bind(this)}></ToTestItem>
             </StyleToTest>
         )
     }
 }
+
+
+export default withRouter(ToTest)
