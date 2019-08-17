@@ -1,9 +1,12 @@
 import styled from 'styled-components'
 
 const Sign = styled.div`
+    position: relative;
+    z-index: 1000;
     width: 100%;
     padding: 0.1rem;
-    flex: 1;
+    height: 100%;
+    background-color: #eee;
     textarea{
         width: 100%;
         height: 2rem;
@@ -12,7 +15,7 @@ const Sign = styled.div`
         border: 0;
         border-radius: 0.1rem;
         color: #333333;
-        resize:none
+        resize:none;
     }
 `
 

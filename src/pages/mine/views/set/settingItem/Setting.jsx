@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import { Header } from '../../header/'
 import SettingItem from './SettingItem'
 import { Set } from './SettingItemStyle' 
+import Animate from 'components/high-order/Animate'
 
-class Setting extends Component {
+class Sett extends Component {
     state={
         TopMsg: {
             // left: '222',
@@ -37,4 +38,4 @@ class Setting extends Component {
     }
 }
 
-export default Setting;
+export default Animate(Sett);

@@ -29,13 +29,13 @@ class SettingItem extends Component {
     }
     handleClick(item) {
         if(item.name === '更改个性签名'){
-            this.props.history.push('/mine/setting/signature')
+            this.props.history.push('/setting/signature')
         }
         if(item.name === '更改生日'){
-            this.props.history.push('/mine/setting/birthday')
+            this.props.history.push('/setting/birthday')
         }
         if(item.name === '修改密码'){
-            this.props.history.push('/mine/setting/password')
+            this.props.history.push('/setting/password')
         }
 
 

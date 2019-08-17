@@ -5,8 +5,9 @@ import {setLoginState} from 'pages/account/'
 import { Header } from '../../header/'
 import { Pass } from './PassWordStyle'
 import http from 'utils/http'
+import Animate from 'components/high-order/Animate'
 
-import store from 'store'
+// import store from 'store'
 import { Toast, WingBlank } from 'antd-mobile';
 function showToastNoMask(msg) {
     Toast.info(msg, 2, null, false);
@@ -97,4 +98,4 @@ class PassWord extends Component {
 const mapDispatch = (dispatch)=>({
     loginOut:()=> dispatch(setLoginState(false))
 })
-export default connect(null, mapDispatch)(PassWord);
+export default Animate(connect(null, mapDispatch)(PassWord));

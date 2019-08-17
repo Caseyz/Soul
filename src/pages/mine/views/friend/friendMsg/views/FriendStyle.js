@@ -6,8 +6,11 @@ const FStyle = styled.div`
     background-color: #eee;
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 2000;
     >div{
-        
+        position: relative;
+        z-index: 2000;
     }
     .friend{
         .buttom{

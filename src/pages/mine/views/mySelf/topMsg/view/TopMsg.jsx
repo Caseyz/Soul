@@ -47,7 +47,7 @@ class TopMsg extends Component {
         }))
     }
     handleSignature() {
-        this.props.history.push('/mine/setting/signature')
+        this.props.history.push('/setting/signature')
     }
 }
 

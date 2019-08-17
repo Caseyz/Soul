@@ -17,12 +17,21 @@ import { SocketConnection } from 'components/socket/'
 import Publish from 'pages/publish/index.jsx'
 import { SoulTestContainer, ToTestContainer } from 'pages/feature/index'
 
+
 // 浮层页面
-import AddFriend from 'pages/pos-pages/add-friend/AddFriend'
+// import AddFriend from 'pages/pos-pages/add-friend/AddFriend'
 import DynamicDetails from 'pages/pos-pages/dynamic-details/DynamicItem'
 import SoulMoney from 'pages/pos-pages/soul-money/SoulMoney'
 import SoulTest from 'pages/pos-pages/soul-test/SoulTest'
 import TestSelf from 'pages/pos-pages/test-self/TestSelf'
+
+import Signature from 'pages/mine/views/set/signature/Signature'
+import Birthday from 'pages/mine/views/set/birthday/Birthday'
+import PassWord from  'pages/mine/views/set/password/PassWord'
+import Sett from 'pages/mine/views/set/settingItem/Setting'
+import { AddFriend } from 'pages/mine/views/friend/seach/'
+import { Friend as FriendMsg} from 'pages/mine/views/friend/friendMsg/'
+// import Gold from 'pages/mine/views/gold/gold'
 
 class App extends Component {
     constructor(props) {
@@ -104,7 +113,7 @@ class App extends Component {
                             }></Route>
         
                             <Route path=''></Route>
-                            <Route path='/addfriend' children={
+                            <Route path='/friend' exact children={
                                 (props) => (
                                     <AddFriend
                                         {...props}
@@ -112,7 +121,7 @@ class App extends Component {
                                 )
                             }></Route>
 
-                            <Route path='/soulmoney' children={
+                            <Route path='/gold' children={
                                 (props) => (
                                     <SoulMoney
                                         {...props}
@@ -132,6 +141,35 @@ class App extends Component {
                                 (props) => (
                                     <TestSelf {...props}></TestSelf>
                                 )
+                            }></Route>
+
+
+                            {/* 自己模块 */}
+                            <Route path="/friend/:userId" children={ 
+                                (props) => {
+                                    return <FriendMsg {...props}></FriendMsg>
+                                }
+                            }></Route>
+                            {/* <Route path='/gold' component={ SoulMoney }></Route> */}
+                            <Route path='/setting' children={
+                                (props) => {
+                                    return  <Sett {...props}></Sett>
+                                }
+                            }></Route>
+                            <Route path='/setting/signature' children={
+                                (props) => {
+                                    return  <Signature {...props}></Signature>
+                                }
+                            }></Route>
+                            <Route path='/setting/birthday' children={
+                                (props) => {
+                                    return <Birthday {...props}></Birthday>
+                                }
+                            }></Route>
+                            <Route path='/setting/password' children={
+                                (props) => {
+                                    return <PassWord {...props}></PassWord>
+                                }
                             }></Route>
                         </SocketConnection>
                     </IsRedirectAccount>

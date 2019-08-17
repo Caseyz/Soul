@@ -6,8 +6,9 @@ import { Toast, WingBlank } from 'antd-mobile';
 import { Header } from '../../header/'
 import { DateTime } from './BirthdayStyle'
 import http from 'utils/http'
+import Animate from 'components/high-order/Animate'
 
-let mine = "'/home/mine'"
+let mine = "/mine"
 
 const nowTimeStamp = Date.now();
 const now = new Date('1998-03-04');
@@ -96,7 +97,7 @@ class Birthday extends Component {
     }
 }
 
-export default Birthday;
+export default Animate(Birthday);
 
 
 

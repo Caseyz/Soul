@@ -7,6 +7,7 @@ import { Toast, WingBlank } from 'antd-mobile';
 
 import { Header } from '../../header/'
 import { Sign } from './SignatureStyle'
+import Animate from 'components/high-order/Animate'
 
 
 const mapState = state => ({
@@ -70,5 +71,5 @@ class Signature extends Component {
     }
 }
 
-export default connect(mapState)(Signature);
+export default Animate(connect(mapState)(Signature));
 

@@ -10,8 +10,8 @@ class Friend extends Component {
     render() {
         return (
             <>
-                <Route path="/mine/friend" component={ AddFriend }></Route>
-                <Route path="/mine/friend/:userId" component={ FriendMsg }></Route>
+                {/* <Route path="/mine/friend" component={ AddFriend }></Route>
+                <Route path="/mine/friend/:userId" component={ FriendMsg }></Route> */}
             </>
         );
     }

@@ -14,10 +14,10 @@ class Mine extends Component {
     render() {
         return (
             <>
-                <Route path='/home/mine' exact component={ MySelf }></Route>
-                <Route path='/mine/gold' component={ Gold }></Route>
+                <Route path='/mine' exact component={ MySelf }></Route>
+                {/* <Route path='/mine/gold' component={ Gold }></Route>
                 <Route path="/mine/friend" component={ Friend }></Route>
-                <Route path='/mine/setting' component={ Sett }></Route>
+                <Route path='/mine/setting' component={ Sett }></Route> */}
             </>
         );
     }
