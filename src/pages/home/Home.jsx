@@ -38,23 +38,24 @@ export default class Home extends Component {
             <StyleHome>
                 <main>
                     {/* 星球组件 */}
-                    <Redirect from='/home' to='/dynamic' exact></Redirect>
-                    <Route path='/home' exact render={ (props)=><PlanetContainer {...props}></PlanetContainer> } />
+                    {/* <Redirect from='/home' to='/dynamic'></Redirect> */}
+                    {/* <Route path='/home' render={ (props)=><PlanetContainer {...props}></PlanetContainer> } /> */}
                     {/* 广场组件 */}
-                    <Route path='/dynamic' render={(props)=><PlazaContainer {...props}></PlazaContainer> }/>
+                    {/* <Route path='/dynamic' render={(props)=><PlazaContainer {...props}></PlazaContainer> }/> */}
                     {/* 发布组件 */}
                     {/* <Route path='/publish' render={(props)=><Publish {...props}></Publish> } /> */}
                     {/* 聊天组件 */}
-                    <Route path='/chat' render={(props)=><ChatContainer {...props}></ChatContainer> } />
+                    {/* <Route path='/chat' render={(props)=><ChatContainer {...props}></ChatContainer> } /> */}
                     {/* 我的组件 */}
-                    <Route path='/mine' render={(props)=><MineContainer {...props}></MineContainer> }/>
+                    {/* <Route path='/mine' render={(props)=><MineContainer {...props}></MineContainer> }/> */}
 
-                    {/* <Route path='/home' component={PlanetContainer} />
-                    <Route path='/chat' component={ChatRoot}></Route> */}
+                    {/* <Redirect from='/home' to="/dynamic" exact></Redirect> */}
+                    <Route path='/home' component={PlanetContainer} />
+                    <Route path='/chat' component={ChatRoot}></Route>
                     {/* <Route path='/publish' component={Publish} /> */}
                     {/* <Route path='/focus' component={FocusListContainer}></Route> */}
-                    {/* <Route path='/dynamic' component={Square}></Route>
-                    <Route path='/mine' component={Mine}></Route> */}
+                    <Route path='/dynamic' component={Square}></Route>
+                    <Route path='/mine' component={Mine}></Route> 
                 </main>
 
                 <nav>

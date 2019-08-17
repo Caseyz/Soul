@@ -50,7 +50,7 @@ class App extends Component {
 
             {/* <Route path='/test' component={Test}></Route> */}
 
-            <Route path='/publish' component={Publish}></Route>
+            {/* <Route path='/publish' component={Publish}></Route> */}
             <Route path='/account' component={AccountContainer}></Route>
           </SocketConnection>
         </IsRedirectAccount>
