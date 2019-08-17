@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom' 
+import { connect } from 'react-redux'
 
-import { Item } from './SettingItemStyle'
+import { Item, Exit } from './SettingItemStyle'
+import { setLoginState } from 'pages/account/'
 
 class SettingItem extends Component {
     render() {
@@ -24,6 +26,9 @@ class SettingItem extends Component {
                         </Item>
                     })
                 }
+                <Exit>
+                    <div onClick={this.handleExit.bind(this)}>退出登录</div>
+                </Exit>
             </>
         );
     }
@@ -37,9 +42,14 @@ class SettingItem extends Component {
         if(item.name === '修改密码'){
             this.props.history.push('/setting/password')
         }
-
-
+    }
+    handleExit() {
+        this.props.loginOut()
     }
 }
 
-export default withRouter(SettingItem);
+const mapDispatch = (dispatch)=>({
+    loginOut:()=> dispatch(setLoginState(false))
+})
+
+export default connect(null, mapDispatch)(withRouter(SettingItem));

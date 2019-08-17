@@ -43,8 +43,24 @@ const Set = styled.div`
     background-color: #eee;
 `
 
+const Exit = styled.div`
+    position: relative;
+    z-index: 1000;
+    height: 0.4rem;
+    width: 100%;
+    margin-top: 0.1rem;
+    background-color: #ffffff;
+    >div{
+        line-height: 0.4rem;
+        text-align: center;
+        color: red;
+        font-size: 0.15rem;
+    }
+`
+
 
 export {
     Item,
-    Set
+    Set,
+    Exit
 }
