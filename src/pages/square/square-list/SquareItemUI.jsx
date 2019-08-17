@@ -33,7 +33,7 @@ export default (props)=>{
 
     })
     return(
-        <StyleSquareItemUI>
+        <StyleSquareItemUI goods = {props.info.star}>
             <div className="square-user">
                 {/* 头像 */}
                 <Link to={'/mine/friend/'+props.info.uid}>
@@ -74,8 +74,8 @@ export default (props)=>{
                             }
                             return(
                                 <>
-                                    <img key={item} src={item} style={{width:picWidth,height:picHeight,marginRight: index===1&&picNumber===2?'.90rem':'.05rem',marginBottom: picNumber===2 ? '.04rem' :0 }} alt=""/>
-                                    {item} 测试用
+                                    <img key={index} src={item} style={{ display:'block', width:picWidth,height:picHeight,marginRight: index===1&&picNumber===2?'.90rem':'.05rem',marginBottom: picNumber===2 ? '.04rem' :0 }} alt=""/>
+                                    {"测试用"}
                                 </>
                             )
                         }) 
@@ -89,24 +89,12 @@ export default (props)=>{
                     onEntered={(el) => {el.style.color='blue'}}
                     appear={true}
                 > */}
-                    <h6 className="text-container" ref={textEl}>{props.info.note}春天的味道是蒲公英的味道,是绿色的味道，我妈平时说我笨我家狗就在旁边听着，以至于它真<br />
-                        的觉得我笨出花了<br />
-                        哈哈哈哈<br />
-                        哈哈哈哈<br />
-                        哈哈哈哈<br />
-                        哈哈哈哈<br />
-                        hiehei<br />
-                        hiehei<br />
+                    <h6 className="text-container" ref={textEl}>
+                        {props.info.note}
                     </h6>
                 {/* </CSSTransition> */}
-                <h6 className="text-container-measure" ref={fileInputEl}>{props.info.note}春天的味道是蒲公英的味道,是绿色的味道，我妈平时说我笨我家狗就在旁边听着，以至于它真<br />
-                    的觉得我笨出花了<br />
-                    哈哈哈哈<br />
-                    哈哈哈哈<br />
-                    哈哈哈哈<br />
-                    哈哈哈哈<br />
-                    hiehei<br />
-                    hiehei<br />
+                <h6 className="text-container-measure" ref={fileInputEl}>
+                    {props.info.note}
                 </h6>
                 {isExceed && <p onClick={props.showText(textEl.current,props.info.id,props.tabNumber)}><img className={`textArrow${props.info.id}${props.tabNumber}`} src={ arrowDPic } alt=""/></p>}
                 {props.info.address && <div className="publish-position">

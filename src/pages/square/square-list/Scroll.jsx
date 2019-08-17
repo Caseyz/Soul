@@ -28,19 +28,31 @@ class Scroll extends Component {
         })
     }
 
-    //获取语音
-    getImgs(serverId){
+    getLocalImg(localId){
         return new Promise((resolve,reject)=>{
-            window.wx.downloadVoice({
-                serverId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
-                isShowProgressTips: 1, // 默认为1，显示进度提示
+            window.wx.getLocalImgData({
+                localId, // 图片的localID
                 success: function (res) {
-                var localId = res.localId; // 返回音频的本地ID
-                resolve(localId)
+                var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
+                resolve(localData)
                 }
             });
         })
     }
+
+    //获取语音
+    // getVoice(serverId){
+    //     return new Promise((resolve,reject)=>{
+    //         window.wx.downloadVoice({
+    //             serverId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+    //             isShowProgressTips: 1, // 默认为1，显示进度提示
+    //             success: function (res) { 
+    //             var localId = res.localId; // 返回音频的本地ID
+    //             resolve(localId)
+    //             }
+    //         });
+    //     })
+    // }
 
 
     
@@ -69,15 +81,14 @@ class Scroll extends Component {
             "pagenum":pagenum,
             "pagesize":pagesize
         })
-        console.log(result)
         //---------------------------------------------
         result instanceof Array && result !==[] && await result.map(async (item,index)=>{
-            console.log(item.image) 
             if(item.image && item.image.split('&').length>1){
                 let imgArr = item.image.split('&').slice(1)
                 item.image = []
                 imgArr.forEach(async (value, index) => {
                     let img = await this.getImgs(value)
+                    img = await this.getLocalImg(img)
                     //将从微信或取得图片替换掉原请求数据中的字符串
                     item.image.push(img) 
                 });
@@ -86,7 +97,6 @@ class Scroll extends Component {
                 console.log(2)
             }
         })
-        console.log(result)
         return result
     }
     async componentDidMount(){

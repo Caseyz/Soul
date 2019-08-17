@@ -1,16 +1,24 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import voicePic from 'assets/images/square/voice.png'
+// import voicePic from 'assets/images/square/voice.gif'
+import voicePic from 'assets/images/square/voice2.png'
+import voiceactive from 'assets/images/square/voiceactive.gif'
 
 const VoiceStyle = styled.div`
+background: #57E1E2;
+width: 1.36rem;
+height: .25rem;
+border-radius: .2rem;
     img{
     width: 1.36rem;
-    height: .25rem;
     }
 `
 export default class Voice extends Component {
     constructor(props){
         super(props)
+        this.state = {
+            voiceStatus: false
+        }
         this.clickplay = this.clickplay.bind(this)
     }
 
@@ -48,30 +56,33 @@ export default class Voice extends Component {
 //==================================================================================
 //  点击播放
 clickplay () {
+    this.setState((prestate)=>{
+        return {voiceStatus: !prestate.voiceStatus}
+    })
     console.log(this.props.voiceId)
     var that = this
 
-    window.wx.ready(function () {
-    //下载语音组件
-        window.wx.downloadVoice({
-            serverId: that.props.voice, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
-            isShowProgressTips: 1, // 默认为1，显示进度提示
-            success: function (res) {
-                that.localId = res.localId; // 返回音频的本地ID
-            }
-        });
-    //播放语音组件
-        window.wx.playVoice({
-            localId: that.localId // 需要播放的音频的本地ID，由stopRecord接口获得
-        });
-    }) 
+//     window.wx.ready(function () {
+//     //下载语音组件
+//         window.wx.downloadVoice({
+//             serverId: that.props.voice, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+//             isShowProgressTips: 1, // 默认为1，显示进度提示
+//             success: function (res) {
+//                 that.localId = res.localId; // 返回音频的本地ID
+//             }
+//         });
+//     //播放语音组件
+//         window.wx.playVoice({
+//             localId: that.localId // 需要播放的音频的本地ID，由stopRecord接口获得
+//         });
+//     }) 
 }
 //====================================================================================
 
     render() {
         return (
             <VoiceStyle onClick={this.clickplay}>
-                <img src={voicePic} alt=""/>
+                <img style={{height: this.state.voiceStatus ? ".3rem" : ".25rem"}} src={this.state.voiceStatus ? voiceactive : voicePic } alt=""/>
             </VoiceStyle>
         )
     }
