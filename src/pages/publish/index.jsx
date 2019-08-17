@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Animate from 'components/high-order/Animate'
+
 //组件
 
 import Animate from 'components/high-order/Animate.jsx'
