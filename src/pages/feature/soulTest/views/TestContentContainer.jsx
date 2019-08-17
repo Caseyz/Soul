@@ -63,7 +63,7 @@ class TestContentContainer extends Component {
 
     handleClick(value){
         console.log(this.props)
-        this.props.history.push(`/soultest/${value}`)
+        this.props.history.push(`/soulTests/${value}`)
     }
 
     render() {
