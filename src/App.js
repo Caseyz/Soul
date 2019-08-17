@@ -42,13 +42,13 @@ class App extends Component {
             <Route path="/soulTest" render={props => <SoulTestContainer {...props}></SoulTestContainer>}></Route>
             {/* 测一测组件 */}
             <Route path="/toTest" render={props => <ToTestContainer {...props}></ToTestContainer>}></Route>
-            <Route path='/start' render={() => (<div>start</div>)}></Route>
+            {/* <Route path='/start' render={() => (<div>start</div>)}></Route>
             <Route path='/chat' component={ChatRoot}></Route>
             <Route path='/focus' component={FocusListContainer}></Route>
             <Route path='/dynamic' component={Square}></Route>
-            <Route path='/publish' component={Publish}></Route>
-            <Route path='/mine' component={Mine}></Route>
+            <Route path='/mine' component={Mine}></Route> */}
             {/* <Route path='/test' component={Test}></Route> */}
+            <Route path='/publish' component={Publish}></Route>
             <Route path='/account' component={AccountContainer}></Route>
           </SocketConnection>
         </IsRedirectAccount>

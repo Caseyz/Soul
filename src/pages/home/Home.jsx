@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { Route, Link, Redirect } from 'react-router-dom'
 import PlanetContainer from './planet/PlanetContainer'
-import PlazaContainer from './plaza/PlazaContainer'
-import MineContainer from './mine/MineContainer'
-import ChatContainer from './chat/ChatContainer'
-import PublishContainer from './publish/PublishContainer'
+// import PlazaContainer from './plaza/PlazaContainer'
+// import MineContainer from './mine/MineContainer'
+// import ChatContainer from './chat/ChatContainer'
+// import PublishContainer from './publish/PublishContainer'
 import StyleHome from './StyleHome'
+
+import ChatRoot from 'pages/chat/ChatRoot'
+import { Mine } from 'pages/mine/'
+import { Square } from 'pages/square'
+// import FocusListContainer from 'pages/chat/focusList/FocusListContainer'
 
 import plazaImg from 'assets/images/home/guangchang3x.png'
 import chatImg from 'assets/images/home/liaotian3x.png'
@@ -32,16 +37,24 @@ export default class Home extends Component {
             <StyleHome>
                 <main>
                     {/* 星球组件 */}
-                    <Redirect from='/' to='/dynamic'></Redirect>
-                    <Route path='/home' exact render={ (props)=><PlanetContainer {...props}></PlanetContainer> } />
+                    {/* <Route path='/home' exact render={ (props)=><PlanetContainer {...props}></PlanetContainer> } /> */}
                     {/* 广场组件 */}
-                    <Route path='/home/dynamic' render={(props)=><PlazaContainer {...props}></PlazaContainer> }/>
+                    {/* <Route path='/home/dynamic' render={(props)=><PlazaContainer {...props}></PlazaContainer> }/> */}
                     {/* 发布组件 */}
-                    <Route path='/home/publish' render={(props)=><PublishContainer {...props}></PublishContainer> } />
+                    {/* <Route path='/home/publish' render={(props)=><PublishContainer {...props}></PublishContainer> } /> */}
                     {/* 聊天组件 */}
-                    <Route path='/home/chat' render={(props)=><ChatContainer {...props}></ChatContainer> } />
+                    {/* <Route path='/home/chat' render={(props)=><ChatContainer {...props}></ChatContainer> } /> */}
                     {/* 我的组件 */}
-                    <Route path='/home/mine' render={(props)=><MineContainer {...props}></MineContainer> } />
+                    {/* <Route path='/home/mine' render={(props)=><MineContainer {...props}></MineContainer> } /> */}
+
+                    {/* home界面内部路由跳转 */}
+                    <Redirect from='/' to='/dynamic'></Redirect>
+                    <Route path='/home' exact component={ PlanetContainer} />
+                    <Route path='/chat' component={ChatRoot}></Route>
+                    <Route path='/dynamic' component={Square}></Route>
+                    <Route path='/mine' component={Mine}></Route>
+
+                    {/* <Route path='/focus' component={FocusListContainer}></Route> */}
                 </main>
 
                 <nav>
@@ -53,9 +66,9 @@ export default class Home extends Component {
                             </Link>
                         </li>
                         <li>
-                            <Link className="link" to="/home/dynamic">
+                            <Link className="link" to="/dynamic">
                                 {console.log(routePath)}
-                                <img src={routePath==='/home/dynamic' ? plazaedImg : plazaImg} alt="" />
+                                <img src={routePath==='/dynamic' ? plazaedImg : plazaImg} alt="" />
                                 <span>广场</span>
                             </Link>
                         </li>
@@ -68,14 +81,14 @@ export default class Home extends Component {
                             </Link>
                         </li>
                         <li>
-                            <Link className="link" to="/home/chat">
-                                <img src={routePath==='/home/chat' ? chatedImg : chatImg} alt="" />
+                            <Link className="link" to="/chat">
+                                <img src={routePath==='/chat' ? chatedImg : chatImg} alt="" />
                                 <span>聊天</span>
                             </Link>
                         </li>
                         <li>
-                            <Link className="link" to="/home/mine">
-                                <img src={routePath==='/home/mine' ? minedImg : mineImg} alt="" />
+                            <Link className="link" to="/mine">
+                                <img src={routePath==='/mine' ? minedImg : mineImg} alt="" />
                                 <span>自己</span>
                             </Link>
                         </li>
