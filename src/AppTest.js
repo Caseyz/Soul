@@ -18,7 +18,7 @@ import { SoulTestContainer, ToTestContainer } from 'pages/feature/index'
 
 
 // 浮层页面
-// import AddFriend from 'pages/pos-pages/add-friend/AddFriend'
+import AddFriend from 'pages/pos-pages/add-friend/AddFriend'
 import DynamicDetails from 'pages/pos-pages/dynamic-details/DynamicItem'
 import SoulMoney from 'pages/pos-pages/soul-money/SoulMoney'
 import SoulTest from 'pages/pos-pages/soul-test/SoulTest'
@@ -31,7 +31,7 @@ import PassWord from  'pages/mine/views/set/password/PassWord'
 import Sett from 'pages/mine/views/set/settingItem/Setting'
 import { AddFriend } from 'pages/mine/views/friend/seach/'
 import { Friend as FriendMsg} from 'pages/mine/views/friend/friendMsg/'
-// import Gold from 'pages/mine/views/gold/gold'
+import Gold from 'pages/mine/views/gold/gold'
 
 class App extends Component {
     constructor(props) {
@@ -105,7 +105,7 @@ class App extends Component {
 
                             <Route path='/gold' children={
                                 (props) => (
-                                    <ToTestContainer {...props}></ToTestContainer>
+                                    <Gold {...props}></Gold>
                                 )
                             }></Route>
 
@@ -153,6 +153,16 @@ class App extends Component {
                             <Route path='/setting/password' children={
                                 (props) => {
                                     return <PassWord {...props}></PassWord>
+                                }
+                            }></Route>
+                            <Route path='/soulTest' children={
+                                (props) => {
+                                    return <SoulTestContainer {...props}></SoulTestContainer>
+                                }
+                            }></Route>
+                            <Route path='/toTest' children={
+                                (props) => {
+                                    return <ToTestContainer {...props}></ToTestContainer>
                                 }
                             }></Route>
                         </SocketConnection>
