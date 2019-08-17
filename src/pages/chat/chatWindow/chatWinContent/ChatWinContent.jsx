@@ -6,6 +6,7 @@ import { pushMsg, sendMsg } from 'components/socket/'
 import { formatJsonDate } from 'utils/date'
 import BScroll from 'better-scroll'
 import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
+
 const mapState = (state) => {
     return {
         ws: state.getIn(['socket', 'ws']),
