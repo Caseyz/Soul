@@ -18,7 +18,7 @@ import { SoulTestContainer, ToTestContainer } from 'pages/feature/index'
 
 
 // 浮层页面
-import AddFriend from 'pages/pos-pages/add-friend/AddFriend'
+// import AddFriend from 'pages/pos-pages/add-friend/AddFriend'
 import DynamicDetails from 'pages/pos-pages/dynamic-details/DynamicItem'
 import SoulMoney from 'pages/pos-pages/soul-money/SoulMoney'
 import SoulTest from 'pages/pos-pages/soul-test/SoulTest'
@@ -83,7 +83,7 @@ class App extends Component {
                             }></Route>
 
                             {/* 灵魂测试试题组件 */}
-                            <Route path='/soultest/:id' children={
+                            <Route path='/soulTests/:id' children={
                                 (props) => (
                                     <SoulTest {...props}></SoulTest>
                                 )
