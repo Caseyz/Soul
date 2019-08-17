@@ -29,7 +29,7 @@ import Signature from 'pages/mine/views/set/signature/Signature'
 import Birthday from 'pages/mine/views/set/birthday/Birthday'
 import PassWord from  'pages/mine/views/set/password/PassWord'
 import Sett from 'pages/mine/views/set/settingItem/Setting'
-import { AddFriend } from 'pages/mine/views/friend/seach/'
+// import { AddFriend } from 'pages/mine/views/friend/seach/'
 import { Friend as FriendMsg} from 'pages/mine/views/friend/friendMsg/'
 import Gold from 'pages/mine/views/gold/gold'
 
@@ -70,13 +70,13 @@ class App extends Component {
                             }></Route>
 
                             {/* <Route path=''></Route> */}
-                            <Route path='/addfriend' children={
+                            <Route path='/friend' children={
                                 (props) => (
                                     <AddFriend {...props}></AddFriend>
                                 )
                             }></Route>
 
-                            <Route path='/soulmoney' children={
+                            <Route path='/gold' children={
                                 (props) => (
                                     <SoulMoney {...props}></SoulMoney>
                                 )
@@ -97,17 +97,17 @@ class App extends Component {
                             }></Route>
         
                             <Route path=''></Route>
-                            <Route path='/friend' exact children={
+                            {/* <Route path='/friend' exact children={
                                 (props) => (
                                     <SoulTestContainer {...props}></SoulTestContainer>
                                 )
-                            }></Route>
+                            }></Route> */}
 
-                            <Route path='/gold' children={
+                            {/* <Route path='/gold' children={
                                 (props) => (
                                     <Gold {...props}></Gold>
                                 )
-                            }></Route>
+                            }></Route> */}
 
                             {/* 发布 */}
                             <Route path='/publish' children={

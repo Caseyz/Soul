@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {setLoginState} from 'pages/account/'
+import { setLoginState } from 'pages/account/'
 
 import { Header } from '../../header/'
 import { Pass } from './PassWordStyle'
