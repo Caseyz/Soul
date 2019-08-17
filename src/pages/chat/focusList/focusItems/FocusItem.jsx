@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import FocusItemUI from './FocusItemUI'
 import http from 'utils/http'
-import { asyncGetMyFocusListData,asyncGetFocusMeList } from '../actionCreator'
+import { asyncGetMyFocusListData, asyncGetFocusMeList } from '../actionCreator'
 import { connect } from 'react-redux'
+import {Toast} from 'antd-mobile'
 
 const mapDispatch = (dispatch) => ({
     getMyFocus: () => {
         dispatch(asyncGetMyFocusListData())
     },
-    getFocusMe:()=>{
+    getFocusMe: () => {
         dispatch(asyncGetFocusMeList())
     }
 })
@@ -56,7 +57,7 @@ class FocusItem extends Component {
                 this.data.getMyFocus();
                 this.data.getFocusMe();
             } else {
-
+                Toast.info('关注失败');
             }
         }
     }

@@ -5,7 +5,7 @@ import Talk from './Talk'
 import { pushMsg, sendMsg } from 'components/socket/'
 import { formatJsonDate } from 'utils/date'
 import BScroll from 'better-scroll'
-
+import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 const mapState = (state) => {
     return {
         ws: state.getIn(['socket', 'ws']),
@@ -74,7 +74,8 @@ class ChatWinContent extends Component {
     }
     static getDerivedStateFromProps(nextProps, preStates) {
         if (nextProps && nextProps.msgList.length > 0 && nextProps.match.params.id) {
-            let _userMsg = nextProps.msgList.find((item) => item.id == nextProps.match.params.id)
+            console.log(nextProps.msgList, nextProps.match.params.id, "比较")
+            let _userMsg = nextProps.msgList.find((item) => item.id == nextProps.match.params.id )
             console.log(_userMsg)
             return {
                 msgList: _userMsg ? _userMsg.msgs : []
@@ -95,16 +96,28 @@ class ChatWinContent extends Component {
     }
     handleKeyDown(obj, e) {
         if (e.keyCode === 13) {
-            let ret = sendMsg({
-                ws: this.props.ws,
+            if (this.state.message.trim().length <= 0) {
+                Toast.info('不能发送空白信息 !!!', 1);
+                return
+            }
+            console.log(this.props.match.params.id, 89)
+            let ret = sendMsg(this.props.ws, {
                 to: this.props.match.params.id,
+                from: '1004',
                 msg: this.state.message
             })
             this.setState({
                 message: ''
             })
             if (ret) {
-                this.props.pushMsg({ fromId: '1004', msg: this.state.message, timeStamp: Date.now() })
+                this.props.pushMsg(
+                    {
+                        fromId: '1004',
+                        to:this.props.match.params.id,
+                        msg: this.state.message,
+                        timeStamp: Date.now()
+                    }
+                )
             }
         }
     }

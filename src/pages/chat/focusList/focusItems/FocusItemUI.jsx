@@ -3,10 +3,11 @@ import BorderedFocusItem from './StyledFocusItem'
 import BtnFocus from './BtnFocus.js'
 export default class FocusItem extends Component {
     render() {
+        console.log(this.props,"=================")
         return (
             <BorderedFocusItem hasBorder={true} onClick={this.handleItemClick.bind(this,this.props.data.id,this.props.data.username)}>
                 <div className="left">
-                    <img src="http://via.placeholder.com/40px*40px" alt=""/>
+                    <img src={this.props.data.head} alt=""/>
                     <div>
                         <h4>{this.props.data.username}</h4>
                         <span>37天，121瞬间</span>
@@ -21,6 +22,7 @@ export default class FocusItem extends Component {
             </BorderedFocusItem>
         )
     }
+    // http://via.placeholder.com/40px*40px
     handleClick(type,id){
         this.props.btnClick(type,id)
     }

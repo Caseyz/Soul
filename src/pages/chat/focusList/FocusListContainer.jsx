@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import { Tabs, WhiteSpace } from 'antd-mobile';
+import { Tabs, WhiteSpace, Toast } from 'antd-mobile';
 import FocusHeader from './focusHeader/FocusHeader'
 import FocusNav from './focusNav/FocusNav'
 import FocusItems from './focusItems/FocusList'

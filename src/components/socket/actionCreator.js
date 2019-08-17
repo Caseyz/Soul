@@ -1,7 +1,7 @@
 const createSocket = (from) => {
     return (dispatch) => {
         if ("WebSocket" in window) {
-            let ws = new WebSocket("ws://139.199.34.125:7007/chat/" + from)
+            let ws = new WebSocket("ws://localhost:8081/" + from)
             ws.onopen = function () {
                 // setMessage("连接成功")
                 console.log('socket链接成功')
@@ -12,16 +12,23 @@ const createSocket = (from) => {
             }
             ws.onmessage = function (event) {
                 // setMessage(event.data)
-                console.log(event, "接收到消息" + event)
+                console.log(event.data)
+                console.log(JSON.parse(event.data), "接收到消息----------------")
                 if (event.data != '对方不在线') {
+                    let _data=JSON.parse(event.data)
                     dispatch({
                         type: 'pushMsg',
-                        payload: { fromId: "1006", msg: event.data, timeStamp: event.timeStamp }
+                        payload: { 
+                            fromId: _data.from, 
+                            to:_data.to,
+                            msg: _data.message, 
+                            timeStamp: event.timeStamp 
+                        }
                     })
 
                 }
             }
-
+// ws://139.199.34.125:7007/chat/
             ws.onerror = function () {
                 // setMessage("出错了")
                 console.log('出错了')
