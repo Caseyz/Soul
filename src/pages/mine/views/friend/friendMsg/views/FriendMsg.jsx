@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom'
 import { List } from 'immutable'
 import BScroll from 'better-scroll';
 import { Toast, WingBlank } from 'antd-mobile';
+import Animate from 'components/high-order/Animate'
 
 // import store from 'store'
 
@@ -98,4 +99,4 @@ class Friend extends Component {
     }
 }
 
-export default connect(mapState, mapDispatch)(withRouter(Friend));
+export default connect(mapState, mapDispatch)(withRouter(Animate(Friend)));

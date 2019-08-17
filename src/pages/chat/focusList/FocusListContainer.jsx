@@ -55,10 +55,8 @@ class FocusListContainer extends Component {
     }
   }
   render() {
-    console.log("------------------------------------------")
     return (
       <StyledFocusListContainer>
-        <div>哈哈哈</div>
         <FocusHeader
           {...this.props}
         ></FocusHeader>

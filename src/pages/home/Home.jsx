@@ -25,7 +25,7 @@ import minedImg from 'assets/images/home/mined.png'
  * 
 */
 
-export default class Home extends Component {
+class Home extends Component {
 
     render() {
         const routePath = this.props.location.pathname
@@ -80,3 +80,5 @@ export default class Home extends Component {
         )
     }
 }
+
+export default Animate(Home)

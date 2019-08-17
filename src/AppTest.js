@@ -62,7 +62,7 @@ class App extends Component {
                         showAnimate={!this.state.isInStarting}
                     >
                         <SocketConnection>
-                            <Route path="/" component={Home} ></Route>
+                            <Route path="/" render={(props)=>(<Home {...props}></Home>)} ></Route>
                             <Route path='/comment/:id' children={
                                 (props) => (
                                     <DynamicDetails {...props}></DynamicDetails>
@@ -117,23 +117,16 @@ class App extends Component {
                             }></Route>
 
                             {/* 登录 */}
-                            {/* <Route path='/account' exact children={
+                            <Route path='/testself' exact children={
                                 (props) => (
-<<<<<<< HEAD
                                     <TestSelf {...props}></TestSelf>
                                 )
                             }></Route>
-<<<<<<< HEAD
                             <Route path='/focus' children={
                                 (props) => (
                                     <FocusListContainer {...props}></FocusListContainer>
                                 )
                             }></Route>
-=======
-                                    <AccountContainer {...props}></AccountContainer>
-                                )} ></Route> */}
-                                
-
 
                             {/* 自己模块 */}
                             <Route path="/friend/:userId" children={ 

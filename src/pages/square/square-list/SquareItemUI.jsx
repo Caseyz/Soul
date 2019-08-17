@@ -36,7 +36,7 @@ export default (props)=>{
         <StyleSquareItemUI goods = {props.info.star}>
             <div className="square-user">
                 {/* 头像 */}
-                <Link to={'/mine/friend/'+props.info.uid}>
+                <Link to={'/friend/'+props.info.uid}>
                 <img className="user-photo" src={headPhoto} alt=""/>
                 </Link>
                 <div className="user-info">
