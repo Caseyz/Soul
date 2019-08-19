@@ -109,9 +109,13 @@ class App extends Component {
                             }></Route> */}
 
                             {/* 发布 */}
-                            <Route path='/publish' children={
+                            <Route path='/publish'  children={
                                 (props) => (
-                                    <Publish {...props}></Publish>
+                                    <Publish 
+                                        {...props} 
+                                        animate='publish'
+                                        classame='publish'
+                                    ></Publish>
                                 )
                             }></Route>
 
