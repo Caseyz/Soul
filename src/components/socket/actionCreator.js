@@ -44,7 +44,7 @@ const createSocket = (from) => {
         }
 
     }
-
+    //ws://localhost:8081/
     // function setMessage(message) {
     //     document.getElementById("content").innerHTML = message;
     // }
