@@ -26,7 +26,7 @@ const StyledFocusItem=Styled.div`
         }
     }
     .right{
-        height:100%;
+        height:.45rem;
         line-height:.45rem;
         text-align:right;
         /* span{

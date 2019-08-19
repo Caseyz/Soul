@@ -12,7 +12,7 @@ const reducer = (state = defaultState, action) => {
             }
         case 'pushMsg':
             const find = state.newMsgList.find((item) => {
-                if (action.payload.fromId == id) {
+                if (action.payload.fromId == action.payload.currentId) {
                     // alert(1)
                     return (item.id == action.payload.to)
                 } else {
@@ -26,7 +26,7 @@ const reducer = (state = defaultState, action) => {
                 return {
                     newMsgList: [...state.newMsgList,
                     {
-                        id: action.payload.fromId == id ? action.payload.to : action.payload.fromId,
+                        id: action.payload.fromId == action.payload.currentId ? action.payload.to : action.payload.fromId,
                         msgs: [
                             {
                                 fromId: action.payload.fromId,

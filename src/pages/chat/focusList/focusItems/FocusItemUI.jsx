@@ -5,8 +5,8 @@ export default class FocusItem extends Component {
     render() {
         console.log(this.props,"=================")
         return (
-            <BorderedFocusItem hasBorder={true} onClick={this.handleItemClick.bind(this,this.props.data.id,this.props.data.username)}>
-                <div className="left">
+            <BorderedFocusItem hasBorder={true} >
+                <div className="left" onClick={this.handleItemClick.bind(this,this.props.data.id,this.props.data.username)}>
                     <img src={this.props.data.head} alt=""/>
                     <div>
                         <h4>{this.props.data.username}</h4>

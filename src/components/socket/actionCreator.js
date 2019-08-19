@@ -1,8 +1,10 @@
 var test = true
 var currentId = "1004"
+var testId="1011"
 const createSocket = (from) => {
     return (dispatch) => {
         if ("WebSocket" in window) {
+            currentId = from;
             let ws = new WebSocket("ws://139.199.34.125:7007/chat/" + from)
             ws.onopen = function () {
                 // setMessage("连接成功")
@@ -21,10 +23,11 @@ const createSocket = (from) => {
                     dispatch({
                         type: 'pushMsg',
                         payload: {
-                            fromId: test ? (to == currentId ? "1001" : "1004") : _data.from,
-                            to: test ? (to == currentId ? "1004" : "1001") : _data.to,
+                            fromId: test ? (to == currentId ? testId : currentId) : _data.from,
+                            to: test ? (to == currentId ? currentId :testId) : _data.to,
                             msg: test ? event.data : _data.message,
-                            timeStamp: event.timeStamp
+                            timeStamp: event.timeStamp,
+                            currentId
                         }
                     })
 

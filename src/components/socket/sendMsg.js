@@ -8,7 +8,7 @@ function sendMsg(ws = null, {
         if(test){
             var message = '{"from":"' + from + '","to":"' + to + '","message":"' + msg + '"}'
             ws.send(message)
-            console.log("send============,",message)
+            console.log("send============,","from="+from)
         }else{
             let message = { from, to, msg }
             ws.send(JSON.stringify(message))

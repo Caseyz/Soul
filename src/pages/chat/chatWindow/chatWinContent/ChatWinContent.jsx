@@ -8,9 +8,12 @@ import BScroll from 'better-scroll'
 import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 
 const mapState = (state) => {
+    console.log(state, "------------------")
+    console.log(state.getIn(['account', 'uid']), "------------------")
     return {
         ws: state.getIn(['socket', 'ws']),
-        msgList: [...state.getIn(['socket', 'newMsgList'])]
+        msgList: [...state.getIn(['socket', 'newMsgList'])],
+        uid: state.getIn(['account', 'uid']),
     }
 
 }
@@ -42,7 +45,7 @@ class ChatWinContent extends Component {
                             {
                                 this.state.msgList && this.state.msgList.length > 0 ?
                                     this.state.msgList.map((item, key) => (
-                                        <Talk direction={item.fromId == '1004' ? "right" : "left"} msg={item.msg} key={key} >
+                                        <Talk direction={item.fromId == this.props.uid ? "right" : "left"} msg={item.msg} key={key} >
                                         </Talk>
                                     )) : ""
                             }
@@ -76,7 +79,7 @@ class ChatWinContent extends Component {
     static getDerivedStateFromProps(nextProps, preStates) {
         if (nextProps && nextProps.msgList.length > 0 && nextProps.match.params.id) {
             console.log(nextProps.msgList, nextProps.match.params.id, "比较")
-            let _userMsg = nextProps.msgList.find((item) => item.id == nextProps.match.params.id )
+            let _userMsg = nextProps.msgList.find((item) => item.id == nextProps.match.params.id)
             console.log(_userMsg)
             return {
                 msgList: _userMsg ? _userMsg.msgs : []
@@ -101,10 +104,10 @@ class ChatWinContent extends Component {
                 Toast.info('不能发送空白信息 !!!', 1);
                 return
             }
-            console.log(this.props.match.params.id, 89)
+            console.log(this.props.uid, 89)
             let ret = sendMsg(this.props.ws, {
                 to: this.props.match.params.id,
-                from: '1004',
+                from: this.props.uid,//'1004',
                 msg: this.state.message
             })
             this.setState({
@@ -113,10 +116,11 @@ class ChatWinContent extends Component {
             if (ret) {
                 this.props.pushMsg(
                     {
-                        fromId: '1004',
-                        to:this.props.match.params.id,
+                        fromId: this.props.uid,//'1004',
+                        to: this.props.match.params.id,
                         msg: this.state.message,
-                        timeStamp: Date.now()
+                        timeStamp: Date.now(),
+                        currentId: this.props.uid
                     }
                 )
             }

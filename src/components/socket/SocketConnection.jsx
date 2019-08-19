@@ -4,7 +4,13 @@ import {
     HashRouter as Router
   } from 'react-router-dom'
 import { createSocket } from './actionCreator'
+const mapState = (state) => {
+    // console.log(state, "------------------")
+    return {
+        uid: state.getIn(['account', 'uid']),
+    }
 
+}
 const mapDispatch = (dispatch) => ({
     createSocket: (from) => {
         dispatch(createSocket(from))
@@ -20,10 +26,10 @@ class SocketConnection extends Component {
         )
     }
     componentDidMount() {
-        this.props.createSocket('1004')
+        this.props.createSocket(this.props.uid)
     }
 }
 
 
 
-export default connect(null, mapDispatch)(SocketConnection)
+export default connect(mapState, mapDispatch)(SocketConnection)
