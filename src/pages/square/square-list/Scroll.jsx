@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import BScroll from 'better-scroll'
 import http from 'utils/http'
 import { Toast } from 'antd-mobile';
-import { promises } from 'dns';
+// import { promises } from 'dns';
 
 class Scroll extends Component {
     constructor(props){
@@ -94,7 +94,7 @@ class Scroll extends Component {
                 });
 
             }else if(item.image){
-                console.log(2)
+                // console.log(2)
             }
         })
         return result
@@ -103,29 +103,34 @@ class Scroll extends Component {
         Toast.loading('Loading...',3,'',false)
         let pagenum = 1
         let result = await this.getSquareDate(pagenum,5)
+        if(this.unmount) {
+            return;
+        }
         Toast.hide()
         let _tem = !result.error&&result instanceof Array  ? this.setState({list: [...this.state.list,...result]}) : ''
-        let bScroll = new BScroll(this.props.fatherSe,{
-            scrollY: true,
-            click: true,
-            pullUpLoad: true,
-        })
-
-        bScroll.on('pullingUp',async ()=>{
-            pagenum++
-            Toast.loading('Loading...',30)
-            let result = this.flage && await this.getSquareDate(pagenum,5)
-            if(!result.length){
-                this.flage = false
-                Toast.offline('没有更多内容了',2)
+        this.timer = setTimeout(()=>{
+            let bScroll = new BScroll(this.props.fatherSe,{
+                scrollY: true,
+                click: true,
+                pullUpLoad: true,
+            })
+    
+            bScroll.on('pullingUp',async ()=>{
+                pagenum++
+                Toast.loading('Loading...',30)
+                let result = this.flage && await this.getSquareDate(pagenum,5)
+                if(!result.length){
+                    this.flage = false
+                    Toast.offline('没有更多内容了',2)
+                    bScroll.finishPullUp()
+                    return 0
+                }
+                this.setState({list: [...this.state.list,...result]})
+                Toast.hide()
                 bScroll.finishPullUp()
-                return 0
-            }
-            this.setState({list: [...this.state.list,...result]})
-            Toast.hide()
-            bScroll.finishPullUp()
-            bScroll.refresh()
-        })
+                bScroll.refresh()
+            })
+        },100)
 
     }
 
@@ -136,6 +141,14 @@ class Scroll extends Component {
             </>
         )
     }
+
+    componentWillUnmount(){
+        Toast.hide()
+        clearTimeout(this.timer)
+        this.unmount = true
+    }
 }
+
+
 
 export default Scroll

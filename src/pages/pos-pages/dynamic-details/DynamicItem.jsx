@@ -37,7 +37,7 @@ class Comment extends Component {
   }
   render() {
     return (
-      <>
+      <div style={{display: 'flex', height: '100%', flexDirection: 'column'}}>
         <Header
           className={'around'}
           iconLeft={'back'}
@@ -69,7 +69,7 @@ class Comment extends Component {
                 <input type="text" placeholder='请输入评论'/>
             </div>
         </CommentInput>
-      </>
+      </div>
     )
   }
 }

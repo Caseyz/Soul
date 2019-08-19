@@ -2,12 +2,13 @@ import React, { useState, useRef, useEffect } from 'react'
 import StyleSquareItemUI from './StyleSquareItemUI'
 import Interaction from './Interaction/Interaction'
 import Voice from './voice/Voice'
+import MyLink from '../router-link/RouterLink'
 import {Link} from 'react-router-dom'
 // import { CSSTransition } from 'react-transition-group'
 import './TextTransition.css'
 
 //图片导入
-import headPhoto from 'assets/images/square/7bdc97e546fb59e65584b916021b193addde1d3a10b90-8pifaR_fw658@3x.png'
+// import headPhoto from 'assets/images/square/7bdc97e546fb59e65584b916021b193addde1d3a10b90-8pifaR_fw658@3x.png'
 // import publishPic1 from 'assets/images/square/864fcba1be833081097df3936668bd9f@3x.png'
 import arrowDPic from 'assets/images/square/箭头@3x.png'
 
@@ -37,7 +38,7 @@ export default (props)=>{
             <div className="square-user">
                 {/* 头像 */}
                 <Link to={'/friend/'+props.info.uid}>
-                <img className="user-photo" src={headPhoto} alt=""/>
+                <img className="user-photo" src={props.info.head} alt=""/>
                 </Link>
                 <div className="user-info">
                     <span className="username">{ props.tabNumber===1 ? props.info.username : '来自 # '+ props.info.starname}</span>
@@ -89,9 +90,13 @@ export default (props)=>{
                     onEntered={(el) => {el.style.color='blue'}}
                     appear={true}
                 > */}
-                    <h6 className="text-container" ref={textEl}>
+                    {/* <h6 className="text-container" ref={textEl}>
                         {props.info.note}
-                    </h6>
+                    </h6> */}
+                {/* <MyLink  url={`/comment/${props.info.id}`}  className="text-container" ref={textEl}> */}
+                <MyLink  url={`/comment/${props.info.id}`}  className="text-container">
+                    {props.info.note}
+                </MyLink>
                 {/* </CSSTransition> */}
                 <h6 className="text-container-measure" ref={fileInputEl}>
                     {props.info.note}
