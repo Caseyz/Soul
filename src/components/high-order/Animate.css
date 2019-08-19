@@ -51,6 +51,31 @@
     transform: translateX(100%);
     transition: opacity 300ms, transform 300ms;
 }
+/* publish动画 */
+.publish {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    z-index: 1000;
+}
+.publish-enter {
+    transform: translateY(100%);
+}
+.publish-enter-active {
+    transform: translateY(0);
+    transition: transform 300ms;
+}
+.publish-exit {
+    opacity: 1;
+}
+.publish-exit-active {
+    transform: translateY(100%);
+    transition: opacity 500ms, transform 500ms;
+}
+
 
 /* 页面内部局部切换 */
 
