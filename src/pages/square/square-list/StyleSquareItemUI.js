@@ -16,6 +16,7 @@ padding-top: .2rem;
         width:.35rem;
         height:.35rem;
         float: left;
+        border-radius: 50%;
     }
     .user-info{
         float: left;
@@ -49,6 +50,7 @@ padding-top: .2rem;
         width: 2.85rem;
         line-height: .23rem;
         transition: all 2s;
+        word-wrap: break-word;
     }
     .text-container{
         width: 2.85rem;

@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import { Tabs, Badge } from "antd-mobile"
 //路由
-import {Route, Link, Switch } from "react-router-dom";
+import {Route, Switch } from "react-router-dom";
 
 
 //列表组件
@@ -49,7 +49,8 @@ class TabExample extends Component{
   constructor(props){
     super(props)
     this.state={
-      themeColor:''
+      themeColor:'',
+      recommend: '',
     }
   }
 
@@ -72,6 +73,7 @@ static getDerivedStateFromProps(nextProps, prevState) {
 
   componentDidMount(){
   // this.ttt = document.querySelector('.am-tabs-tab-bar-wrap')
+  
   }
 
   render(){
@@ -92,6 +94,7 @@ static getDerivedStateFromProps(nextProps, prevState) {
               <Tabs tabs={tabs}
         initialPage={1}
         tabBarActiveTextColor="#333"
+        prerenderingSiblingsNumber={0}
         onChange={
           (tab,index) => {
             let ttt = document.querySelector('.am-tabs-tab-bar-wrap')
