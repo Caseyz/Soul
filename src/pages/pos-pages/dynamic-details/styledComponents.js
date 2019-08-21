@@ -8,6 +8,7 @@ import IconStar from 'assets/images/account/star.png'
 import IconComment from 'assets/images/account/comment.png'
 import IconCollect from 'assets/images/account/collect.png'
 import IconWatch from 'assets/images/account/watch.png'
+import likeActive from 'assets/images/square/like-active.png'
 
 export const LineTbar = border({
     component: styled.div`
@@ -107,7 +108,7 @@ export const IconOpt = styled.div`
     margin: 0 0.1rem;
     background-repeat: no-repeat;
     background-size: contain;
-    background-image: url(${(props)=>(props.type==='star'? IconStar : props.type==='comment' ? IconComment : props.type==='collect' ? IconCollect : props.type==='watch' ? IconWatch : IconCancle )});
+    background-image: url(${(props)=>(props.type==='star'? IconStar : props.type==='comment' ? IconComment : props.type==='collect' ? IconCollect : props.type==='watch' ? IconWatch : props.type==='redstart' ? likeActive : IconCancle )});
 `
 export const OptWrap = styled.div`
     display: flex;

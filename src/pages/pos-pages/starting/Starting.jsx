@@ -13,7 +13,7 @@ const Starting = (props)=> {
     useEffect(()=>{
         let time = setInterval(()=>{
             setCutTime(--cutTime)
-            if( cutTime === -1 ) {
+            if( cutTime <= 0 ) {
                 props.closeStarting()
             }
         },1000)

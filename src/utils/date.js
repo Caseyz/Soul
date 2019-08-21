@@ -15,7 +15,17 @@ const fromatYMDHI = function (jsonStr) {
 
     return tmp;
 };
+const formatNow2YMD = function() {
+    let d = new Date()
+    let y = d.getFullYear()
+    let m = d.getMonth() + 1
+    m = m < 10 ? "0"+m : m
+    let dat = d.getDate()
+    dat = dat < 10 ? "0"+dat : dat
+    return `${y}-${m}-${dat}`
+}
 export {
     formatJsonDate,
-    fromatYMDHI
+    fromatYMDHI,
+    formatNow2YMD
 }
