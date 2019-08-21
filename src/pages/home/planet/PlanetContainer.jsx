@@ -33,8 +33,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    getUser() {
-        dispatch(getPlanetDataAsync())
+    getUser(data) {
+        dispatch(getPlanetDataAsync(data))
     }
 })
 
@@ -79,9 +79,14 @@ class PlanetContainer extends Component {
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.props.getUser()
     }
+
+    // getDerivedStateFromProps(){
+    //     this.props.getUser()
+    //     console.log(12345)
+    // }
 
     // 点击头部的回调
     soulText(clickBtn) {
@@ -138,6 +143,16 @@ class PlanetContainer extends Component {
         this.setState((preState, props) => ({
             isClickFilterValue: !preState.isClickFilterValue
         }))
+        // this.props.getUser({
+        //     // sex: this.state.filter.sex.filter(value => {return value.isClick ? value.value : ''})[0].value,
+        //     sex: null,
+        //     // age_1: this.state.ageData.changeAge[0],
+        //     age_1: null,
+        //     // age_2: this.state.ageData.changeAge[1],
+        //     age_2: null,
+        //     constellation: null,
+        //     size: 40
+        // })
     }
 
     // 点击空白隐藏
@@ -161,7 +176,7 @@ class PlanetContainer extends Component {
                 {/* 星球界面旋转球界面 */}
                 <PlaneUI isClickCart={this.isClickCart.bind(this)}
                     options={{
-                        callback: () => { alert(1)},
+                        callback: (id) => {this.props.history.push(`/friend/${id}`)},
                         data: this.props.planetData.toJS()
                         }
                     }
