@@ -11,9 +11,9 @@ const getPlanetDataSync = (data) => {
 }
 
 // 异步星球用户数据更新
-const getPlanetDataAsync = () => {
+const getPlanetDataAsync = (value) => {
     const url = http._OriginURL('/allusers')
-    const data = {
+    const data = value ? value : {
         sex: null,
         age_1: null,
         age_2: null,
