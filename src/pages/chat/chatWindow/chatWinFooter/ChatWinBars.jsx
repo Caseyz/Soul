@@ -16,7 +16,7 @@ import emoticonSelect from 'assets/images/publish/键盘 (2)@3x.png'
 import './tabbarStyle.css'
 
 //子组件
-// import Voice from 'pages/publish/footer/views/tabbar/TBPlugIn/voice/'
+import Voice from 'pages/publish/footer/views/tabbar/TBPlugIn/voice/'
 import Emotion from 'components/emoji/EmojiMart.jsx'
 
 
@@ -93,11 +93,11 @@ class ChatWinBars extends React.Component {
                         }}
                         data-seed="logId"
                     >
-                        {/* {
-              this.props.img.length == 0
-                ? <Voice></Voice>
-                : <div style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>只能上传一种格式的资源哟^_^</div>
-            } */}
+                        {
+                            this.props.img.length == 0
+                                ? <Voice></Voice>
+                                : <div style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>只能上传一种格式的资源哟^_^</div>
+                        }
                     </TabBar.Item>
                     <TabBar.Item className="leftItem"
                         icon={
@@ -136,20 +136,7 @@ class ChatWinBars extends React.Component {
 
                                             that.localIds = [...that.props.localid, ...res.localIds]; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
 
-                                            //上传图片
-                                            that.serverId = []
 
-                                            that.localIds.forEach(Item => {
-                                                window.wx.uploadImage({
-                                                    localId: Item, // 需要上传的图片的本地ID，由chooseImage接口获得
-                                                    isShowProgressTips: 1, // 默认为1，显示进度提示
-                                                    success: function (res) {
-                                                        that.serverId.push(res.serverId)
-                                                    }
-                                                });
-                                            })
-                                            that.props.GetImages(that.serverId)
-                                            that.props.SetLocalId(that.localIds)
                                         }
                                     });
                                 })
@@ -216,8 +203,7 @@ class ChatWinBars extends React.Component {
                                                     }
                                                 });
                                             })
-                                            that.props.GetImages(that.serverId)
-                                            that.props.SetLocalId(that.localIds)
+                                            //...
                                         }
                                     });
                                 })
