@@ -1,11 +1,11 @@
-var test = true
+var test = false
 var currentId = "1004"
 var testId="1011"
 const createSocket = (from) => {
     return (dispatch) => {
         if ("WebSocket" in window) {
             currentId = from;
-            let ws = new WebSocket("ws://139.199.34.125:7007/chat/" + from)
+            let ws = new WebSocket("ws://www.red-mi.xyz/chat/" + from)
             ws.onopen = function () {
                 // setMessage("连接成功")
                 console.log('socket链接成功')
@@ -47,7 +47,7 @@ const createSocket = (from) => {
         }
 
     }
-    //ws://localhost:8081/
+    //ws://localhost:8081/139.199.34.125:7007/chat/
     // function setMessage(message) {
     //     document.getElementById("content").innerHTML = message;
     // }
