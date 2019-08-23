@@ -11,6 +11,7 @@ const reducer = (state = defaultState, action) => {
                 newMsgList: state.newMsgList
             }
         case 'pushMsg':
+            console.log(state.newMsgList,action.payload.msg,"state.newMsgList111111")
             const find = state.newMsgList.find((item) => {
                 if (action.payload.fromId == action.payload.currentId) {
                     // alert(1)
@@ -40,6 +41,7 @@ const reducer = (state = defaultState, action) => {
                 }
             }
             else {
+                console.log("find",find)
                 find.msgs = [...find.msgs, { fromId: action.payload.fromId, msg: action.payload.msg, timeStamp: action.payload.timeStamp }]
                 console.log(find, "findfind")
 

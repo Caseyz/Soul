@@ -20,12 +20,14 @@ const createSocket = (from) => {
                 let to = event.currentTarget.url.substring(event.currentTarget.url.length - 4)
                 if (event.data != '对方不在线') {
                     let _data = test ? null : JSON.parse(event.data)
+                    console.log(_data,"message")
+                    console.log( test ? event.data : _data.message,"2222222222")
                     dispatch({
                         type: 'pushMsg',
                         payload: {
                             fromId: test ? (to == currentId ? testId : currentId) : _data.from,
                             to: test ? (to == currentId ? currentId :testId) : _data.to,
-                            msg: test ? event.data : _data.message,
+                            msg: test ? event.data: _data.msg,
                             timeStamp: event.timeStamp,
                             currentId
                         }
