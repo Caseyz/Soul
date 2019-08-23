@@ -62,7 +62,7 @@ class App extends Component {
                     >
                         <SocketConnection>
                             <Route path="/" render={(props)=>(<Home {...props}></Home>)} ></Route>
-                            <Route path='/comment/:id' children={
+                            <Route path='/dynamic/comment/:id' children={
                                 (props) => (
                                     <DynamicDetails {...props}></DynamicDetails>
                                 )
