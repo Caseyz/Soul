@@ -83,6 +83,7 @@ class PlanetContainer extends Component {
         this.props.getUser()
     }
 
+    
     // getDerivedStateFromProps(){
     //     this.props.getUser()
     //     console.log(12345)
@@ -162,6 +163,7 @@ class PlanetContainer extends Component {
         }))
     }
 
+    
     render() {
         return (
             <StylePlanetContainer>

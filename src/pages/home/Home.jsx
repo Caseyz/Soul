@@ -33,7 +33,7 @@ class Home extends Component {
             <StyleHome>
                 <main>
                     {/* 星球组件 */}
-                    <Redirect from='/' to='/dynamic' ></Redirect>
+                    <Redirect from='/' to='/home' ></Redirect>
                     <Route path='/home' component={PlanetContainer} />
                     <Route path='/chat' component={ChatRoot}></Route>
                     <Route path='/dynamic' component={Square}></Route>
