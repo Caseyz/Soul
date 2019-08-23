@@ -75,7 +75,7 @@ class HeaderContainer extends Component {
       Toast.success('发布成功', 1, null, true)
       
       setTimeout(() => {
-        this.props.history.push('/home/dynamic')
+        this.props.history.push('/dynamic')
       },1000)
     } else {
       Toast.fail('发布失败TvT', 1, null, true)
