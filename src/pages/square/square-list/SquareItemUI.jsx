@@ -51,7 +51,7 @@ export default (props)=>{
                     {
                         props.info.image && !(props.info.image instanceof Array) && <Voice voiceId = {props.info.image} />
                     }
-                    {/* {
+                    {
                         // props.info.image && props.info.image.split(",").map((item,index)=>{
                         props.info.image instanceof Array && props.info.image.map((item,index)=>{
                             //picNumber=2，2为测试数据
@@ -80,7 +80,7 @@ export default (props)=>{
                                 </>
                             )
                         }) 
-                    } */}
+                    }
                     
                 </div>
                 {/* <CSSTransition
