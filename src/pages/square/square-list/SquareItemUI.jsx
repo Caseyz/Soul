@@ -51,7 +51,7 @@ export default (props)=>{
                     {
                         props.info.image && !(props.info.image instanceof Array) && <Voice voiceId = {props.info.image} />
                     }
-                    {
+                    {/* {
                         // props.info.image && props.info.image.split(",").map((item,index)=>{
                         props.info.image instanceof Array && props.info.image.map((item,index)=>{
                             //picNumber=2，2为测试数据
@@ -80,7 +80,7 @@ export default (props)=>{
                                 </>
                             )
                         }) 
-                    }
+                    } */}
                     
                 </div>
                 {/* <CSSTransition
@@ -94,7 +94,7 @@ export default (props)=>{
                         {props.info.note}
                     </h6> */}
                 {/* <MyLink  url={`/comment/${props.info.id}`}  className="text-container" ref={textEl}> */}
-                <MyLink  url={`/comment/${props.info.id}`}  className="text-container">
+                <MyLink  url={`/dynamic/comment/${props.info.id}`}  className="text-container">
                     {props.info.note}
                 </MyLink>
                 {/* </CSSTransition> */}

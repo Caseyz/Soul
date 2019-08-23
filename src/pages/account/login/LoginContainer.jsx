@@ -130,7 +130,7 @@ class LoginContainer extends Component {
       // 设置全局登录状态
       this.props.setLoginState(true)
       this.props.setUid(res.id)
-      this.props.history.replace('/dynamic')
+      this.props.history.replace('/home')
     }else if( res.code===1 ) {
       // 登录失败操作
       console.log('登录失败')
@@ -159,7 +159,7 @@ class LoginContainer extends Component {
       // 设置全局登录状态 
       this.props.setUid(res.id)
       this.props.setLoginState(true)
-      this.props.history.replace('/dynamic')
+      this.props.history.replace('/home')
     }else if( res.statu === '1' ){
       // 用户注册成功逻辑
       console.log('注册成功')
