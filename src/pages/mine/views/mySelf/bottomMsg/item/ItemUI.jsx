@@ -20,8 +20,8 @@ export default (props) => {
                     </div>
                     <div className="msg">
                         <p>{props.data.note}</p>
-                        {/* <img src={require('assets/images/mine/test.png')} alt=""/>
-                        <img src={require('assets/images/mine/test.png')} alt=""/> */}
+                        <img src={require('assets/images/mine/test.png')} alt=""/>
+                        {/* <img src={require('assets/images/mine/test.png')} alt=""/> */}
                     </div>
                 </div>
             </div>
