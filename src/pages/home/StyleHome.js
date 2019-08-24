@@ -39,13 +39,20 @@ const StyleHome = styled.div`
                             /* background: red; */
                         }
                         .planet-img{
-                            width: .31rem;
-                            height: .235rem;
+                            width: .315rem;
+                            height: .24rem;
+                        }
+                        .de-planet-img {
+                            object-fit: contain;
+                            width: 0.31rem;
                         }
                         span{
-                                font-weight: bold;
-                                color: #333;
+                            font-weight: normal;
+                            color: #333;
+                            &.active {
+                                color: #57e1e2;
                             }
+                        }
                         .ball{
                             background-color: rgb(102,255,255);
                             width: .5rem;

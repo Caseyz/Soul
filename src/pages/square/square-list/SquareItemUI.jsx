@@ -73,11 +73,9 @@ export default (props)=>{
                                     picHeight = '.76rem'
 
                             }
+                            console.log(props.info.id)
                             return(
-                                <>
-                                    <img key={index} src={item} style={{ display:'block', width:picWidth,height:picHeight,marginRight: index===1&&picNumber===2?'.90rem':'.05rem',marginBottom: picNumber===2 ? '.04rem' :0 }} alt=""/>
-                                    {"测试用"}
-                                </>
+                                <img key={`${props.info.id}-${index}`} src={item} style={{ display:'inline-block', width:picWidth,height:picHeight,marginRight: index===1&&picNumber===2?'.90rem':'.05rem',marginBottom: picNumber===2 ? '.04rem' :0 }} alt=""/>
                             )
                         }) 
                     }

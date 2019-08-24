@@ -2,6 +2,9 @@ import React, {Component} from 'react'
 import BScroll from 'better-scroll'
 import http from 'utils/http'
 import { Toast } from 'antd-mobile';
+import testImg from 'assets/images/mine/test.png'
+import testImg2 from 'assets/images/mine/test1.png'
+
 // import { promises } from 'dns';
 
 class Scroll extends Component {
@@ -87,10 +90,14 @@ class Scroll extends Component {
                 let imgArr = item.image.split('&').slice(1)
                 item.image = []
                 imgArr.forEach(async (value, index) => {
-                    let img = await this.getImgs(value)
-                    img = await this.getLocalImg(img)
+                    // let img = await this.getImgs(value)
+                    // img = await this.getLocalImg(img)
                     //将从微信或取得图片替换掉原请求数据中的字符串
-                    item.image.push(img) 
+                    if( index >= 3 ) return
+                    item.image.push(testImg)
+                    if( index===2 ) {
+                        item.image.push(testImg2)
+                    } 
                 });
 
             }else if(item.image){

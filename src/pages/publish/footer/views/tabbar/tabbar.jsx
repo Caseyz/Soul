@@ -131,7 +131,7 @@ class TabBarExample extends React.Component {
                   window.wx.chooseImage({
                     count: 4 - (that.props.img.length || 0), // 默认9
                     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-                    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+                    sourceType: ['album'], // 可以指定来源是相册还是相机，默认二者都有
                     success: function (res) {
 
                       that.localIds = [...that.props.localid, ...res.localIds]; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
@@ -201,7 +201,7 @@ class TabBarExample extends React.Component {
                   window.wx.chooseImage({
                     count: 4 - (that.props.img.length || 0), // 默认9
                     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-                    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+                    sourceType: ['camera'], // 可以指定来源是相册还是相机，默认二者都有
                     success: function (res) {
 
                       that.localIds = [...that.props.localid, ...res.localIds]; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
@@ -230,7 +230,7 @@ class TabBarExample extends React.Component {
             {
               this.props.voice === ''
                 ? this.props.img.length < 4
-                  ? <div className='Images' style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>OPPO至美一拍，炫出你的美ヾ(@^▽^@)ノ</div>
+                  ? <div className='Images' style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>正在准备相机,请稍等ヾ(@^▽^@)ノ</div>
                   : <div className='Images' style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>最多上传四张照片哦٩(๑❛ᴗ❛๑)۶٩</div>
                 : <div className='Images' style={{ 'width': '100%', 'height': '100%', 'textAlign': "center", lineHeight: '180px' }}>只能上传一种格式的资源哟(T＿T)</div>
             }

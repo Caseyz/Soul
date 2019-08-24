@@ -34,7 +34,7 @@ class DynamicOpt extends Component {
       <div style={{display: 'flex', flexDirection: 'row-reverse'}}>
         <div style={{display: 'flex'}}>
             <OptWrap>
-                <IconOpt type={this.state.star>0 ? 'redstart' : 'start'} onClick={this.handleStar}></IconOpt>
+                <IconOpt type={this.state.star>0 ? 'redstart' : 'star'} onClick={this.handleStar}></IconOpt>
                 <OptText>{this.state.star || 0}</OptText>
             </OptWrap>
             <OptWrap>

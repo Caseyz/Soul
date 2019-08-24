@@ -44,14 +44,15 @@ class Home extends Component {
                     <ul>
                         <li>
                             <Link className="link" to="/home">
-                                <img src={routePath === '/home' ? planetedImg : planetImg} alt="" className="planet-img" />
-                                <span>星球</span>
+                                {/* <img src={routePath === '/home' ? planetedImg : planetImg} alt="" className="planet-img" /> */}
+                                <img src={routePath === '/home' ? planetedImg : planetImg} alt="" className={routePath === '/home' ? 'planet-img' : 'de-planet-img'} />
+                                <span className={routePath === '/home' ? 'active' : ''}>星球</span>
                             </Link>
                         </li>
                         <li>
                             <Link className="link" to="/dynamic">
                                 <img src={routePath === '/dynamic' ? plazaedImg : plazaImg} alt="" />
-                                <span>广场</span>
+                                <span className={routePath === '/dynamic' ? 'active' : ''}>广场</span>
                             </Link>
                         </li>
                         <li>
@@ -65,7 +66,7 @@ class Home extends Component {
                         <li>
                             <Link className="link" to="/chat">
                                 <img src={routePath === '/chat' ? chatedImg : chatImg} alt="" />
-                                <span>聊天</span>
+                                <span className={routePath === '/chat' ? 'active' : ''}>聊天</span>
                             </Link>
                         </li>
                         <li>

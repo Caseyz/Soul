@@ -5,7 +5,7 @@ const BtnSpan=Styled.span`
     border-radius:.05rem;
     line-height:.35rem;
     height:.35rem;
-    border:1px solid blue;
+    /* border:1px solid blue; */
     text-align:center;
     color:#fff;
     font-size:.1rem;

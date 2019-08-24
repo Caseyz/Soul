@@ -71,8 +71,8 @@ export class SquareItemContainer extends Component {
     render() {
         let list = this.props.squareData
         ? this.props.squareData.list.map((item,index)=>(
-                <SquareItemUI str={this.state.str} index={index} key={item.id} arrowStatus={this.arrowStatus}  addLike={this.addLike} showText={this.showText} info={item} tabNumber = {this.props.tabNumber}></SquareItemUI>
-          )) 
+                <SquareItemUI str={this.state.str} index={index} key={`${item.id}-${Math.random()}`} arrowStatus={this.arrowStatus}  addLike={this.addLike} showText={this.showText} info={item} tabNumber = {this.props.tabNumber}></SquareItemUI>
+          ))
         : []
         return (
         <StyleSquareItemContainer  backgroundColor= {this.props.backgroundColor}>
